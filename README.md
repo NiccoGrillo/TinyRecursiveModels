@@ -1,196 +1,52 @@
-**Update: Due to many automatically generated and irrelevant issues submitted to this repo (that have been deleted now) and our limited capacity to properly maintain this repo, we have to temporaliy archive (make read-only) this and several other repos.**
+# TRM Decision Stability
 
+**Can a recurrent reasoner preserve a correct answer while continuing to compute?**
 
-# Less is More: Recursive Reasoning with Tiny Networks
+This project starts from [SamsungSAILMontreal/TinyRecursiveModels](https://github.com/SamsungSAILMontreal/TinyRecursiveModels), the official implementation of [Less is More: Recursive Reasoning with Tiny Networks](https://arxiv.org/abs/2510.04871). It studies whether changes to a reasoning state that leave the current output unchanged can affect future answer retention.
 
-This is the codebase for the paper: "Less is More: Recursive Reasoning with Tiny Networks". TRM is a recursive reasoning approach that achieves amazing scores of 45% on ARC-AGI-1 and 8% on ARC-AGI-2 using a tiny 7M parameters neural network.
+The working hypothesis is that useful internal computation and harmful future decision changes should be distinguished before imposing contraction on the whole latent state. This is a hypothesis to test, not a demonstrated improvement or a claim of publication novelty.
 
-[Paper](https://arxiv.org/abs/2510.04871)
+## Start here
 
-### Motivation
+| File | Purpose |
+| --- | --- |
+| [AGENTS.md](AGENTS.md) | Context, commands, and scientific constraints for Codex |
+| [Project](docs/PROJECT.md) | Research question, mathematics, and novelty boundaries |
+| [Experiments](docs/EXPERIMENTS.md) | Runnable commands, metrics, and interpretation |
+| [Resources](docs/RESOURCES.md) | Papers, code, and relevance |
+| [Roadmap](docs/ROADMAP.md) | Next tasks, baselines, and decision gates |
+| [Status](docs/STATUS.md) | Implemented, verified, and still untested |
+| [Critic review](docs/CRITIC_REVIEW.md) | Objections incorporated and remaining risks |
+| [Upstream README](README_UPSTREAM.md) | Original training recipes and attribution |
 
-Tiny Recursion Model (TRM) is a recursive reasoning model that achieves amazing scores of 45% on ARC-AGI-1 and 8% on ARC-AGI-2 with a tiny 7M parameters neural network. The idea that one must rely on massive foundational models trained for millions of dollars by some big corporation in order to achieve success on hard tasks is a trap. Currently, there is too much focus on exploiting LLMs rather than devising and expanding new lines of direction. With recursive reasoning, it turns out that “less is more”: you don’t always need to crank up model size in order for a model to reason and solve hard problems. A tiny model pretrained from scratch, recursing on itself and updating its answers over time, can achieve a lot without breaking the bank.
+## CPU quickstart
 
-This work came to be after I learned about the recent innovative Hierarchical Reasoning Model (HRM). I was amazed that an approach using small models could do so well on hard tasks like the ARC-AGI competition (reaching 40% accuracy when normally only Large Language Models could compete). But I kept thinking that it is too complicated, relying too much on biological arguments about the human brain, and that this recursive reasoning process could be greatly simplified and improved. Tiny Recursion Model (TRM) simplifies recursive reasoning to its core essence, which ultimately has nothing to do with the human brain, does not require any mathematical (fixed-point) theorem, nor any hierarchy.
-
-### How TRM works
-
-<p align="center">
-  <img src="https://AlexiaJM.github.io/assets/images/TRM_fig.png" alt="TRM"  style="width: 30%;">
-</p>
-
-Tiny Recursion Model (TRM) recursively improves its predicted answer y with a tiny network. It starts with the embedded input question x and initial embedded answer y and latent z. For up to K improvements steps, it tries to improve its answer y. It does so by i) recursively updating n times its latent z given the question x, current answer y, and current latent z (recursive reasoning), and then ii) updating its answer y given the current answer y and current latent z. This recursive process allows the model to progressively improve its answer (potentially addressing any errors from its previous answer) in an extremely parameter-efficient manner while minimizing overfitting.
-
-### Requirements
-
-Installation should take a few minutes. For the smallest experiments on Sudoku-Extreme (pretrain_mlp_t_sudoku), you need 1 GPU with enough memory. With 1 L40S (48Gb Ram), it takes around 18h to finish. In case that you run into issues due to library versions, here is the requirements with the exact versions used: [specific_requirements.txt](https://github.com/SamsungSAILMontreal/TinyRecursiveModels/blob/main/specific_requirements.txt).
-
-- Python 3.10 (or similar)
-- Cuda 12.6.0 (or similar)
+Run from the repository root. Python 3.12 and PyTorch 2.7.0 CPU were used for verification.
 
 ```bash
-pip install --upgrade pip wheel setuptools
-pip install --pre --upgrade torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu126 # install torch based on your cuda version
-pip install -r requirements.txt # install requirements
-pip install --no-cache-dir --no-build-isolation adam-atan2 
-wandb login YOUR-LOGIN # login if you want the logger to sync results to your Weights & Biases (https://wandb.ai/)
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cpu
+python -m pip install -r requirements-experiments.txt
+python -m pytest -q
+python -m experiments.decision_stability.run \
+  --smoke --out runs/smoke \
+  --steps 8 --fork-steps 2 4 --horizon 4 --targeted --probe-horizon 2
+python -m experiments.decision_stability.analyze runs/smoke
 ```
 
-### Dataset Preparation
+The smoke test uses **random weights and two synthetic puzzles**. Its accuracy and perturbation effects are not research results. Output directories must be new. For trained weights, use the [checkpoint/data runbook](docs/EXPERIMENTS.md). No checkpoint or benchmark data is bundled, and no full training run has been performed for this project.
 
-```bash
-# ARC-AGI-1
-python -m dataset.build_arc_dataset \
-  --input-file-prefix kaggle/combined/arc-agi \
-  --output-dir data/arc1concept-aug-1000 \
-  --subsets training evaluation concept \
-  --test-set-name evaluation
+## Implemented experiments
 
-# ARC-AGI-2
-python -m dataset.build_arc_dataset \
-  --input-file-prefix kaggle/combined/arc-agi \
-  --output-dir data/arc2concept-aug-1000 \
-  --subsets training2 evaluation2 concept \
-  --test-set-name evaluation2
+1. Extend a frozen TRM at a fixed recursion phase, logging retention, recovery, rule validity, margins, Q output, and latent changes.
+2. At predetermined times, fork the same state and perturb only `z_L`. Assert identical immediate logits; compare clean, random ±, and optional future-margin gradient ± continuations.
+3. Save JSONL records, reproducibility manifests, and summaries that can be recomputed independently.
 
-## Note: You cannot train on both ARC-AGI-1 and ARC-AGI-2 and evaluate them both because ARC-AGI-2 training data contains some ARC-AGI-1 eval data
+Gradient arms are **offline sensitivity attacks** with extra compute. They are not a stopping policy, a validated predictor of spontaneous errors, or evidence of the cause of native failures.
 
-# Sudoku-Extreme
-python dataset/build_sudoku_dataset.py --output-dir data/sudoku-extreme-1k-aug-1000  --subsample-size 1000 --num-aug 1000  # 1000 examples, 1000 augments
+The additions are in `experiments/decision_stability/`, with tests in `tests/decision_stability/`. The upstream `models/`, `pretrain.py`, `dataset/`, and `config/` are unchanged. One macro-step uses `H_cycles*(L_cycles+1)*L_layers` block evaluations: **42** at the original Sudoku settings. Probe and branch costs are logged separately.
 
-# Maze-Hard
-python dataset/build_maze_dataset.py # 1000 examples, 8 augments
-```
+## Upstream and licence
 
-## Experiments
-
-### Sudoku-Extreme (assuming 1 L40S GPU):
-
-```bash
-run_name="pretrain_mlp_t_sudoku"
-python pretrain.py \
-arch=trm \
-data_paths="[data/sudoku-extreme-1k-aug-1000]" \
-evaluators="[]" \
-epochs=50000 eval_interval=5000 \
-lr=1e-4 puzzle_emb_lr=1e-4 weight_decay=1.0 puzzle_emb_weight_decay=1.0 \
-arch.mlp_t=True arch.pos_encodings=none \
-arch.L_layers=2 \
-arch.H_cycles=3 arch.L_cycles=6 \
-+run_name=${run_name} ema=True
-
-Expected: Around 87% exact-accuracy (+- 2%)
-
-run_name="pretrain_att_sudoku"
-python pretrain.py \
-arch=trm \
-data_paths="[data/sudoku-extreme-1k-aug-1000]" \
-evaluators="[]" \
-epochs=50000 eval_interval=5000 \
-lr=1e-4 puzzle_emb_lr=1e-4 weight_decay=1.0 puzzle_emb_weight_decay=1.0 \
-arch.L_layers=2 \
-arch.H_cycles=3 arch.L_cycles=6 \
-+run_name=${run_name} ema=True
-```
-
-Expected: Around 75% exact-accuracy (+- 2%)
-
-*Runtime:* < 20 hours
-
-### Maze-Hard (assuming 4 L40S GPUs):
-
-```bash
-run_name="pretrain_att_maze30x30"
-torchrun --nproc-per-node 4 --rdzv_backend=c10d --rdzv_endpoint=localhost:0 --nnodes=1 pretrain.py \
-arch=trm \
-data_paths="[data/maze-30x30-hard-1k]" \
-evaluators="[]" \
-epochs=50000 eval_interval=5000 \
-lr=1e-4 puzzle_emb_lr=1e-4 weight_decay=1.0 puzzle_emb_weight_decay=1.0 \
-arch.L_layers=2 \
-arch.H_cycles=3 arch.L_cycles=4 \
-+run_name=${run_name} ema=True
-```
-
-*Runtime:* < 24 hours
-
-Actually, you can run Maze-Hard with 1 L40S GPU by reducing the batch-size with no noticable loss in performance:
-
-```bash
-run_name="pretrain_att_maze30x30_1gpu"
-python pretrain.py \
-arch=trm \
-data_paths="[data/maze-30x30-hard-1k]" \
-evaluators="[]" \
-epochs=50000 eval_interval=5000 \
-lr=1e-4 puzzle_emb_lr=1e-4 weight_decay=1.0 puzzle_emb_weight_decay=1.0 global_batch_size=128 \
-arch.L_layers=2 \
-arch.H_cycles=3 arch.L_cycles=4 \
-+run_name=${run_name} ema=True
-```
-
-*Runtime:* < 24 hours
-
-
-### ARC-AGI-1 (assuming 4 H-100 GPUs):
-
-```bash
-run_name="pretrain_att_arc1concept_4"
-torchrun --nproc-per-node 4 --rdzv_backend=c10d --rdzv_endpoint=localhost:0 --nnodes=1 pretrain.py \
-arch=trm \
-data_paths="[data/arc1concept-aug-1000]" \
-arch.L_layers=2 \
-arch.H_cycles=3 arch.L_cycles=4 \
-+run_name=${run_name} ema=True
-
-```
-
-*Runtime:* ~3 days
-
-### ARC-AGI-2 (assuming 4 H-100 GPUs):
-
-```bash
-run_name="pretrain_att_arc2concept_4"
-torchrun --nproc-per-node 4 --rdzv_backend=c10d --rdzv_endpoint=localhost:0 --nnodes=1 pretrain.py \
-arch=trm \
-data_paths="[data/arc2concept-aug-1000]" \
-arch.L_layers=2 \
-arch.H_cycles=3 arch.L_cycles=4 \
-+run_name=${run_name} ema=True
-
-```
-
-*Runtime:* ~3 days
-
-
-## Reference
-
-If you find our work useful, please consider citing:
-
-```bibtex
-@misc{jolicoeurmartineau2025morerecursivereasoningtiny,
-      title={Less is More: Recursive Reasoning with Tiny Networks}, 
-      author={Alexia Jolicoeur-Martineau},
-      year={2025},
-      eprint={2510.04871},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2510.04871}, 
-}
-```
-
-and the Hierarchical Reasoning Model (HRM):
-
-```bibtex
-@misc{wang2025hierarchicalreasoningmodel,
-      title={Hierarchical Reasoning Model}, 
-      author={Guan Wang and Jin Li and Yuhao Sun and Xing Chen and Changling Liu and Yue Wu and Meng Lu and Sen Song and Yasin Abbasi Yadkori},
-      year={2025},
-      eprint={2506.21734},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI},
-      url={https://arxiv.org/abs/2506.21734}, 
-}
-```
-
-This code is based on the Hierarchical Reasoning Model [code](https://github.com/sapientinc/HRM) and the Hierarchical Reasoning Model Analysis [code](https://github.com/arcprize/hierarchical-reasoning-model-analysis).
+Base: [`c01103738605ba39d1430519b1ee0c62f4c707f8`](https://github.com/SamsungSAILMontreal/TinyRecursiveModels/commit/c01103738605ba39d1430519b1ee0c62f4c707f8). Original Git history, [MIT licence](LICENSE), and [README](README_UPSTREAM.md) are preserved. Cite TRM and relevant prior work. These additions do not imply endorsement by upstream authors.

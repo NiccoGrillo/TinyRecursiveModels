@@ -1,0 +1,6 @@
+# Install torch separately for your CPU/CUDA platform; tested with torch 2.7.0.
+numpy==2.2.6
+pydantic==2.11.7
+einops==0.8.1
+PyYAML==6.0.2
+pytest==8.4.2

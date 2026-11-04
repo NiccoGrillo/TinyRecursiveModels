@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+data/
+checkpoints/
+outputs/
+runs/
+wandb/
+*.pt
+*.pth
+.env
+.env.*
+!.env.example
