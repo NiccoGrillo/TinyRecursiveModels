@@ -98,6 +98,11 @@ def run(args):
                     norm_definition="epsilon = ||delta z_L||_2 / ||z_L||_2 per example; measured after dtype cast",
                     module_calls_per_macro=adapter.module_calls_per_macro,
                     block_calls_per_macro=adapter.block_calls_per_macro)
+    if args.checkpoint is not None:
+        provenance_path = args.checkpoint.parent / "provenance.json"
+        if provenance_path.exists():
+            manifest["checkpoint_provenance"] = dict(sha256=sha256(provenance_path),
+                                                     record=json.loads(provenance_path.read_text()))
     write_json(out / "manifest.json", manifest)
     ledger = dict(natural_forward_sample_macros=0, continuation_forward_sample_macros=0,
                   probe_forward_sample_macros=0, probe_backward_batch_calls=0,
@@ -166,6 +171,12 @@ def run(args):
                                 paired_file.write(json.dumps(row, allow_nan=False) + "\n")
                                 intervention_metrics.append({k: v for k, v in row.items() if k != "prediction"})
                             ledger["continuation_forward_sample_macros"] += len(ids)
+                natural_file.flush()
+                paired_file.flush()
+                print(json.dumps(dict(progress="batch_complete", output=str(out),
+                                      completed_examples=len(natural_metrics) // args.steps,
+                                      total_examples=len(data.inputs),
+                                      elapsed_seconds=time.perf_counter() - begin)), flush=True)
         if str(args.device).startswith("cuda"):
             torch.cuda.synchronize()
         summary = dict(run_kind=manifest["run_kind"], natural=summarize_rollouts(natural_metrics),

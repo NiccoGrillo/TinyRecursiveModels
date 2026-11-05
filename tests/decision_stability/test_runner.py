@@ -33,6 +33,13 @@ def test_checkpoint_data_cli_and_compute_accounting(tmp_path):
     result = subprocess.run([sys.executable, "-m", "experiments.decision_stability.analyze", str(out)],
                             check=True, capture_output=True, text=True)
     assert json.loads(result.stdout) == json.loads((out / "summary.json").read_text())
+    subprocess.run([sys.executable, "-m", "experiments.decision_stability.report", str(out), "--bootstrap", "100"],
+                   check=True, capture_output=True, text=True)
+    report = json.loads((out / "report.json").read_text())
+    assert all(p["final_minus_clean"]["mean"] == 0 for p in report["paired"])
+    assert all(p["excluded"] == 0 for p in report["paired"])
+    assert "undefined" in (out / "report.md").read_text()
+    assert (out / "accuracy_by_step.csv").exists()
     assert subprocess.run(cmd, capture_output=True).returncode != 0  # refuses overwrite
 
 

@@ -86,10 +86,16 @@ def load_sudoku(root, partition="dev", seed=0, limit=128):
         raise ValueError("Puzzle identifier out of range")
     if not sudoku_valid(torch.tensor(lab), torch.tensor(inp)).all():
         raise ValueError("Reference Sudoku violates rules or givens")
+    preparation_path = root / "preparation.json"
+    preparation = None
+    if preparation_path.exists():
+        preparation = dict(sha256=sha256(preparation_path),
+                           record=json.loads(preparation_path.read_text()))
     return SudokuData(inp, lab, ids, keys, metadata, dict(
         source="upstream_prepared_test", partition=partition, split_seed=seed,
         selected_indices=indices, selected_ids=keys, original_count=n,
         unique_count=len(unique), partition_available=len(pool),
+        preparation=preparation,
         source_sha256={k: sha256(v) for k, v in files.items()}))
 
 

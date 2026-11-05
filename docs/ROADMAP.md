@@ -41,8 +41,8 @@ Revisit QRR, retention/reuse, and neural-simulator stabilization as closest comp
 
 ## Immediate Codex tasks
 
-1. Run the real-checkpoint dev pilot and record provenance/results in `STATUS.md`.
-2. Add paired puzzle-level confidence intervals and a plotting/report script over JSONL.
+1. Audit the first bounded CPU checkpoint pilot in `STATUS.md` and expand to 128 dev puzzles only with a suitable runtime budget. Compare normal-horizon precision effects before interpreting continuation.
+2. The JSONL report and per-fork puzzle-paired intervals are implemented. Add plots and clustered uncertainty for pooled forks/noise seeds when expanding the study.
 3. Implement prospective-risk evaluation with a strict time gap beyond the probe and held-out baseline models.
 4. Generalize the backend only after the Sudoku pilot establishes a reason.
 

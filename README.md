@@ -13,6 +13,7 @@ The working hypothesis is that useful internal computation and harmful future de
 | [AGENTS.md](AGENTS.md) | Context, commands, and scientific constraints for Codex |
 | [Project](docs/PROJECT.md) | Research question, mathematics, and novelty boundaries |
 | [Experiments](docs/EXPERIMENTS.md) | Runnable commands, metrics, and interpretation |
+| [First checkpoint pilot](docs/PILOT.md) | Public weights, provenance, fixed CPU protocol, and reports |
 | [Resources](docs/RESOURCES.md) | Papers, code, and relevance |
 | [Roadmap](docs/ROADMAP.md) | Next tasks, baselines, and decision gates |
 | [Status](docs/STATUS.md) | Implemented, verified, and still untested |
@@ -33,6 +34,7 @@ python -m experiments.decision_stability.run \
   --smoke --out runs/smoke \
   --steps 8 --fork-steps 2 4 --horizon 4 --targeted --probe-horizon 2
 python -m experiments.decision_stability.analyze runs/smoke
+python -m experiments.decision_stability.report runs/smoke
 ```
 
 The smoke test uses **random weights and two synthetic puzzles**. Its accuracy and perturbation effects are not research results. Output directories must be new. For trained weights, use the [checkpoint/data runbook](docs/EXPERIMENTS.md). No checkpoint or benchmark data is bundled, and no full training run has been performed for this project.
@@ -41,7 +43,7 @@ The smoke test uses **random weights and two synthetic puzzles**. Its accuracy a
 
 1. Extend a frozen TRM at a fixed recursion phase, logging retention, recovery, rule validity, margins, Q output, and latent changes.
 2. At predetermined times, fork the same state and perturb only `z_L`. Assert identical immediate logits; compare clean, random ±, and optional future-margin gradient ± continuations.
-3. Save JSONL records, reproducibility manifests, and summaries that can be recomputed independently.
+3. Save JSONL records, reproducibility manifests, and independently recomputable summaries; generate readable Markdown/CSV reports with per-fork puzzle-paired uncertainty.
 
 Gradient arms are **offline sensitivity attacks** with extra compute. They are not a stopping policy, a validated predictor of spontaneous errors, or evidence of the cause of native failures.
 

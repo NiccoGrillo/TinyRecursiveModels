@@ -13,6 +13,6 @@ An independent critic agent reviewed the research framing and first-experiment d
 | Freezing can harm solving | Report recovery, helped examples, and final solve rate |
 | Oracle selection inflates outcomes | Preset times, offline labels, and separate rule verification |
 
-Remaining risks: no trained checkpoint evidence; isotropic hidden perturbations may be off-distribution; the readout-preserving subspace is architecturally known, not learned. Margin, stage, precision, or generic recurrent sensitivity may explain observed effects. Simple supervision or stabilization may match any eventual repair.
+At the time of this initial review there was no trained checkpoint evidence; subsequent exploratory runs are recorded in [STATUS.md](STATUS.md). Remaining risks: isotropic hidden perturbations may be off-distribution; the readout-preserving subspace is architecturally known, not learned. Margin, stage, precision, or generic recurrent sensitivity may explain observed effects. Simple supervision or stabilization may match any eventual repair.
 
 The critic judged the diagnostic design worth executing with these constraints. It did not certify a new method or an A* publication outcome.

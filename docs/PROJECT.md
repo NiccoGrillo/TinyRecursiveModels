@@ -4,7 +4,7 @@
 
 Can a recurrent reasoner keep a correct decoded answer stable while its internal state continues useful computation? Would controlling directions that threaten future decisions preserve more useful computation than contracting all latent directions?
 
-The first testable hypothesis is narrower: **directions that preserve the current output can have different effects on later decisions at different stages of reasoning.** A useful result would connect these effects to natural retention failures beyond simple margin baselines, then motivate a repair that preserves correction of wrong answers. No trained-model evidence is included yet.
+The first testable hypothesis is narrower: **directions that preserve the current output can have different effects on later decisions at different stages of reasoning.** A useful result would connect these effects to natural retention failures beyond simple margin baselines, then motivate a repair that preserves correction of wrong answers. The first exploratory checkpoint diagnostics are recorded in [STATUS.md](STATUS.md); no replicated stage-dependent mechanism or selective-stabilization gain is established.
 
 ## Necessary distinctions
 
