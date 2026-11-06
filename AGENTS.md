@@ -2,6 +2,8 @@
 
 Read `README.md`, `docs/PROJECT.md`, `docs/EXPERIMENTS.md`, and `docs/STATUS.md` before changing experiments. Use `docs/ROADMAP.md` for the next bounded task and `docs/RESOURCES.md` before making novelty claims. Record findings and executed checks in `docs/STATUS.md`.
 
+The user's readable project entry point is `docs/notebook/project_notebook.tex` and its compiled PDF. When results, theory, or research decisions change, update this living guide alongside the technical Markdown files and rebuild with `bash scripts/build_notebook.sh`. Explain intuition and experiment history before algebra; preserve the stable experiment IDs, old predictions and frozen protocols. Clearly separate reported trained-model evidence, deductions, implementation checks and unrun proposals. Update its dated snapshot/change log, check links and references, and visually inspect the rebuilt PDF. Commit the source and PDF together; see `docs/notebook/README.md`.
+
 The broad objective is to understand decision stability during continued computation. The pilot found recovery effects without observed retention loss. The immediate task is the prespecified same-state continuation-schedule study in `docs/NEXT_EXPERIMENT.md`, not a larger perturbation sweep. No improvement, learned manifold, or A* publication claim is established.
 
 ## Boundaries and commands

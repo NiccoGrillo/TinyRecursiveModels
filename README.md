@@ -10,6 +10,8 @@ The working hypothesis is that useful internal computation and harmful future de
 
 ## Start here
 
+**Read the [living project guide (PDF)](docs/notebook/project_notebook.pdf) first.** It explains the experiment history, TRM's update units, the theoretical background, what the critic accepted, and the next study. The [self-contained LaTeX source](docs/notebook/project_notebook.tex) is editable in Overleaf with XeLaTeX; [build/update instructions](docs/notebook/README.md) keep it current as the research progresses.
+
 | File | Purpose |
 | --- | --- |
 | [AGENTS.md](AGENTS.md) | Context, commands, and scientific constraints for Codex |
