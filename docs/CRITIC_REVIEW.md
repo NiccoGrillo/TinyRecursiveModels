@@ -37,3 +37,11 @@ The critic was reactivated after reading the updated results and identifying clo
 Code review also caught an undefined variable in summarization, fixed before publication, and prompted FP32 diagnostic subtraction of stored latent tensors. Native recurrence parity and end-to-end report verification are tested.
 
 Final internal verdict: **ready for a consequential, falsifiable protocol experiment; publication value remains conditional on the results.** The reviewer found no remaining blocker in corrected pairing, budgets or risk cohorts. It explicitly rejected interpreting L=12-induced failures as native L=6 instability. This is internal agent review, not external peer review or a guarantee of acceptance.
+
+## Continued research review — 2026-11-06
+
+At the user's request, continued beyond implementation. The strongest conditional direction was coupled feedback and timing, documented in [RESEARCH_DIRECTIONS.md](RESEARCH_DIRECTIONS.md). The critic verified the fixed-set inclusion, identified a stable-inner/unstable-coupled example, and then caught that a generic two-input shared core did not respect TRM's actual addition before the block stack. The final example uses one scalar additive core and satisfies that wiring constraint; it still does not construct actual post-normalized Transformer weights.
+
+The reviewer also identified direct allocation prior in FPRM Appendix F; required acknowledgement of classical coupled-solver analysis; distinguished a reversed periodic schedule's transient effects from its unchanged eigenvalues; and demanded a positive equal-cost prediction or predicted rescue beyond merely damaging an off-training schedule. The note includes those corrections and mathematical predictions. Common fixed states also expose a limit on schedule-only rescue.
+
+The surviving proposal is a mechanism hypothesis requiring trained-model evidence. If changes only cause damage, or native/TAPS/simple damping matches any benefit, the result remains an explanatory note rather than a new reasoning method. Critic agreement does not establish an A* contribution.

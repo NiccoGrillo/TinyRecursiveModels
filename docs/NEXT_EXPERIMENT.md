@@ -10,6 +10,8 @@ A newly identified close paper, [When Recursive Models Finish Computing](https:/
 
 This is motivated by the mismatch between our pilot and the InfiLoop retention diagnostic, not an exact reproduction of that figure. The latter's TRM checkpoint and complete figure protocol have not been identified. Matching its 26 blocks per outer update by changing L to 12 changes the dynamics of our L=6 checkpoint; it is not a harmless relabeling of time.
 
+The follow-up review on 2026-11-06 also identified FPRM Appendix F as direct compute-allocation prior. The current protocol and decision thresholds remain unchanged, but an accuracy difference alone cannot be presented as a new allocation principle. [RESEARCH_DIRECTIONS.md](RESEARCH_DIRECTIONS.md) develops the narrower coupled-feedback hypothesis and its limits.
+
 ## Dynamical interpretation and estimand
 
 Let one low-state update be A and one high-state update be B, acting on the full state `(z_H,z_L)` with fixed input. One outer update is `F_L = B ∘ A^L`; the native macro is `F_6^3`. Reading the current answer between native outer updates does not change this map. Replacing `F_6` with `F_12` does.

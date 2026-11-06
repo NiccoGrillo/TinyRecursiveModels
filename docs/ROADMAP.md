@@ -12,6 +12,8 @@ The study separates native output failures, intermediate excursions, and continu
 
 ## 2. Follow the supported mechanism, if any
 
+[RESEARCH_DIRECTIONS.md](RESEARCH_DIRECTIONS.md) records the critic-reviewed candidate: coupled feedback and timing, with an additive-core counterexample, exact fixed-state limitations and a conditional comparison at equal low/high update counts. This is a hypothesis and analytic illustration, not a demonstrated trained-model mechanism. FPRM Appendix F and TAPS rule out generic allocation/adaptive-scheduling novelty.
+
 If a useful schedule effect survives the gate, first replicate it on an independent cohort and another checkpoint. To distinguish reachability from continuation stability, consider a source-schedule × continuation-schedule crossover only at this stage. Do not infer architecture causality from one differently trained checkpoint per architecture.
 
 If a label-free schedule policy is justified, compare it against fixed schedules, equal-cost ordinary continuation, margin/residual/Q/answer-stability rules, TAPS, and Sudoku verifier stopping. Charge every probe, branch and readout. Tune only on dev; the public benchmark split cannot undo upstream test-selection bias.

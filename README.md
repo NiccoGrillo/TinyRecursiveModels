@@ -17,6 +17,7 @@ The working hypothesis is that useful internal computation and harmful future de
 | [Experiments](docs/EXPERIMENTS.md) | Runnable commands, metrics, and interpretation |
 | [First checkpoint pilot](docs/PILOT.md) | Public weights, provenance, fixed CPU protocol, and reports |
 | [Next consequential experiment](docs/NEXT_EXPERIMENT.md) | Frozen protocol, launch commands, interpretation and stopping criteria |
+| [Research directions](docs/RESEARCH_DIRECTIONS.md) | Critic-reviewed deductions, shared-core counterexample and conditional mechanism project |
 | [Resources](docs/RESOURCES.md) | Papers, code, and relevance |
 | [Roadmap](docs/ROADMAP.md) | Next tasks, baselines, and decision gates |
 | [Status](docs/STATUS.md) | Implemented, verified, and still untested |
