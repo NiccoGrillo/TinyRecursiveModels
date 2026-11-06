@@ -6,6 +6,8 @@ Can a recurrent reasoner keep a correct decoded answer stable while its internal
 
 The first testable hypothesis is narrower: **directions that preserve the current output can have different effects on later decisions at different stages of reasoning.** A useful result would connect these effects to natural retention failures beyond simple margin baselines, then motivate a repair that preserves correction of wrong answers. The first exploratory checkpoint diagnostics are recorded in [STATUS.md](STATUS.md); no replicated stage-dependent mechanism or selective-stabilization gain is established.
 
+The 2026-11-05 evidence and literature review change the immediate priority. The pilot supports finite-window recovery sensitivity but not a native retention defect. Close completion/stability work also overlaps the generic diagnostic. [The next experiment](NEXT_EXPERIMENT.md) therefore tests a specific computation-allocation effect using identical starting states and equal block budgets. The original selective-stability hypothesis remains conditional; no new manifold or loss is proposed merely to preserve that framing.
+
 ## Necessary distinctions
 
 A fixed-point equation need not have one globally unique solution; it can have multiple equilibria or a continuum. Uniqueness requires additional assumptions. TRM itself does not enforce global fixed-point convergence.

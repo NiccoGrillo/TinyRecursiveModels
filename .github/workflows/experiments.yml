@@ -21,3 +21,4 @@ jobs:
           python -m experiments.decision_stability.run --smoke
           --out runs/ci-smoke --steps 8 --fork-steps 2 4
           --horizon 4 --targeted --probe-horizon 2
+      - run: bash -n scripts/run_clock_study.sh

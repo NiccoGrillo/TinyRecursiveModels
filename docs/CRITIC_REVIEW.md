@@ -16,3 +16,24 @@ An independent critic agent reviewed the research framing and first-experiment d
 At the time of this initial review there was no trained checkpoint evidence; subsequent exploratory runs are recorded in [STATUS.md](STATUS.md). Remaining risks: isotropic hidden perturbations may be off-distribution; the readout-preserving subspace is architecturally known, not learned. Margin, stage, precision, or generic recurrent sensitivity may explain observed effects. Simple supervision or stabilization may match any eventual repair.
 
 The critic judged the diagnostic design worth executing with these constraints. It did not certify a new method or an A* publication outcome.
+
+## Review after the checkpoint pilot — 2026-11-05
+
+The critic was reactivated after reading the updated results and identifying close completion/stability prior work. Initial objections narrowed a broad protocol comparison into the [same-state clock study](NEXT_EXPERIMENT.md). It then reviewed the implementation, metrics and uncertainty independently of the implementation author.
+
+| Objection | Incorporated resolution |
+| --- | --- |
+| More MLP retention/Jacobian/perturbation runs risk duplicating close work | One fixed causal continuation-schedule comparison; no new sweep or stabilizer |
+| Logging more often and changing L are different operations | Dense native observation is separated from the L=12 intervention |
+| Comparing 36 updates per arm confounds cost | 2,184 blocks per arm; 156 versus 84 outer updates; shared 182-block grid |
+| Whole trajectories can differ before a schedule comparison | Both arms clone the same full native state at a fixed macro boundary |
+| An arm-dependent solved cohort creates selection bias | Correct/wrong risk sets are fixed before branching |
+| Transient readout errors may not affect normal outputs | Separate dense loss, native macro loss, and first-dense-solve audits |
+| Some common-budget grid points are intermediate phases | Endpoint phases are recorded; default final endpoints are native phase zero |
+| Zero-event bootstrap intervals create false certainty | Exact paired binary bounds; bootstrap retained only for continuous block-time differences |
+| Precision can alter the starting state and solved cohort | Each numerical regime is separate; no causal paired-precision claim |
+| A 2 pp point estimate does not establish a 2 pp effect | Interval-based support, exclusion and inconclusive rules |
+
+Code review also caught an undefined variable in summarization, fixed before publication, and prompted FP32 diagnostic subtraction of stored latent tensors. Native recurrence parity and end-to-end report verification are tested.
+
+Final internal verdict: **ready for a consequential, falsifiable protocol experiment; publication value remains conditional on the results.** The reviewer found no remaining blocker in corrected pairing, budgets or risk cohorts. It explicitly rejected interpreting L=12-induced failures as native L=6 instability. This is internal agent review, not external peer review or a guarantee of acceptance.

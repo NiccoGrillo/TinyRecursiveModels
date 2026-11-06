@@ -1,49 +1,33 @@
 # Roadmap and decision gates
 
-## 1. Establish a trained baseline
+Updated after the completed pilot and close-prior review, 2026-11-05. Earlier plans to scale small perturbations or immediately build a risk predictor are superseded by this order.
 
-Obtain a trusted original-TRM Sudoku checkpoint and its resolved config, or reproduce the upstream recipe within an agreed GPU budget. Record training seed, data, EMA use, steps, and source commit. Reproduce normal-horizon accuracy before extending the trajectory. Compare native precision and FP32. Pilot 128 dev puzzles, then 512 if runtime permits.
+## 1. Run the fixed clock study
 
-**Gate:** enough correct states and natural later errors to study retention, without unexplained reproduction discrepancies. If natural retention failures are negligible, report that result; do not manufacture relevance using extreme attacks.
+Follow [NEXT_EXPERIMENT.md](NEXT_EXPERIMENT.md): 1,024 new dev puzzles, two pinned checkpoints, two precisions, native-state forks, and equal recurrent-block budgets. This is one coherent study with a primary comparison and three prespecified secondary conditions. Code, launchers and independent reporting are implemented; the trained study is not yet run.
 
-## 2. Characterize sensitivity
+The study separates native output failures, intermediate excursions, and continuation-schedule effects. It is not an exact InfiLoop Figure-1 reproduction. Preserve its fixed sample, pre-fork cohorts, endpoint phases, source hashes and stopping rules. Do not run additional epsilon/horizon sweeps in parallel merely to find a striking case.
 
-Run zero epsilon, several small amplitudes, random antithetic directions, and multiple noise seeds. Add gradient arms with evaluation horizons longer than probe horizons. Inspect realized budgets, precision, stage, margins, and paired harm/help. Bootstrap by original puzzle; report checkpoint-seed variance separately. Match stage and margin before introducing more elaborate covariance-aware perturbations.
+**Gate:** interpret the primary interval against the fixed +2 pp threshold. Separately require evidence of native macro-output losses before motivating a native retention repair. A failure created only by L=12 does not satisfy that requirement. Informative nulls close this direction for the tested conditions.
 
-**Gate:** reproducible effects beyond budget/precision artifacts. Off-trajectory attacks alone do not explain the cause of natural failures.
+## 2. Follow the supported mechanism, if any
 
-## 3. Test prospective value
+If a useful schedule effect survives the gate, first replicate it on an independent cohort and another checkpoint. To distinguish reachability from continuation stability, consider a source-schedule × continuation-schedule crossover only at this stage. Do not infer architecture causality from one differently trained checkpoint per architecture.
 
-Build a label-free score at t using fixed probe horizon H; predict spontaneous changes or correctness loss strictly after t+H. Fit thresholds/models only on dev. Compare margin, margin trend, Q score, prediction stability, and residuals. Charge probe computation against equal-cost continued reasoning and verifier checks.
+If a label-free schedule policy is justified, compare it against fixed schedules, equal-cost ordinary continuation, margin/residual/Q/answer-stability rules, TAPS, and Sudoku verifier stopping. Charge every probe, branch and readout. Tune only on dev; the public benchmark split cannot undo upstream test-selection bias.
 
-**Gate:** held-out value survives simple controls. Otherwise narrow to a diagnostic result or stop the proposed repair path.
+**Gate:** prospective information improves final correctness or compute at matched costs, without oracle gating and without sacrificing recovery. A larger late-solving fraction alone is already covered by close work.
 
-## 4. Test selective stabilization only after evidence
+## 3. Train only after a demonstrated need
 
-Candidate: future-margin robustness on suitable training states, combined with the original task loss and opportunities to correct wrong answers. Ground-truth gating can be used in training, not assumed at deployment. The exact loss and state-sampling policy are not implemented or fixed yet.
+Selective stabilization remains conditional on a native retention problem and predictive/intervention value beyond simple baselines. Compare any proposed loss with unmodified TRM, extra ordinary supervision, random depth, isotropic/adversarial robustness, damping, and relevant Jacobian/normality regularization. A repair must improve solve/retain/compute tradeoffs across training seeds, not merely freeze wrong answers.
 
-Required comparisons at matched training budget:
+If native outputs remain stable, stop the retention-repair objective for this setup. A separate recovery/allocation project needs a new explicit hypothesis and a fresh novelty review; do not silently relabel a null as support for the old idea.
 
-- Unmodified TRM and extra ordinary supervision at the same depths.
-- Random training depth/position where task structure permits.
-- Isotropic noise and generic adversarial training, including full-state perturbations.
-- Simple damping or smoothing, evaluated for both solving and retention.
-- Spectral/Jacobian penalties and normality/commutativity regularization.
-- Q-based, prediction-stability, and rule-verifier stopping where available.
+## 4. Publication-scale validation
 
-**Gate:** improve the final solve/retain/compute tradeoff across training seeds. Reject an approach that merely freezes wrong answers or damages recovery.
+Require multiple training seeds/checkpoints, another task or model family, complete cost accounting, independent evaluation data where feasible, and comparisons with the closest current work in [RESOURCES.md](RESOURCES.md). FPRM/InfiLoop need explicit full-state adapters and their own solver/accumulator/schedule accounting. A diagnostic discrepancy is not by itself a new method or an A* contribution.
 
-## 5. Generalize and position
+## Immediate Codex task after the run
 
-Add Maze or a controlled task with intermediate targets, then another model only if warranted. FPRM and InfiLoop require full solver/accumulator state and schedule accounting. Compare single trajectories with single trajectories; charge multi-schedule search fully.
-
-Revisit QRR, retention/reuse, and neural-simulator stabilization as closest competing explanations. An A* conference is an ambition, not something an agent review can certify.
-
-## Immediate Codex tasks
-
-1. Audit the first bounded CPU checkpoint pilot in `STATUS.md` and expand to 128 dev puzzles only with a suitable runtime budget. Compare normal-horizon precision effects before interpreting continuation.
-2. The JSONL report and per-fork puzzle-paired intervals are implemented. Add plots and clustered uncertainty for pooled forks/noise seeds when expanding the study.
-3. Implement prospective-risk evaluation with a strict time gap beyond the probe and held-out baseline models.
-4. Generalize the backend only after the Sudoku pilot establishes a reason.
-
-No learned manifold estimator, novel training loss, FPRM/InfiLoop adapter, or validated stopping policy is included in the first implementation.
+Audit all four manifests and raw summaries, verify common puzzle IDs, and update `STATUS.md` with primary and secondary effects, exact uncertainty, native macro retention, recovery, and artifact hashes. Apply the prespecified gate before proposing another experiment. If the interval is inconclusive, explain what effect sizes remain possible; do not pretend more of the same is automatically worthwhile.

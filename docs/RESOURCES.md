@@ -1,11 +1,13 @@
 # Research resources
 
-Primary-source map assembled 2026-11-04. Recheck versions before citing results. No full papers are vendored. The first six entries are the most important for positioning this project.
+Primary-source map updated 2026-11-05. Recheck versions before citing results. No full papers are vendored. Read the close completion and scheduling work before designing further diagnostics or claiming novelty.
 
 ## Closest work
 
 | Resource | Relevance and caveat |
 | --- | --- |
+| [When Recursive Models Finish Computing](https://arxiv.org/abs/2609.26487v1) | Directly overlapping: extended TRM Sudoku recurrence, directional stability, and perturbations, including our MLP checkpoint. Its 1,000-puzzle study reports strong retention after solving. Generic late recovery, anisotropic stability, or another small z_L perturbation result is insufficient novelty. Full text reviewed; this substantially changes our priority. |
+| [Scheduling Recursive Reasoning in Looped Transformers — TAPS](https://arxiv.org/abs/2609.36653) | Adaptive update scaling from trajectory progress/fluctuation, without retraining. Required comparator before proposing a new inference controller. Our L-allocation diagnostic is a different intervention, but adaptive recurrent scheduling is not an unoccupied research direction. Abstract reviewed; inspect method/code in full before implementing a comparator. |
 | [TRM: Less is More](https://arxiv.org/abs/2510.04871) · [official code](https://github.com/SamsungSAILMontreal/TinyRecursiveModels) | Starting model and training recipe. TRM updates answer and reasoning states; it does not enforce global fixed-point convergence. |
 | [Fixed-Point Reasoners](https://arxiv.org/abs/2606.18206) · [code](https://github.com/nilskiKonjIzDunava/fprm) | Residual-scaled architecture and fixed-point halting. Distinguish sufficient theoretical contraction assumptions from enforced constraints. A future adapter must include solver/controller state and distinguish raw proposal residual from damped accepted movement. |
 | [InfiLoop](https://arxiv.org/abs/2610.11570) · [code](https://github.com/pixeli99/InfiLoop) | Long-depth recurrence with accumulated memory. Preserve numerator and denominator, not just their ratio. Separate single-schedule performance from verifier-assisted schedule search and charge all attempts. |
@@ -44,5 +46,6 @@ InfiLoop implementation inspected during planning: [`63716a9c46723d3592c8ad4fc58
 | `pretrain.py` | Wrappers, checkpoint state dict, resolved config, EMA |
 | `dataset/build_sudoku_dataset.py` | Tokens, augmentation, original-puzzle groups |
 | `experiments/decision_stability/model.py` | Fixed-phase adapter and full-gradient path |
+| `experiments/decision_stability/clock.py` | Dense observation, same-state schedule fork, equal-budget outcomes and exact paired bounds |
 
 Before comparing headline scores, record exact evaluation version, schedule search, verifier use, precision, and training budget. Results with different procedures are not directly interchangeable.

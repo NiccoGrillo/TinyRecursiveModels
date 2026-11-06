@@ -23,7 +23,7 @@ At the initial implementation, no trained checkpoint evaluation had been execute
 
 ## Next step
 
-The first bounded CPU pilot is complete. Prioritize matching the InfiLoop Figure 1 retention diagnostic before expanding perturbations: obtain its TRM-attention baseline checkpoint/protocol if available, observe every outer update, align follow-up to first solving, and compare native/FP32 dynamics. Keep the existing MLP pilot as a separate condition. No selective-stabilization training is justified yet, but our MLP null result is not a replication or refutation of the published attention-model failure.
+The first bounded CPU pilot is complete. Run the fixed [same-state clock study](NEXT_EXPERIMENT.md), implemented after the evidence and close-prior review below. Preserve dense-versus-native output semantics and distinguish schedule intervention from exact InfiLoop reproduction. Do not expand perturbation sweeps or train a selective stabilizer before this gate.
 
 ## First public-checkpoint pilot — 2026-11-04
 
@@ -94,3 +94,24 @@ The [checked code release](https://github.com/pixeli99/InfiLoop/tree/63716a9c467
 Revised interpretation: the pilot's absence of observed losses is specific to its MLP configuration and observation grid. It should not weaken the published motivation without a matched diagnostic. Next compare attention weights, preserve full state, log every outer update, and measure both pointwise correctness and first-loss survival over equal post-solving windows. Reproduce the paper's joint-model cohort only with both trajectories available; otherwise label a TRM-only cohort explicitly. Keep original and altered recurrence schedules distinct and record both. Do not explain the discrepancy solely by sample size or solve it by strengthening attacks.
 
 Checks: inspected paper Section 2/Figure 1/compute appendix and pinned repository tree/READMEs; verified local manifest configuration, executed-layer count, and first-correct follow-up counts from saved results. Documentation consistency checks passed; no experiment/model code changed.
+
+## Next-study implementation and critic review — 2026-11-05
+
+Reviewed the pushed result summaries at commit `98689fb58da8bcb2791820f5674bd13d77ffc61b`. The previous raw runs and MLP/data assets were not present in this workspace; their reported outcomes were not independently recomputed in this turn. The evidence still favors recovery sensitivity over a demonstrated retention defect.
+
+The literature review identified [When Recursive Models Finish Computing](https://arxiv.org/abs/2609.26487v1), a direct overlap that includes the pilot's MLP checkpoint, and [TAPS](https://arxiv.org/abs/2609.36653), relevant to any future inference controller. Added them prominently to [RESOURCES.md](RESOURCES.md). The original broad diagnostic cannot carry the novelty claim by itself.
+
+Implemented the [fixed next study](NEXT_EXPERIMENT.md): dense native observation plus a causal continuation-schedule fork from the identical full state, equal block budgets, separate pre-fork retention/recovery cohorts, explicit native macro retention, exact paired binary bounds, and independent raw-record report verification. The primary condition is attention BF16; three secondary checkpoint/precision conditions share the same 1,024 new dev IDs. The 2 pp decision threshold and informative-null stopping rules are fixed in the runbook. No new training loss or larger perturbation sweep was added.
+
+Added a hash-pinned attention downloader and a four-condition launcher with frozen-asset, architecture, strict-loading, device and output checks. Downloaded attention revision `33991b882368f425916d625a9ee614a7a85efe76` locally; its published model source is byte-identical to pinned upstream. Both BF16 and FP32 load strictly, and one native macro on two synthetic inputs agrees bitwise with three dense outer updates in both state tensors and logits. These checks use the real weights but are **compatibility checks, not benchmark measurements**. Asset hashes are in the next-study runbook; training/EMA provenance is not independently verified.
+
+Executed checks:
+
+- `.venv/bin/python -m pytest -q`: **35 passed** on Python 3.12.14 / torch 2.7.0+cpu. Covers original tests plus native/dense parity for MLP/attention and both precisions, exact equal-cost arithmetic, pre-treatment cohorts, fixed first-solve follow-up, dense-versus-macro error cases, intermediate endpoint phases, nondegenerate zero-event uncertainty, complete CLI accounting, report recomputation and corruption rejection.
+- Pinned attention fetch helper verified all three assets; downloaded Python was not executed.
+- Launcher shell syntax, new CLI help, documentation local links and `git diff --check` passed.
+- Upstream model, training and dataset-builder source remains unchanged. Full raw datasets, weights and generated outputs remain ignored.
+
+The critic reviewed the proposal, then the implementation and final protocol. It found no remaining scientific blocker after corrections to labeling, phase reporting, uncertainty and provenance checks; [CRITIC_REVIEW.md](CRITIC_REVIEW.md) records the objections. Its approval is for a consequential falsifiable experiment, not a novelty or publication guarantee.
+
+**Not run:** the four-condition trained-checkpoint study. This host has no CUDA device; only implementation and compatibility checks were executed. The next action is the documented full run on suitable compute, followed by the prespecified decision gate. No scientific outcome for the new study is claimed.

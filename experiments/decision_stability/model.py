@@ -106,6 +106,30 @@ class Adapter:
     def q_logit(self, state):
         return self.inner.q_head(state.z_H[:, 0]).float()[:, 0]
 
+    @torch.no_grad()
+    def outer_context(self, batch):
+        """Input/position tensors are constant during this frozen-model experiment."""
+        return (self.inner._input_embeddings(batch["inputs"], batch["puzzle_identifiers"]),
+                self.inner.rotary_emb() if hasattr(self.inner, "rotary_emb") else None)
+
+    @torch.no_grad()
+    def outer_step(self, state, batch, low_cycles=None, context=None):
+        """Exactly one z_H update. Native L repeated H times equals one native macro.
+
+        Overriding L changes the recurrence; observing native L at this finer phase
+        does not. This inference-only path intentionally never invokes ACT resets.
+        """
+        cycles = self.config.L_cycles if low_cycles is None else low_cycles
+        if not isinstance(cycles, int) or cycles < 1:
+            raise ValueError("low_cycles must be a positive integer")
+        injection, cos_sin = self.outer_context(batch) if context is None else context
+        high, low = state.z_H, state.z_L
+        for _ in range(cycles):
+            low = self.inner.L_level(low, high + injection, cos_sin=cos_sin)
+        high = self.inner.L_level(high, low, cos_sin=cos_sin)
+        result = State(high, low)
+        return result, self.readout(result)
+
     def step(self, state, batch, differentiable=False):
         if not differentiable:
             with torch.no_grad():

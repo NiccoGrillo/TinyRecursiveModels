@@ -2,7 +2,7 @@
 
 Read `README.md`, `docs/PROJECT.md`, `docs/EXPERIMENTS.md`, and `docs/STATUS.md` before changing experiments. Use `docs/ROADMAP.md` for the next bounded task and `docs/RESOURCES.md` before making novelty claims. Record findings and executed checks in `docs/STATUS.md`.
 
-The objective is to test whether current-output-preserving changes have stage-dependent effects on future answers, then decide whether selective stabilization merits a training project. No improvement, learned manifold, or A* publication claim is established.
+The broad objective is to understand decision stability during continued computation. The pilot found recovery effects without observed retention loss. The immediate task is the prespecified same-state continuation-schedule study in `docs/NEXT_EXPERIMENT.md`, not a larger perturbation sweep. No improvement, learned manifold, or A* publication claim is established.
 
 ## Boundaries and commands
 
@@ -17,6 +17,9 @@ The objective is to test whether current-output-preserving changes have stage-de
 .venv/bin/python -m experiments.decision_stability.run --smoke \
   --out runs/smoke-new --steps 8 --fork-steps 2 4 --horizon 4 --targeted
 .venv/bin/python -m experiments.decision_stability.analyze runs/smoke-new
+.venv/bin/python -m experiments.decision_stability.clock --smoke --smoke-attention \
+  --out runs/clock-smoke-new
+.venv/bin/python -m experiments.decision_stability.clock_report runs/clock-smoke-new
 ```
 
 Install CPU torch separately, then `requirements-experiments.txt`. Full upstream training has additional dependencies in `README_UPSTREAM.md`.
@@ -34,4 +37,7 @@ Install CPU torch separately, then `requirements-experiments.txt`. Full upstream
 9. Log checkpoint/data/source hashes, config, precision, device, seeds, IDs, phase, and compute. Missing checkpoints must fail, never silently use random weights.
 10. Distinguish verified implementation, analytic illustration, trained-model evidence, and conjecture in reports.
 
-For recurrence, intervention, data, or metric edits, run relevant scientific tests and CPU integration. Documentation edits need command/link consistency checks. The next useful result is a reproducible trained-checkpoint pilot. Seek counterexamples and simple baselines; do not pressure a critic to approve an idea or portray agent review as external peer review.
+11. In the clock study, dense readouts are observational; changing L is a dynamics intervention. Compare identical native-reachable states and equal block budgets. Dense errors do not imply failures at native macro outputs. Preserve the separate observation policies, pre-fork cohorts, and endpoint phases.
+12. Zero-event bootstrap intervals are not equivalence evidence. Use the implemented exact binary bounds and the fixed effect-size gates. Do not expand the cohort based on observed results or treat correlated steps as independent puzzles.
+
+For recurrence, intervention, data, or metric edits, run relevant scientific tests and CPU integration. Documentation edits need command/link consistency checks. The next useful result is the fixed clock study; its full run is not an implementation test. Seek counterexamples and simple baselines; do not pressure a critic to approve an idea or portray agent review as external peer review.

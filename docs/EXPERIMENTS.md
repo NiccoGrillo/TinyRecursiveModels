@@ -1,5 +1,7 @@
 # First experiments and runbook
 
+These commands document the existing rollout/perturbation instruments. The pilot is complete; **the current next task is [the clock study](NEXT_EXPERIMENT.md)**. The sweeps below are available capabilities, not a recommendation to run them now.
+
 ## Environment and inputs
 
 For the first downloaded checkpoint, fixed CPU pilot settings, and exact commands, see [the public-checkpoint pilot](PILOT.md).
