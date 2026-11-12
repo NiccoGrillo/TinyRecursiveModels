@@ -1,6 +1,6 @@
 # Living project guide
 
-Start with [the PDF](project_notebook.pdf). Its main sections explain the project history, completed tests, theory and the next experiment. Proofs, provenance, commands and a glossary are in the appendices.
+Start with [the PDF](project_notebook.pdf). Version 2.0 puts the proposed persistent-workspace energy architecture first: motivation, mathematical primer, recurrence, conditional proofs, training design, possible benefits, QRR critique and decisive comparisons. Appendix A expands the attracting-answer-set alternative with a circle example, learned residual manifolds, tangent projectors, readout alignment, discrete-time pitfalls and GNN transfer. Later appendices preserve completed experiments and optional historical protocols.
 
 [project_notebook.tex](project_notebook.tex) is the editable, self-contained source. Upload this one file to Overleaf and select **XeLaTeX**, or run from the repository root:
 
@@ -17,4 +17,4 @@ When results or the research direction change:
 3. Update relevant tables, source revision, limitations and the notebook change log alongside `docs/STATUS.md`.
 4. Rebuild, resolve references/overflow warnings and visually inspect the PDF. Commit source and PDF together.
 
-The notebook supplements the detailed runbooks; it does not silently change their protocols. Version 1.0 explains the research snapshot at `8942518`; the completed pilot results are sourced from the committed reports, not a new raw-data reanalysis.
+The notebook supplements the detailed runbooks; it does not silently change their protocols. Version 2.0 (12 November 2026) supersedes the diagnostic-first priority of version 1.0. E4/E5 remain optional historical protocols. The completed pilot results are sourced from committed reports, not a new raw-data reanalysis. The new architectures are proposed; no new trained result is claimed.

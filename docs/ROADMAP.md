@@ -1,3 +1,19 @@
+# Research roadmap
+
+## Current architecture direction — 12 November 2026
+
+The main research direction is now a **persistent-workspace energy reasoner**. Its semantic update is `q_next = q - alpha * M(q,w,x) * grad_q E(q;x)`: the workspace changes a bounded positive-definite preconditioner, while energy and readout depend on semantic state and input only. Workspace therefore affects search away from stationarity and cannot move an exact stationary semantic state. This is a proposed architecture, not an implemented or trained result. Wrong stationary points are protected too.
+
+The [living LaTeX guide](notebook/project_notebook.tex) and [PDF](notebook/project_notebook.pdf), version 2.0, are the authoritative integrated specification. They include the mathematical primer, exact assumptions/proofs, training design, cost-aware comparison with energy reasoners and stateful optimizers, QRR critique, and an expanded attracting-answer-set alternative. The older E4/E5 diagnostic gates below are historical and optional; they do not block architectural work. No new trained result was produced by this update.
+
+## Next substantial task
+
+Build a shared energy/readout backbone and compare gradient descent, momentum/Adam or a strong learned optimizer, a stateless learned positive metric, and the persistent-workspace metric. Include faithful EBR/QRR references where feasible and label architecture-matched approximations honestly. Freeze task mix, training recipe, seeds and accelerator budget before training. Evaluate solve rate versus total compute, runtime and memory, plus longer rollouts and workspace interventions within the same study. Fewer loops alone are not an efficiency claim.
+
+Keep the attracting-answer-set architecture as a serious alternative branch. Its appendix develops learned residual manifolds, tangent projection, readout alignment and discrete preservation. GNN overlap narrows novelty but does not settle the reasoning application.
+
+## Historical roadmap — superseded as current priority
+
 # Roadmap and decision gates
 
 Updated after the completed pilot and close-prior review, 2026-11-05. Earlier plans to scale small perturbations or immediately build a risk predictor are superseded by this order.

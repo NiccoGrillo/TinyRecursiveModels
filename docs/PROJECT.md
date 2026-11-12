@@ -1,5 +1,13 @@
 # Project: decision stability during continued reasoning
 
+## Current architecture direction — 12 November 2026
+
+The main research direction is now a **persistent-workspace energy reasoner**. Its semantic update is `q_next = q - alpha * M(q,w,x) * grad_q E(q;x)`: the workspace changes a bounded positive-definite preconditioner, while energy and readout depend on semantic state and input only. Workspace therefore affects search away from stationarity and cannot move an exact stationary semantic state. This is a proposed architecture, not an implemented or trained result. Wrong stationary points are protected too.
+
+The [living LaTeX guide](notebook/project_notebook.tex) and [PDF](notebook/project_notebook.pdf), version 2.0, are the authoritative integrated specification. They include the mathematical primer, exact assumptions/proofs, training design, cost-aware comparison with energy reasoners and stateful optimizers, QRR critique, and an expanded attracting-answer-set alternative. The older E4/E5 diagnostic gates below are historical and optional; they do not block architectural work. No new trained result was produced by this update.
+
+## Historical specification (preserved)
+
 ## Question and hypothesis
 
 Can a recurrent reasoner keep a correct decoded answer stable while its internal state continues useful computation? Would controlling directions that threaten future decisions preserve more useful computation than contracting all latent directions?

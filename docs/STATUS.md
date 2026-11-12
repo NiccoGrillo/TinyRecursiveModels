@@ -1,5 +1,12 @@
 # Status
 
+## Current architecture direction — 12 November 2026
+
+The main research direction is now a **persistent-workspace energy reasoner**. Its semantic update is `q_next = q - alpha * M(q,w,x) * grad_q E(q;x)`: the workspace changes a bounded positive-definite preconditioner, while energy and readout depend on semantic state and input only. Workspace therefore affects search away from stationarity and cannot move an exact stationary semantic state. This is a proposed architecture, not an implemented or trained result. Wrong stationary points are protected too.
+
+The [living LaTeX guide](notebook/project_notebook.tex) and [PDF](notebook/project_notebook.pdf), version 2.0, are the authoritative integrated specification. They include the mathematical primer, exact assumptions/proofs, training design, cost-aware comparison with energy reasoners and stateful optimizers, QRR critique, and an expanded attracting-answer-set alternative. The older E4/E5 diagnostic gates below are historical and optional; they do not block architectural work. No new trained result was produced by this update.
+
+
 ## Initial implementation — 2026-11-04
 
 Official TRM history and MIT licence are preserved at base `c01103738605ba39d1430519b1ee0c62f4c707f8`. Upstream models, layers, training, and dataset builders are unchanged.
@@ -21,7 +28,7 @@ The fixture checkpoint has random weights. These are implementation checks, not 
 
 At the initial implementation, no trained checkpoint evaluation had been executed. The first CPU pilot is recorded below. No GPU benchmark or full training run has been executed. No general empirical gain, new theorem, solution manifold, or publication novelty is claimed. Prospective natural-error prediction, training interventions, pooled uncertainty across repeated forks/seeds, and additional backends remain future work.
 
-## Next step
+## Historical next step — superseded 12 November 2026
 
 The first bounded CPU pilot is complete. Run the fixed [same-state clock study](NEXT_EXPERIMENT.md), implemented after the evidence and close-prior review below. Preserve dense-versus-native output semantics and distinguish schedule intervention from exact InfiLoop reproduction. Do not expand perturbation sweeps or train a selective stabilizer before this gate.
 
@@ -133,3 +140,9 @@ Added [the project guide PDF](notebook/project_notebook.pdf) and its [self-conta
 The 30-page guide explains the actual two-state TRM computation, reconciles macro/outer/block units, traces completed pilot runs and their limitations, distinguishes recovery from retention with the recorded puzzle case, and introduces the coupled-feedback hypothesis before its derivations. The original transient example and conditional margin-bound idea remain documented. The frozen unrun clock study, conditional equal-count follow-up, prior-work boundaries, exact provenance, commands, glossary and update template are included. Mathematical proofs and implementation checks are explicitly separated from trained-model evidence. The empirical tables reproduce the committed reports; no fresh raw-data reanalysis or model experiment was performed in preparing this document.
 
 Validation: XeLaTeX build completed with all references/citations resolved and no overflow warnings; all 30 rendered pages were visually inspected. Repository links in the LaTeX source resolve, shell syntax and `git diff --check` pass. Experiment code and the frozen study are unchanged; the prior 39-test result is reported as prior validation, not a new test run.
+
+## Notebook v2 and architectural pivot — 2026-11-12
+
+Completely reorganized the living LaTeX document around the persistent-workspace energy architecture. Added definitions, bounded metric construction, stationary-fiber and common-descent proofs, PL versus state convergence, decoder margins, concrete training and cost accounting, critic corrections to the QRR suggestions, and an expanded attracting-answer-set appendix. Preserved all detailed historical pilot results, TRM feedback calculations, E4/E5 protocols, uncertainty and provenance.
+
+The critic audited the mathematics and novelty boundaries. The clock study is now optional, not a prerequisite; this is an explicit user-directed research pivot, not an empirical conclusion. New architecture implementation/training and the larger clock benchmark remain unexecuted. Validation for this documentation change: three-pass XeLaTeX compilation, reference/overflow checks, PDF page rendering and visual inspection, and repository diff/link consistency checks. No model tests or benchmarks were claimed or needed for this documentation-only update.

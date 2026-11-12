@@ -15,7 +15,7 @@
 \usepackage{fvextra}
 \usepackage{xurl}
 \usepackage[colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black,citecolor=blue!45!black]{hyperref}
-\hypersetup{pdftitle={TRM: a living guide to the project},pdfauthor={TRM Decision Stability project},pdfsubject={Evidence, theory, and next experiments}}
+\hypersetup{pdftitle={Stable answers, active computation: living project guide},pdfauthor={TRM Decision Stability project},pdfsubject={Architecture, theory, evidence, and attracting answer sets}}
 \definecolor{ink}{HTML}{15364B}
 \definecolor{teal}{HTML}{087E8B}
 \definecolor{pale}{HTML}{EFF5F7}
@@ -37,8 +37,8 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\sffamily\small\color{muted}TRM \textbar\ Living project guide}
-\fancyhead[R]{\sffamily\small\color{muted}6 November 2026}
-\fancyfoot[L]{\sffamily\footnotesize Version 1.0 \textbar\ Evidence and hypotheses kept separate}
+\fancyhead[R]{\sffamily\small\color{muted}12 November 2026}
+\fancyfoot[L]{\sffamily\footnotesize Version 2.0 \textbar\ Evidence and hypotheses kept separate}
 \fancyfoot[R]{\sffamily\small\thepage}
 \renewcommand{\headrulewidth}{0.3pt}
 \setcounter{tocdepth}{1}
@@ -46,80 +46,522 @@
 \thispagestyle{empty}
 {\sffamily\small\color{teal}TRM DECISION STABILITY\hfill LIVING RESEARCH NOTEBOOK\par}
 \vspace{12mm}
-{\sffamily\Huge\bfseries\color{ink}What we tested,\\[3pt]what we learned,\\[3pt]and what comes next\par}
-\vspace{6mm}
-{\Large A guide to the project, from the original fixed-point question to the current feedback-timing hypothesis\par}
+{\sffamily\Huge\bfseries\color{ink}Stable answers,\\[3pt]active computation\par}
 \vspace{7mm}
-\textbf{Snapshot: 6 November 2026.}\quad Version 1.0.\\
-Research/code snapshot: \code{8942518}; reported pilot results: \code{98689fb}.\\
-Repository: \href{https://github.com/NiccoGrillo/TinyRecursiveModels}{NiccoGrillo/TinyRecursiveModels}.
+{\Large A mathematical guide to the proposed architecture, the attracting-answer-set alternative, and the evidence so far\par}
+\vspace{8mm}
+\textbf{Version 2.0 --- 12 November 2026.}\\
+Repository: \href{https://github.com/NiccoGrillo/TinyRecursiveModels}{NiccoGrillo/TinyRecursiveModels}.\\
+Previous document commit: \code{90768a5}; pilot report snapshot: \code{98689fb}.
 
-\section*{Start with these four facts}
+\section*{The idea in one paragraph}
+Give the model two kinds of memory. The \textbf{semantic state} contains the information from which an answer is decoded. The \textbf{workspace} remembers the history of the search and chooses how the semantic state should move downhill in a learned energy. The workspace can substantially change the path while a problem remains unsolved. At an exact stationary point of that energy, its influence on the semantic update vanishes automatically. Internal computation can therefore continue without moving that stationary answer. The proposed contribution is to make this separation \emph{useful for reasoning}, rather than to claim a new principle of optimization.
+
+\section*{What has changed since version 1}
 \begin{enumerate}
-\item \textbf{We have not trained a new model.} We examined frozen, publicly available TRM weights on Sudoku. The main pilot used 32 puzzles; interventions used a nested subset of eight.
-\item \textbf{The pilot found late solving, without observed loss of solved answers.} In the longer FP32 run, 25 of 32 puzzles were correct at the usual budget and 27 were correct at the end. None of the 27 ever-solved puzzles became wrong at the logged observation points.
-\item \textbf{The new insight is about how two evolving states interact.} Giving the working state more updates before refreshing the answer state can change the stability of their feedback. A mathematical example proves that this can happen. We have not shown that it explains trained TRM.
-\item \textbf{The next substantial experiment is ready but has not been run.} It compares two update schedules from identical saved states, on 1,024 new development puzzles, with equal computation budgets. Its result determines whether this direction deserves further work.
+\item \textbf{Architecture is now the main research direction.} We will directly investigate a persistent-workspace energy reasoner. The earlier clock study is optional historical work, not a gate that must be passed before building it.
+\item \textbf{There is no new trained result.} The completed TRM pilot remains exploratory evidence: late solving occurred, and correct-answer loss was not observed in that small cohort. It does not validate the proposed architecture.
+\item \textbf{The previous attracting-answer-set idea remains alive.} Appendix~\ref{app:sets} develops it as a more general alternative, with explicit examples, proofs, implementation issues and a comparison to GNN work.
+\item \textbf{Internal criticism has narrowed the claims.} The equations are coherent under stated assumptions. Novelty and benefits remain open, especially against energy reasoners and learned stateful optimizers.
 \end{enumerate}
-
-\takeaway{The critic accepted a precise, falsifiable question and the mathematical reasoning behind it. This was internal AI review. It was not confirmation that the proposed mechanism occurs in TRM, that a new method works, or that the project is ready for an A* conference.}
-
 \vfill
-{\small This document is the human-readable entry point. Read the main sections for the research story; use the appendices for proofs, exact protocols, commands and provenance. The editable source and PDF are maintained together in the repository.}
+{\small This is a project specification and research record, not a paper reporting a successful new model. Both the editable source and the compiled PDF are maintained together.}
 
 \newtopic
-\section*{How to read and use this guide}
-\addcontentsline{toc}{section}{How to read and use this guide}
-The text assumes familiarity with neural networks, but introduces the dynamical-systems vocabulary before using it. The symbols in the main explanation are deliberately simple: $h$ is the answer state, $w$ is the working state, and $L$ is the number of working updates before one answer update.
+\section*{How to read this document}
+\addcontentsline{toc}{section}{How to read this document}
+Read Sections~\ref{sec:question}--\ref{sec:architecture} for the motivation and the architecture. Section~\ref{sec:guarantees} supplies the proofs; Section~\ref{sec:training} explains how a trainable model would be built. Sections~\ref{sec:benefits}--\ref{sec:currentplan} distinguish expected gains, competing ideas and the next substantial comparison. Appendix~\ref{app:sets} is a self-contained treatment of attracting answer sets. The remaining appendices preserve the earlier experiments, theory, exact protocols and provenance.
 
-\begin{tabularx}{\linewidth}{@{}P{29mm}Y@{}}
-\toprule
-Label & Meaning throughout this document\\\midrule
-\textbf{Observed} & A result of the trained-checkpoint pilot recorded in the pushed project reports.\\
-\textbf{Proved / illustrated} & A mathematical deduction or an explicitly artificial example. It is not a trained-model result.\\
-\textbf{Implemented} & Code exists and its behavior has been checked. This does not imply the scientific study has been executed.\\
-\textbf{Proposed} & A possible future study or method, conditional on earlier evidence.\\\bottomrule
-\end{tabularx}
+\textbf{Status vocabulary.} \emph{Observed} means reported in the committed trained-checkpoint pilot. \emph{Proved} means derived here under explicit assumptions. \emph{Implemented} means code exists, not that a benchmark succeeded. \emph{Proposed} means an unbuilt or untested idea. None of the new architectures in this version has been trained or evaluated in this repository.
 
-\textbf{Evidence source.} The empirical numbers below come from the user's committed \repo{docs/STATUS.md}{STATUS.md} and \repo{docs/PILOT.md}{PILOT.md}, including their recorded independent report checks. The raw pilot outputs are not present in this documentation workspace; this document does not claim a fresh reanalysis of those raw records. Mathematical deductions and current source code were checked separately. No new benchmark was run while writing this guide.
+\textbf{Evidence boundary.} Pilot values are transcribed from committed \repo{docs/STATUS.md}{STATUS.md} and \repo{docs/PILOT.md}{PILOT.md}; raw pilot records are not present in this documentation workspace. The current update does not claim a fresh reanalysis. Historical sections retain the November 6 reasoning and protocols under explicit archival labels; their old gates do not govern the present architecture programme.
 
-\textbf{If you have ten minutes:} read Sections~\ref{sec:story}, \ref{sec:results}, \ref{sec:insight} and \ref{sec:next}. For the meaning of an update, return to Section~\ref{sec:machine}. The appendices are reference material, not prerequisites.
-
-\begingroup
-\small
-\setlength{\parskip}{0pt}
-\makeatletter
-\renewcommand{\l@section}[2]{\@dottedtocline{1}{0em}{2em}{#1}{#2}}
-\makeatother
-\tableofcontents
-\endgroup
+\begingroup\small\setlength{\parskip}{0pt}
+\makeatletter\renewcommand{\l@section}[2]{\@dottedtocline{1}{0em}{2em}{#1}{#2}}\makeatother
+\tableofcontents\endgroup
 
 \newtopic
-\section{The research story so far}\label{sec:story}
-\subsection*{The question we started with}
-The initial intuition was: perhaps requiring a model's entire hidden state to settle to a fixed point is unnecessarily restrictive. Could it keep moving internally while preserving a useful answer? Could ideas about attracting sets, manifolds or stable outputs help?
+\section{The question and the current research decision}\label{sec:question}\label{sec:story}
+A recurrent reasoner repeatedly applies a learned computation to the same problem. If its entire state must converge to one vector, all internal degrees of freedom eventually stop changing. But an answer is only a small part of the information stored in the network. It is natural to ask whether answer stability can coexist with continuing internal motion.
 
-That is a sensible distinction, but it contains two separate questions. First, \emph{can} an answer stay unchanged while its hidden representation moves? Yes: many different hidden vectors can produce the same decoded answer. Second, \emph{does encouraging this help trained models solve or retain answers?} That needs evidence and comparison with existing approaches. The first observation alone is not a new method.
+There are three different claims here. First, many hidden states can decode to the same answer; this follows from the readout being many-to-one. Second, those states could form an invariant, attracting set under the model's dynamics. That requires architectural or dynamical conditions. Third, allowing such a set could make reasoning faster or more accurate. That is an empirical hypothesis, not a consequence of the first two claims.
 
-\subsection*{What we did, in order}
-\begin{tabularx}{\linewidth}{@{}P{23mm}Y Y@{}}
-\toprule
-Date & Work completed & What it changed\\\midrule
-4 Nov & Built a TRM adapter, logging, perturbation controls and a small frozen-checkpoint pilot. & Made it possible to continue the same puzzle without resets and branch from the same full state.\\
-4--5 Nov & Completed 32-puzzle continuation and eight-puzzle intervention runs. & Found late recovery; did not find the correct-answer loss needed to motivate a retention repair.\\
-5 Nov & Compared the protocol with InfiLoop and checked close completion/stability work. & Recognized major differences in checkpoints, update units and observation policies, as well as substantial prior-work overlap.\\
-5 Nov & Froze and implemented the larger schedule comparison. & Chose one consequential next test instead of more tiny perturbation sweeps.\\
-6 Nov & Developed and critically checked a coupled-feedback example. & Narrowed the possible mechanism: feedback timing can change attraction without deleting an existing fixed point.\\
-\textbf{Next} & Run the already specified 1,024-puzzle study. & Determine whether there is a real, useful phenomenon worth explaining or controlling.\\\bottomrule
+Our initial project tested frozen TRM checkpoints and developed a schedule-dependent feedback example. The pilot found recovery without observed retention failure. The example established that update timing can change stability while preserving a root. These results remain useful, but neither requires postponing architectural research until a particular failure is observed. At the user's request, the project now prioritizes a new model directly.
+
+\subsection{The central tension: harmless motion versus useful motion}
+Suppose a hidden variable can never affect the answer, now or at any future time. It is safe, but it cannot help solve the problem. Conversely, if a workspace can change the semantic state without restriction, it can disturb an answer after solving it. The proposed architecture resolves this tension \emph{conditionally}: workspace motion matters away from stationarity, and its semantic influence vanishes at stationarity.
+
+This is different from demanding that an arbitrary recurrent Transformer contract everywhere. It is also different from adding an oscillator that the answer head ignores. The workspace must alter the actual search trajectory before completion; otherwise its persistent motion is decorative.
+
+\takeaway{The project hypothesis is that history-dependent search geometry can improve finite-budget reasoning while a structurally protected semantic interface makes stationary answers robust to continued workspace evolution. Both usefulness and task correctness must be learned and measured.}
+
+\subsection{What is retained from each previous direction}
+\begin{tabularx}{\linewidth}{@{}P{32mm}Y@{}}\toprule
+Idea & Current role\\\midrule
+Full-state fixed points & A baseline and mathematical tool; not assumed to be unique or inherently bad.\\
+Attracting answer sets & A serious alternative architecture, developed in Appendix~\ref{app:sets}.\\
+Transient amplification & A warning that stable eigenvalues alone do not bound finite-time disturbances.\\
+TRM coupled feedback & A proved artificial example and optional diagnostic programme; no longer a prerequisite.\\
+QRR quotient dynamics & Inspiration for separating answer-relevant and answer-irrelevant motion; not a proof that every useful mode should be quotiented out.\\
+Persistent workspace & The leading proposal: affect search through a bounded positive-definite metric and lose influence at energy stationarity.\\\bottomrule
 \end{tabularx}
 
-\subsection*{Where the original idea now stands}
-We have \textbf{not} demonstrated a solution manifold, trained an attracting-set model, implemented a new PDE/ODE reasoner, or shown that full-state contraction hurts TRM. The current project uses a discrete recurrent system that already exists. Its immediate question is whether changing \emph{when its two states exchange updated information} changes retention or recovery at equal computational cost.
+\newtopic
+\section{Mathematical vocabulary, introduced from the model}\label{sec:primer}
+\subsection{States, maps, readouts and fixed points}
+Fix an input $x$, such as a Sudoku puzzle. A discrete dynamical system is an update $s_{t+1}=F_x(s_t)$ on a state $s_t\in\mathbb R^n$. A fixed point satisfies $F_x(s_*)=s_*$. There can be many fixed points, including incorrect ones. An invariant set $\mathcal M$ satisfies $F_x(\mathcal M)\subseteq\mathcal M$; individual points may move within it. Attraction means nearby trajectories approach the set, measured by
+\[
+\operatorname{dist}(s,\mathcal M)=\inf_{u\in\mathcal M}\norm{s-u}.
+\]
+The decoder consists of real-valued logits $R(s)$ followed by a discrete choice $D(s)$, usually an argmax per output token. Equal answers do not require equal logits or equal states. A readout fiber $\{s:R(s)=r\}$ is simply a level set of the readout. It is not automatically invariant under $F_x$.
 
-This preserves the useful part of the original intuition: the whole internal state and the answer need not have identical stability requirements. It also gives us something concrete to intervene on and potentially falsify.
+\subsection{Gradient, Hessian and the geometry of descent}
+An energy $E(q;x)\in\mathbb R$ assigns one scalar to each semantic state $q\in\mathbb R^n$. It is learned; it is not automatically the task error. Its gradient $g=\nabla_qE$ collects first derivatives and points in the direction of steepest local increase in Euclidean geometry. The negative gradient is a descent direction because
+\[
+\left.\frac{d}{d\alpha}E(q-\alpha g;x)\right|_{\alpha=0}=-\norm{g}^2.
+\]
+A stationary point has $g=0$. It can be a minimum, saddle, maximum or part of a flat set. The Hessian $H=\nabla_q^2E$ is the matrix of second derivatives. Near a nondegenerate minimum it describes curvature: some directions can be much steeper than others. Gradient descent can move slowly along a narrow curved valley; a preconditioner changes the relative scaling and mixing of directions.
+
+A symmetric matrix $M$ is positive definite if $v^\top Mv>0$ for every nonzero $v$. The notation $mI\preceq M\preceq\bar m I$ means
+\[
+ m\norm{v}^2\le v^\top Mv\le\bar m\norm{v}^2\quad\text{for every }v.
+\]
+Its eigenvalues lie between $m$ and $\bar m$. Updating along $-Mg$ is still locally downhill since $g^\top(-Mg)<0$ when $g\ne0$. Here $M$ is an inverse metric or preconditioner: it changes \emph{how} the energy is optimized, without changing its stationary set when $M$ is invertible.
+
+\subsection{Smoothness, Lyapunov functions and convergence}
+An energy is $\beta$-smooth on a region if its gradient is Lipschitz there: $\norm{\nabla E(u)-\nabla E(v)}\le\beta\norm{u-v}$. Along a segment inside that region this implies
+\[
+E(q+d)\le E(q)+g^\top d+\tfrac\beta2\norm{d}^2.
+\]
+This is the descent lemma. A Lyapunov function is a scalar that does not increase along trajectories and measures progress toward a target. It need not be a physical energy. Having a common Lyapunov function for every workspace state is stronger than checking that several separate linearizations look stable.
+
+A Polyak--Łojasiewicz (PL) inequality is
+\[
+\tfrac12\norm{\nabla E(q)}^2\ge\mu\bigl(E(q)-E_*\bigr),\qquad \mu>0.
+\]
+It says that nonzero energy error cannot coexist with an arbitrarily tiny gradient in the region under consideration. It can imply geometric decay of the energy error without convexity. It does not say that there is only one minimizer or that the readout is correct. Strong convexity is a stricter condition; around its unique minimizer it supplies $E(q)-E_*\ge\frac\mu2\norm{q-q_*}^2$, allowing an energy bound to imply a distance bound.
+
+\subsection{Jacobians and why eigenvalues are not the whole story}
+The Jacobian $DF(s)$ is the linear map describing how a small state perturbation changes after one update. At a fixed point, eigenvalues strictly inside the unit disk imply local asymptotic stability for a smooth discrete map. They do not exclude large transient amplification for a nonnormal matrix. Along a moving workspace trajectory the relevant linearization varies with time, and products of matrices matter. Individually stable matrices need not yield a stable switched system. Our descent argument below uses one energy shared by all workspace updates, rather than relying on independent eigenvalue checks.
+
+\subsection{What ``manifold'' and ``quotient'' mean here}
+A smooth manifold is a set that locally resembles Euclidean space of a smaller dimension. Its tangent directions stay in the set to first order; normal directions leave it. A circle has one tangent and one normal direction at each point. A quotient identifies states deemed equivalent: if a group $G$ acts on states, the orbit $G\cdot s$ is the collection of transformations of $s$, and $[s]$ denotes its equivalence class. Gauge directions are tangent to such orbits. A quotient readout ignores the chosen group transformations. These definitions describe geometry, not correctness. Appendix~\ref{app:sets} develops the geometry without assuming a group action.
+
+\newtopic
+\section{The proposed persistent-workspace energy architecture}\label{sec:architecture}
+\status{PROPOSED --- equations specified; implementation and trained evaluation pending}
+\subsection{Two states and one shared objective}
+Let $q_t\in\mathbb R^{S\times d_q}$ be the semantic state, $w_t\in\mathcal W\subseteq\mathbb R^{S\times d_w}$ the workspace, and $x$ the fixed input. Matrices below act on flattened vectors; token structure is retained in implementation. Define
+\begin{align}
+g_t&=\nabla_q E_\theta(q_t;x),\label{eq:grad}\\
+q_{t+1}&=q_t-\alpha_t M_\theta(q_t,w_t,x)g_t,\label{eq:semantic}\\
+w_{t+1}&=B_\theta(w_t,q_t,g_t,x),\label{eq:workspace}\\
+\ell_t&=R_\theta(q_t),\qquad \hat y_t=D_\theta(q_t)=\operatorname{argmax}\ell_t.\label{eq:readout}
+\end{align}
+The updates are simultaneous: both use the old $q_t,w_t$. A sequential variant would need its own specification. The energy and readout do \textbf{not} take $w_t$ as an argument. Workspace enters the semantic update only through $M$, and optionally a strictly bounded step size. The core theory below uses a fixed $\alpha>0$ to keep assumptions transparent.
+
+\begin{center}
+\begin{tikzpicture}[node distance=10mm and 13mm,>=Latex,every node/.style={font=\small},box/.style={draw=teal,rounded corners,align=center,text width=38mm,minimum height=12mm}]
+\node[box] (q) {Semantic state $q_t$};
+\node[box,right=of q] (e) {Energy gradient $g_t$};
+\node[box,below=of q] (w) {Workspace $w_t$};
+\node[box,right=of w] (m) {Positive metric $M_t$};
+\node[box,right=of m] (next) {Update $q_t-\alpha M_tg_t$};
+\draw[->] (q)--(e);\draw[->] (w)--(m);\draw[->] (q)--(m);\draw[->] (e)--(next);\draw[->] (m)--(next);
+\draw[->] (q)--(w) node[midway,left] {history};
+\end{tikzpicture}
+\end{center}
+The figure suppresses the fixed input, the recurrent update of $w$, and the readout for clarity. The important restriction is the multiplicative gradient interface: no independent workspace-to-answer additive term is allowed.
+
+\subsection{A concrete bounded positive-definite metric}
+For one vector block, let $U_\theta(q,w,x)\in\mathbb R^{d\times r}$, with small rank $r$, and set
+\begin{equation}
+M=m_0I+\frac{bUU^\top}{1+\norm{U}_F^2},\qquad m_0>0,\quad 0\le b\le b_{\max}.\label{eq:metric}
+\end{equation}
+The Frobenius norm squares and sums all entries. Since $UU^\top$ is positive semidefinite and $\norm{UU^\top}_{\rm op}\le\norm{U}_F^2$,
+\[
+m_0I\preceq M\preceq (m_0+b_{\max})I.
+\]
+The denominator prevents the learned matrix from making the largest eigenvalue arbitrarily large. $m_0$ and $b_{\max}$ must remain fixed or explicitly bounded; unconstrained learned scales would invalidate this bound. Apply $M$ without forming a dense matrix:
+\[
+Mg=m_0g+\frac{bU(U^\top g)}{1+\norm{U}_F^2}.
+\]
+A tokenwise block-diagonal metric costs $O(Sd_qr)$ for this multiplication. It mixes channels within each token; it is not a full arbitrary cross-token metric. Cross-token context can still enter through the attention-based energy and the network predicting each $U$. Global low-rank factors are a separate capacity/cost choice. A bounded positive diagonal plus low-rank term is an extension, with its own minimum and maximum eigenvalue accounting.
+
+\subsection{A bounded workspace with meaningful memory}
+One valid implementation is $B_\theta=\tanh A_\theta(w,q,g,x)$, with tanh applied to the entire output. Then $\mathcal W=[-1,1]^{Sd_w}$ is forward invariant. A gated convex mixture of a bounded previous state and a bounded proposal also works. An unrestricted residual $w+\tanh A_\theta$ does \emph{not} guarantee boundedness.
+
+The workspace may store recent gradients, conflicting constraints, or which directions were ineffective. This is a proposed learned function, not a hand-proved semantic interpretation of its channels. It can keep evolving, become periodic, or converge; the architecture does not force oscillation. Attention and ordinary real-valued MLPs can implement $A_\theta$ and the metric predictor. For differentiable energy training, choose smooth energy activations and avoid hard discontinuities in the gradient path.
+
+\subsection{What remains fixed and what is allowed to move}
+At an energy stationary point $q_*$, the full set $\{q_*\}\times\mathcal W$ is invariant. The workspace may change while the semantic state stays exactly fixed. This is a product fiber: a simple solution set in the full state space. If several distinct $q_*$ decode correctly, there are several such fibers. The architecture does not automatically discover a curved manifold of equivalent semantic representations; that broader possibility is the appendix alternative.
+
+It also does not automatically represent several different valid answers at once. A set of latent representations of \emph{one} answer and a set of distinct task solutions are different objects. Multi-solution coverage would require a sampling or diversity objective and evaluation beyond ordinary single-label supervision.
+
+\takeaway{We retain stationarity in the semantic coordinates, but remove the requirement that all memory become stationary. This is a structured relaxation of full-state fixed-point reasoning, not a claim that all fixed-point constraints disappear.}
+
+\newtopic
+\section{Exactly what the architecture guarantees}\label{sec:guarantees}
+\subsection{Stationary fibers and vanishing workspace influence}
+\textbf{Proposition 1.} Fix $x$. Suppose $E$ is differentiable, $\nabla E(q_*;x)=0$, and $B$ maps $\mathcal W$ into itself. Under equations~\eqref{eq:grad}--\eqref{eq:workspace}, $\{q_*\}\times\mathcal W$ is invariant, and $D(q_t)$ is constant for trajectories starting there.
+
+\textbf{Proof.} For every $w\in\mathcal W$, $q'=q_*-\alpha M(q_*,w,x)0=q_*$. The next workspace lies in $\mathcal W$. Apply this repeatedly. The decoder only sees the unchanged $q_*$. No attraction or correctness assumption has been used.\hfill$\square$
+
+Where derivatives exist,
+\[
+D_w q'=-\alpha\,(D_wM)g=0\quad\text{at }q_*.
+\]
+If the step size is also differentiable and workspace-dependent, its additional derivative is multiplied by $g$ and also vanishes at a root. Away from a root, that derivative must be included in sensitivity bounds.
+
+For fixed $\alpha,q,x$, if $M$ is $L_M$-Lipschitz in $w$ in operator norm, then
+\begin{equation}
+\norm{q'(q,w+\delta w)-q'(q,w)}\le\alpha L_M\norm{g(q)}\norm{\delta w}.\label{eq:sensitivity}
+\end{equation}
+This shows gradual one-step decoupling as the gradient shrinks. It is not a multi-step or cross-basin guarantee. A small one-step discrepancy can still change which basin is reached later.
+
+At a stationary semantic state the full local derivative has block form
+\[
+D F(q_*,w)=\begin{pmatrix}I-\alpha M_*H_*&0\\ C_*&D_*\end{pmatrix}.
+\]
+The terms involving $D_qM$ vanish because $g=0$. $C_*$ and $D_*$ come from the workspace update, including its dependence on $g$. If $w$ moves, this is a time-varying sequence of matrices, not one Jacobian at a full-state fixed point. We do not infer global stability or normal hyperbolicity from this block form alone.
+
+\subsection{A common descent inequality despite changing workspace}
+\textbf{Proposition 2.} Suppose $E$ is $\beta$-smooth along each actual update segment and $mI\preceq M_t\preceq\bar mI$ uniformly. Then
+\begin{align}
+E(q_{t+1})&\le E(q_t)-\alpha g_t^\top M_tg_t+\tfrac{\beta\alpha^2}{2}\norm{M_tg_t}^2\nonumber\\
+&\le E(q_t)-\alpha\left(1-\tfrac{\alpha\beta\bar m}{2}\right)g_t^\top M_tg_t.\label{eq:descent}
+\end{align}
+\textbf{Proof.} Substitute $d=-\alpha M_tg_t$ into the descent lemma. Diagonalizing symmetric $M_t$ gives $M_t^2\preceq\bar mM_t$, hence $\norm{M_tg_t}^2\le\bar m g_t^\top M_tg_t$.\hfill$\square$
+
+Thus $0<\alpha<2/(\beta\bar m)$ makes the energy strictly decrease whenever $g_t\ne0$. This holds for any workspace trajectory respecting the metric bounds. The same scalar energy is a common progress measure, which avoids relying on stability of independently switched matrices.
+
+If $E$ is bounded below, the fixed step size satisfies the strict bound, and all segments remain in the smoothness region, summing~\eqref{eq:descent} yields $\sum_t\norm{g_t}^2<\infty$, hence $\norm{g_t}\to0$. This does not by itself prove convergence of $q_t$, boundedness of $q_t$, global minimization, or correctness. For example, an energy can decrease along a trajectory escaping to infinity unless further assumptions prevent this. Compact sublevel sets are one way to obtain bounded trajectories.
+
+\subsection{What a PL inequality adds}
+Assume additionally that the iterates remain in a region satisfying the PL inequality with reference minimum $E_*$. Combining it with~\eqref{eq:descent} gives
+\[
+E(q_{t+1})-E_*\le\left[1-2\alpha m\mu\left(1-\tfrac{\alpha\beta\bar m}{2}\right)\right]\bigl(E(q_t)-E_*\bigr).
+\]
+For $\alpha\le1/(\beta\bar m)$ a simpler bound is
+\[
+E(q_t)-E_*\le(1-\alpha m\mu)^t\bigl(E(q_0)-E_*\bigr).
+\]
+This is geometric \emph{energy-gap} decay. A local hypothesis is only useful while the trajectory stays in its region; stating local PL does not establish that invariance. Under a compatible strong-convexity bound around a unique $q_*$, one further gets
+\[
+\norm{q_t-q_*}^2\le \frac{2}{\mu}\bigl(E(q_t)-E_*\bigr).
+\]
+Without such a distance/error bound, do not replace energy convergence with convergence to a particular semantic point.
+
+\subsection{From semantic convergence to a stable discrete answer}
+Suppose $q_t\to q_*$ and, at every output token, the largest logit of $R(q_*)$ exceeds the runner-up by a strictly positive margin. Continuity then gives a neighborhood in which the argmax is constant. Eventually the answer stabilizes. If the limiting logits tie, even a convergent semantic trajectory can keep crossing the decision boundary. If the winning class is wrong, the stable answer is wrong.
+
+More quantitatively, if each logit is $L_R$-Lipschitz and the smallest winning margin at $q_*$ is $\delta>0$, every $q$ with $\norm{q-q_*}<\delta/(2L_R)$ preserves all winning classes. These constants are not known certificates for a trained network unless actually bounded. The implication explains what must connect latent stability to task stability.
+
+\subsection{What is deliberately not guaranteed}
+Every stationary point is protected, including incorrect minima and saddles. At an exact wrong root, changing only $M$ or $w$ cannot escape. Noise, restarts or a workspace-dependent energy could move it, but would define a different method and require revised guarantees. An arbitrary additive workspace force would destroy the central invariant-fiber property.
+
+A neural energy does not automatically have a known $\beta$, a PL region, a meaningful minimum, or a correct decoder. Floating-point computation also gives approximate rather than symbolic stationarity. These are material limits of the theorem, not reasons to reject the architecture before testing it.
+
+\newtopic
+\section{How to build and train the proposed model}\label{sec:training}
+\subsection{A first implementation that can answer the research question}
+Use a standard input encoder, a tokenwise semantic latent, a scalar energy network with cross-token attention, a logit head, and a bounded recurrent workspace. Aggregate energy contributions with a documented length normalization; changing sequence length must not silently rescale all gradients. Initialize $q_0$ from the input or a learned seed conditioned on the input, and initialize $w_0$ to a bounded state. Use the same initialization rule in matched baselines.
+
+For an initial implementation, apply the bounded low-rank metric of equation~\eqref{eq:metric} independently to token blocks. Feed $q_t,g_t,x,w_t$ to the workspace network and predict metric factors from $q_t,w_t,x$. Specify whether gradient features inside the workspace are differentiated or detached; either can be a training approximation, but neither should be concealed. Do not detach $g_t$ from the energy parameters in the semantic update if the energy is expected to learn through that update.
+
+This is new model code, not a promised drop-in transformation of a pretrained TRM, Llama or Qwen checkpoint. Existing TRM data preparation, evaluation and reporting can be reused. Native TRM's detached recurrent carry is not automatically suitable for training this architecture.
+
+\subsection{Why learning an energy is more than naming a scalar}
+For training pair $(x,y)$, unroll a horizon $T$ and minimize, as a basic objective,
+\begin{equation}
+\mathcal L_{\rm traj}=\sum_{t\in\mathcal T}\lambda_t\,\operatorname{CE}(R_\theta(q_t),y),\qquad \lambda_t\ge0,\quad\sum_t\lambda_t=1.\label{eq:train}
+\end{equation}
+$\mathcal T$ is a prespecified collection of intermediate and final depths. Labels are used in training and offline evaluation, not as an inference-time correctness gate. Variable training horizons and multiple initial states can encourage improvements over depth, but are training design choices to be shared fairly with controls.
+
+Backpropagating through $g_t=\nabla_qE_\theta$ requires mixed derivatives $\partial_\theta\partial_qE_\theta$ and Hessian-vector products. A scalar-energy forward plus a gradient calculation is substantially more expensive than one ordinary recurrent forward. Truncated backpropagation may be needed, but the cut locations and detach operations change optimization and must be documented. At inference the gradient with respect to $q$ is still required even though parameter gradients are not.
+
+Cross-entropy on the trajectory does not force all minima of $E$ to be correct. A constant energy would produce no iterative motion; a sufficiently strong encoder/readout might still fit examples. Therefore measure improvement over the initial state, remove or reset workspace in controlled ablations, and compare equal-capacity encoder baselines. Persistent workspace that has no causal benefit is not evidence for the hypothesis.
+
+\subsection{Optional energy-shaping objectives and their limitations}
+One possible addition is a ranking loss
+\[
+\mathcal L_{\rm rank}=\max\{0,\tau+E(q^+;x)-E(q^-;x)\},\qquad\tau>0,
+\]
+where $q^+$ and $q^-$ are explicitly constructed training representations of a correct and corrupted candidate. Another is a stationarity penalty $\norm{\nabla E(q^+;x)}^2$. These are \emph{options}, not an already settled recipe. They require a well-defined candidate-to-latent construction; a free learned ``good state'' encoder could collapse or make the ranking task irrelevant to states reached by inference. If used, the encoding must be shared with the trajectory representation and checked for accessibility, discrimination and nontrivial energy structure. Stationarity alone does not imply a minimum.
+
+The first meaningful study should freeze a complete training recipe after a bounded development phase, rather than continually add losses until a favorable result appears. Strong energy-based reasoning baselines should receive comparable energy supervision and exploration opportunities. EBR's projected geometry and exploration training must be respected when reproducing that method; Euclidean gradient descent with our energy is an architecture-matched control, not automatically a faithful EBR reproduction~\cite{ebr,irem}.
+
+\subsection{Step-size control: conditional theory or a real acceptance rule}
+A capped learned $\alpha$ is practical but not a formal descent certificate when $\beta$ is unknown. An alternative is Armijo backtracking. For $d=-Mg$, start from a proposed step and shrink until
+\[
+E(q+\alpha d)\le E(q)-c\alpha g^\top Mg,\qquad 0<c<1.
+\]
+For nonzero $g$, smoothness and positive definiteness imply acceptance for sufficiently small steps. A finite retry cap may fail; specify that failure policy, for example retaining $q$ and recording the event. Every retry costs another energy evaluation. Differentiating through acceptance branches is a separate training issue; fixed-step training followed by backtracking inference is also a distribution change to measure, not a free theorem.
+
+The core semantic update should remain Euclidean for the first specification. Adding normalization or projection changes the update and its proof: constrained stationarity and a Riemannian or projected-gradient analysis are then required. Similarly, a halting rule based on $\norm{g}\!<\!\varepsilon$ detects near-stationarity, not correctness. Evaluate the accuracy/cost tradeoff, including false early stops.
+
+\newtopic
+\section{Why this architecture might help, and how it could fail}\label{sec:benefits}
+The motivation is not that contraction is always harmful. It is that a useful history-dependent search process and a stable answer interface need not obey the same dynamics. The table states hypotheses that the project can actually test.
+
+\begin{longtable}{@{}P{26mm}P{52mm}P{77mm}@{}}
+\toprule
+Possible gain & Mechanism & Evidence needed and failure mode\\\midrule\endhead
+Stable completed answers & Workspace influence is zero at a stationary semantic state and small in the one-step bound near it. & Measure correctness retention during extended rollout and workspace interventions. Wrong stationary answers are protected too; small gradient alone is insufficient.\\
+Fewer iterations & History predicts useful directions or curvature scales through $M_t$. & Compare accuracy versus iterations with stateless metrics and stateful optimizers. Extra energy derivatives or workspace cost may erase a loop-count gain.\\
+Better finite-budget accuracy & Different positive metrics follow different paths and may reach more useful basins before budget exhaustion. & Compare exact solve rate at matched total cost across seeds. The method cannot escape an exact wrong stationary point through $M$ alone.\\
+Depth generalization & A common energy can limit destructive switching as computation continues. & Evaluate horizons longer than training and larger tasks. Unknown smoothness, numerical error, and energy/task mismatch can defeat the hoped-for benefit.\\
+Persistent useful memory & Workspace retains information not recoverable from current $q$ alone. & Reset or shuffle workspace at selected depths, and compare an equally expressive stateless metric. A decorative oscillator or extra capacity is not the claimed mechanism.\\
+Multiple internal representations & An invariant product fiber allows many full states with the same semantic answer. & Show that nonstationary workspace is useful during search. This does not establish multiple-solution sampling or a learned semantic manifold.\\
+Practical real-valued modules & Energy, workspace and metric predictor can use familiar attention and MLP components. & Measure hardware runtime and memory. Second derivatives are costly, and pretrained compatibility is not automatic.\\\bottomrule
+\end{longtable}
+
+\subsection{A useful optimization analogy, with its limits}
+On a quadratic energy $E(q)=\frac12q^\top Hq$ with $H\succ0$, ordinary gradient descent has update matrix $I-\alpha H$. A perfect preconditioner $M=H^{-1}$ gives $q'= (1-\alpha)q$ and reaches the minimum in one step when $\alpha=1$. This illustrates why geometry can matter more than the number of loops. Our bounded low-rank metric need not approximate $H^{-1}$ well, especially when curvature is ill-conditioned or indefinite. The example is motivation, not a performance prediction for a neural energy.
+
+A workspace can estimate curvature from past gradients, which immediately links the proposal to quasi-Newton methods and learned optimizers. L-SR1 is particularly relevant because it learns positive-semidefinite preconditioning with secant information~\cite{lsr1}. The contribution cannot be merely ``remember history and precondition gradients.'' It must establish a useful reasoning architecture, training strategy, or semantic stability/search tradeoff beyond these controls.
+
+\subsection{The strongest plausible achievement}
+A compelling outcome would be a model whose persistent workspace measurably improves solving at equal cost, while extended computation and workspace perturbations leave already stationary, correct semantic states stable. A weaker but still informative outcome is a clear failure: the metric adds cost without beating Adam or a stateless learned metric, or the learned energy develops wrong roots that dominate the error. The latter would motivate a different energy landscape or the richer attracting-set approach, not a claim that persistent motion itself is useful.
+
+\newtopic
+\section{QRR, related work, and the other architectural proposals}\label{sec:qrr}
+\subsection{What QRR contributes to the question}
+QRR~\cite{qrr} uses a prescribed gauge symmetry, with per-token phase transformations and a gauge-invariant readout. Its complex hidden and memory states transform together. An equivariant update maps equivalent states to equivalent states, so the quotient evolves without dependence on the arbitrary representative. This is a principled way to allow motion that does not alter the quotient answer.
+
+For two complex arrays $h,m\in\mathbb C^{S\times d}$, the generic full real dimension is $4Sd$, not $2Sd$. A free $U(1)^S$ action has $S$ orbit directions, giving generic quotient dimension $4Sd-S$. At states with nontrivial stabilizers, orbit dimension changes; dimension counting requires that qualification. Removing $S$ chosen directions cannot guarantee that all slow or oscillatory modes disappear from the much larger quotient.
+
+Crucially, a pure gauge phase cannot act as an independently useful causal clock for quotient computation when exact equivariance holds: different representatives of the same quotient state have the same future quotient trajectory. QRR may still be a useful inductive bias, but ``free gauge oscillations carry otherwise missing reasoning signals'' is not established by the symmetry. QRR also recognizes remaining quotient modes; this is not an undisclosed mathematical loophole.
+
+Our proposal differs by allowing workspace to affect semantic trajectories \emph{before} stationarity. Its decoupling is at roots, not an all-time quotient invariance. That gives a concrete role to the workspace but weakens the protection away from roots. Neither design dominates the other by theorem.
+
+\subsection{Audit of the supplied suggestions}
+\begin{longtable}{@{}P{43mm}P{116mm}@{}}\toprule
+Suggestion or assertion & What survives careful analysis\\\midrule\endhead
+Learned quotient coordinates & A valid candidate if a learned representation separates semantic and nuisance variables. If $q'=f(q)$ never depends on workspace, the latter cannot improve future semantic computation. An invertible change of coordinates or stop-gradient does not by itself impose the required forward independence.\\
+Triangular Jacobian by stop-gradient & Stop-gradient changes the derivative used for training, not the actual forward response to an intervention. True triangular structure needs a forward architectural restriction. Its diagonal workspace block is not necessarily the identity.\\
+Per-head $U(1)^{S H}$ & A legitimate richer symmetry. It removes the selected relative-head phase information as well as nuisance variation; it does not automatically absorb arbitrary quotient oscillations. Independent useful interactions must be represented in invariant features.\\
+Non-Abelian $SO(k)$ or $U(k)$ & A broader architectural option using matrix-valued transport. Stabilizers, alignment ambiguities, representation capacity and polar-factor conditioning must be analyzed. Increasing group dimension is not a universal cure for the quotient spectrum.\\
+Horizontal Jacobian regularization & Potentially useful after correctly defining tangent spaces and projections at both endpoints. Sampled trace estimates, finite power iterations and observed trajectory contraction do not certify a uniform operator-norm bound or global contraction.\\
+Cross-entropy implies monotone evidence & False in general. Cross-entropy does not force logits to improve at every recurrent step or force the quotient Jacobian to have real, contractive eigenvalues.\\
+A singular scalar phase connection & Normalizing a small complex projection can be poorly conditioned; the exact behavior depends on epsilon handling and implementation. Treat phase slips as a failure hypothesis, not an observed QRR defect.\\
+Complex layers preclude efficient attention & Too strong without implementation analysis. Phase canonicalization and real embeddings can sometimes reorganize computation. Rebuilding an equivariant model is a real cost; categorical FlashAttention impossibility is not established.\\\bottomrule
+\end{longtable}
+
+\subsection{Where novelty is already constrained}
+Energy minimization for iterative reasoning predates this proposal: IREM and EBR are direct references~\cite{irem,ebr}. Learned preconditioners and stateful optimizers are direct algorithmic controls~\cite{lsr1}. TANGO already combines energy-driven and tangential computation in GNNs~\cite{tango}; Appendix~\ref{app:sets} explains what could still change for a recurrent reasoner. Projected neural differential equations likewise make tangent constraint preservation an existing design tool~\cite{pnde}.
+
+These comparisons have different review depths. QRR's full method and the EBR full-text method were inspected for the present direction. TANGO and L-SR1 were checked through their primary proceedings descriptions; a theorem-by-theorem and official-code audit remains necessary before claiming an implementation-level distinction. The earlier TRM/FPRM/InfiLoop and scheduling comparison is retained in Appendix~\ref{sec:papers}. No literature search proves exhaustive novelty.
+
+\subsection{What the critic accepted}
+The independent agent review accepted the stationary-fiber construction, bounded metric, conditional descent proof, and expanded attracting-set analysis after qualifications. It judged direct architectural implementation worthwhile. It explicitly did \textbf{not} accept a claim of a new optimization principle, guaranteed faster reasoning, or A* publication readiness. The review is internal AI criticism, not external peer review.
+
+The surviving research question is precise: can a task-trained, persistent, causally useful workspace improve energy-based reasoning while its semantic coupling vanishes at stationarity, and does this offer a better accuracy/cost/retention tradeoff than strong stateful optimizers? If the answer is no, the mathematical invariant alone is not enough for a method paper.
+
+\newtopic
+\section{The next substantial study and the living project record}\label{sec:currentplan}\label{sec:living}
+\subsection{One architectural comparison, not a staircase of tiny gates}
+Implement the shared energy/readout/initialization backbone and compare the following search mechanisms under a frozen training recipe and data split:
+\begin{enumerate}
+\item gradient descent on the shared energy, plus a faithful published energy-reasoner reference where feasible;
+\item momentum/Adam and a strong learned stateful optimizer or secant-based preconditioner;
+\item a learned positive metric depending on current $q,x$ but no persistent workspace;
+\item the proposed persistent-workspace positive metric;
+\item QRR and TRM as external architectural comparisons, with their full cost and training differences stated.
+\end{enumerate}
+These controls separate the benefit of energy learning, generic optimization history, extra parameters, and the specific workspace interface. For mechanisms that need extra parameters, use both an identical-energy controlled comparison and an approximately parameter/cost-matched end-to-end comparison. Equal architecture widths alone do not ensure equal compute.
+
+The primary outcome is exact solve rate versus \emph{total} inference cost and wall time. Report energy forwards, gradient evaluations, workspace calls, backtracking retries, peak memory and training cost. A method using fewer nominal loops but more time is not a demonstrated efficiency improvement. Include several training seeds and uncertainty over independent puzzles, not over correlated recurrent steps.
+
+Use a reasoning task with meaningful headroom and a size/depth generalization setting. Sudoku is useful for continuity and exact verification but should not be the sole near-ceiling headline. Final task mix, model sizes and accelerator budget remain to be fixed before launching training; this document has not silently committed paid compute or invented a completed protocol. Extended rollouts, workspace-reset interventions and gradient/margin traces belong inside this same substantial study, not as months of prerequisites.
+
+\subsection{Decisive interpretations}
+If the persistent workspace beats stateless metrics but not Adam or a learned optimizer, the result supports history-dependent optimization, not our specific architectural novelty. If it wins only at more compute, report that tradeoff. If removing workspace has no effect, its internal motion is not useful evidence. If it improves finite-budget solving and retains correct stationary outputs across seeds and harder cases at matched cost, investigate which information in its history causes the gain and what the method adds beyond existing optimization.
+
+The old E4/E5 clock protocols remain reproducible optional studies. They can explain the original TRM dynamics, but their success or failure does not gate this new model. Do not reinterpret the completed pilot as evidence that a learned energy or solution manifold already exists.
+
+\subsection{How future updates should be recorded}
+For every new result preserve: the prespecified question; code/checkpoint/data hashes; seed and split; full cost definition; exact executed configuration; raw output location; independent report verification; uncertainty and denominators; surviving alternative explanations; and the resulting decision. Separate changes motivated by evidence from changes motivated by a research preference. This version's pivot is a deliberate architectural choice informed by new literature and the user's priorities, not a new empirical discovery.
+
+\begin{tabularx}{\linewidth}{@{}P{18mm}P{25mm}Y@{}}\toprule
+Version & Date & Change\\\midrule
+1.0 & 6 Nov 2026 & Integrated pilot, TRM feedback example and optional clock protocol; no new trained model.\\
+2.0 & 12 Nov 2026 & Reorganized around persistent-workspace energy reasoning; added mathematical primer, proofs, training/cost design, QRR critique and expanded attracting-answer-set appendix. Preserved old evidence and protocols as history. No new trained-model result.\\\bottomrule
+\end{tabularx}
+\appendix
+\newtopic
+\section{The attracting-answer-set architecture, developed fully}\label{app:sets}
+\status{PROPOSED ALTERNATIVE --- not discarded; no trained implementation or result}
+\subsection{Start with the distinction that motivated the project}
+Imagine solving a puzzle and then continuing to think about it. You might recheck constraints, reorganize a representation, or traverse equivalent internal descriptions without changing your answer. A fixed-point model describes completion by one unchanged hidden vector. An attracting-answer-set model describes completion by entering a region or surface on which the computation can continue safely.
+
+Let the full hidden state be $s\in\mathbb R^n$. For fixed input $x$ and a target answer $y$, define the correctness region
+\[
+\mathcal C_{x,y}=\{s:D(s)=y\}.
+\]
+For tasks with multiple acceptable outputs, replace equality with a task validity condition. A desired attracting answer set $\mathcal M_x$ should satisfy three logically separate properties:
+\begin{enumerate}
+\item \textbf{Correctness:} $\mathcal M_x\subseteq\mathcal C_{x,y}$, or all its decoded outputs satisfy the task's validity condition.
+\item \textbf{Invariance:} starting in $\mathcal M_x$ keeps the trajectory in $\mathcal M_x$.
+\item \textbf{Attraction:} for an appropriate basin of initial states, $\operatorname{dist}(s_t,\mathcal M_x)\to0$.
+\end{enumerate}
+Correctness is a relation between geometry and the task. Invariance is a property of the update rule. Attraction concerns nearby trajectories. None follows automatically from the others. A stable wrong cycle can satisfy the last two. A collection of correct states need not be invariant. An invariant set can repel nearby states.
+
+There is one further discrete-output qualification. Attraction to a correct set does not by itself imply eventual correct decoding if the set lies on a decision boundary. A robust correctness neighborhood, for example a uniform positive logit margin on a compact target set, supplies the missing implication.
+
+\subsection{A manifold of equilibria is different from a moving manifold}
+If every $s\in\mathcal M$ satisfies $F(s)=s$, then $\mathcal M$ is a manifold of equilibria. Different initial states can settle to different points, but motion stops once a point is reached. Alternatively, $F$ may move states along $\mathcal M$. A periodic orbit is an example; a higher-dimensional invariant surface need not be periodic. The second possibility expresses the original intuition most directly.
+
+For continuous time, write $\dot s=f(s)$, where $\dot s$ is the instantaneous velocity. At a smooth point of $\mathcal M$, its tangent space $T_s\mathcal M$ contains velocities compatible with remaining on the manifold to first order. Its normal space contains directions leaving it. We would like normal errors to shrink while tangent computation remains available. This is often called transverse or partial stability; a full normal-hyperbolicity theorem would additionally require precise rate domination and regularity conditions, which are not assumed here.
+
+\subsection{The simplest complete example: approach a circle and keep rotating}
+Take $s=(u,v)\in\mathbb R^2$, radius $r=\sqrt{u^2+v^2}$, and define
+\[
+V(s)=\tfrac14(r^2-1)^2,\qquad
+J=\begin{pmatrix}0&-1\\1&0\end{pmatrix},\qquad
+\dot s=-\kappa\nabla V(s)+\omega Js,
+\]
+with $\kappa>0$ and $\omega\ne0$. The potential $V$ is zero exactly on the unit circle. Its gradient is $(r^2-1)s$, a radial vector. Multiplication by $J$ rotates a vector by a quarter-turn, so $Js$ is tangent to the circle and orthogonal to $s$.
+
+In polar coordinates the dynamics become
+\[
+\dot r=-\kappa(r^2-1)r,\qquad \dot\vartheta=\omega\quad(r>0).
+\]
+If $0<r<1$, then $\dot r>0$; if $r>1$, then $\dot r<0$. Thus every nonzero initial radius approaches one, while the angle keeps changing. The unit circle attracts nearby states and carries permanent motion. The origin is also stationary and stays there: even this simple example contains an unwanted critical state outside the desired attracting set.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.35,>=Latex]
+\draw[->,gray] (-2.1,0)--(2.3,0) node[right] {$u$};
+\draw[->,gray] (0,-1.7)--(0,1.9) node[above] {$v$};
+\draw[very thick,teal] (0,0) circle (1);
+\draw[->,thick,teal] (1,0) arc (0:65:1);
+\draw[->,thick] (1.7,0.3)--(1.08,0.19);
+\draw[->,thick] (-.35,-.25)--(-.75,-.54);
+\fill (0,0) circle (.035);
+\node[align=left,right] at (1.65,1) {radial errors shrink};
+\node[align=left,right] at (1.65,-.8) {tangent motion remains};
+\draw[densely dotted,gray] (0,0)--(-1.35,-1.35);
+\node[below,font=\small] at (-.5,-1.45) {additional stationary origin};
+\end{tikzpicture}
+\end{center}
+The potential decreases according to
+\[
+\dot V=\nabla V^\top\dot s=-\kappa\norm{\nabla V}^2
+=-\kappa(r^2-1)^2r^2\le0,
+\]
+since $s^\top Js=0$. Now compare two readouts. If $R(s)=\norm{s}$, then $R\to1$ and is exactly constant on the circle. If $R(s)=u$, then $R=\cos(\omega t+\vartheta_0)$ on the circle and keeps oscillating. The same stable hidden dynamics therefore permit either a stable or unstable answer interface.
+
+\takeaway{An attracting manifold protects a decoded answer only when the readout is aligned with that manifold. The geometry and the task representation must be learned or designed together.}
+
+\subsection{Energy descent plus tangent computation}
+The general continuous-time form is
+\begin{equation}
+\dot s=-K_\theta(s,x)\nabla V_\theta(s;x)+T_\theta(s,x),\label{eq:setflow}
+\end{equation}
+where $K$ is symmetric positive semidefinite and
+\begin{equation}
+\nabla V(s;x)^\top T(s,x)=0\label{eq:orthogonal}
+\end{equation}
+throughout a neighborhood, not merely at the desired solution. The first term reduces potential; the second moves along its level sets wherever the gradient is nonzero. Then
+\[
+\dot V=-\nabla V^\top K\nabla V\le0.
+\]
+If $V\ge0$ and the flow is well posed, this inequality already implies forward invariance of the zero set $\mathcal M=\{s:V(s)=0\}$: a trajectory starting at zero can neither increase nor become negative. No independent tangency assumption is logically necessary for that theorem.
+
+However, the orthogonality condition checked \emph{only at a critical point} is vacuous, since $\nabla V=0$. It does not specify a valid tangent field there. A smooth construction that satisfies~\eqref{eq:orthogonal} throughout the neighborhood must be compatible with the zero-set geometry. Also, being tangent to a positive-energy level set is not the same as being tangent to a correct-answer set.
+
+A tempting parameterization is $T=A(s,x)\nabla V$ with $A^\top=-A$. It gives orthogonality automatically because $g^\top Ag=0$. But it also gives $T=0$ wherever $\nabla V=0$, so it does not create persistent motion on a zero-energy manifold. It can be useful away from stationarity, but it misses the original goal if used alone. The circle field $T=\omega Js$ illustrates the distinction: it remains nonzero on the target circle although the energy gradient is zero.
+
+\subsection{What LaSalle's invariance principle actually provides}
+Assume sufficient regularity for unique trajectories and a compact positively invariant region containing the trajectory. LaSalle's invariance principle says that trajectories approach the largest invariant subset of the zero-dissipation set
+\[
+\mathcal Z=\{s:\nabla V(s)^\top K(s)\nabla V(s)=0\}.
+\]
+If $K\succ0$, then $\mathcal Z=\{s:\nabla V(s)=0\}$. If $K$ is only semidefinite, zero dissipation can occur with a nonzero gradient in the nullspace of $K$. Neither version says that the limiting set is the desired zero set or that it decodes correctly. The circle's stationary origin is a concrete reminder.
+
+To obtain a task-relevant theorem one must exclude undesirable invariant subsets in the basin under consideration, establish attraction to the intended set, and align that set with the decoder. A proof that a scalar never increases is only one ingredient. Global guarantees for combinatorial reasoning should not be inferred from a local smooth construction.
+
+\subsection{An implicit learned manifold: constraints instead of a prescribed group}
+A more flexible architecture learns a residual map
+\[
+c_\theta(s;x)\in\mathbb R^r,\qquad
+\mathcal M_x=\{s:c_\theta(s;x)=0\},\qquad
+V(s;x)=\tfrac12\norm{c_\theta(s;x)}^2.
+\]
+Think of $c$ as a vector of latent consistency errors. It need not be a known symbolic Sudoku constraint, but if it is learned, its connection to task correctness must be enforced by training and checked empirically. Let $J_c(s)=D_sc(s)\in\mathbb R^{r\times n}$. If $r<n$ and $J_c$ has full row rank near a zero, the implicit function theorem says that the zero set is locally a smooth manifold of dimension $n-r$.
+
+A tangent velocity $v$ must satisfy $J_cv=0$, because $\frac{d}{dt}c(s)=J_c\dot s$. The orthogonal projector onto the tangent nullspace is
+\begin{equation}
+P(s)=I-J_c(s)^\top\bigl(J_c(s)J_c(s)^\top\bigr)^{-1}J_c(s).\label{eq:projector}
+\end{equation}
+For any proposed neural velocity $v_\theta(s,x)$, define
+\begin{equation}
+\dot s=-\kappa J_c^\top c+P(s)v_\theta(s,x),\qquad\kappa>0.\label{eq:residualflow}
+\end{equation}
+The first term is $-\kappa\nabla V$. The second removes components that would change $c$ to first order. Since $J_cP=0$,
+\[
+\dot c=-\kappa J_cJ_c^\top c,
+\qquad
+\dot V=-\kappa c^\top J_cJ_c^\top c.
+\]
+If the smallest singular value of $J_c$ is uniformly at least $\sigma>0$ throughout a forward-invariant region, then
+\[
+V(t)\le e^{-2\kappa\sigma^2t}V(0),\qquad
+\norm{c(s(t))}\le e^{-\kappa\sigma^2t}\norm{c(s(0))}.
+\]
+This is an explicit transverse residual-contraction result. Translating residual size to distance from $\mathcal M$ requires a local regularity/error bound. Full rank locally supplies such geometry near a regular point; a uniform global distance certificate needs more. Correctness still requires $\mathcal M_x$ and its neighborhood to have the intended readout.
+
+This architecture can describe input-dependent curved solution sets without choosing $U(1)$ or any other group in advance. That flexibility is its attraction, and also its difficulty: the model must learn a meaningful manifold, not just an easy residual.
+
+\subsection{Why a learned constraint can collapse, and what training must address}
+If the only loss rewards $c(s)=0$, the identically zero function solves it. Then the ``constraint'' defines the whole state space, there is no normal contraction, and the projector formula's rank assumption fails. Even a nonconstant residual can define a manifold of wrong answers. A separate decoder can also ignore the intended geometry.
+
+A serious implementation therefore needs task supervision of trajectories, contrast between correct and corrupted candidate representations, and explicit evaluation of the rank and meaning of the residual. Rank encouragement or conditioning penalties can help avoid trivial geometry but do not ensure correctness. If symbolic task constraints are available, they can ground $c$; they may still have multiple valid solutions, continuous relaxations or spurious stationary points. Do not insert the unknown target answer into inference-time constraints.
+
+To keep logits constant under tangent computation, a stronger local condition is
+\[
+D_sR(s)\,T(s,x)=0.
+\]
+One may project a proposed velocity into the intersection of $\ker J_c$ and $\ker D_sR$, using their stacked Jacobian. This is expensive, may leave no useful tangent directions, and can become ill-conditioned. If the derivative of $R$ annihilates \emph{every} tangent direction on a connected manifold, then $R$ is constant on that component. Annihilating only the chosen velocity gives constancy along those trajectories, a weaker claim. For discrete answers, preserving a margin neighborhood can be sufficient without keeping every logit exactly constant.
+
+There is an important expressiveness tradeoff: globally forbidding tangent motion from affecting any future semantic output can turn it into irrelevant computation. Before completion, the normal update may still alter the answer and tangent history may influence future descent through state-dependent geometry. The design must demonstrate that this interaction helps solve, rather than merely conserving a label after it has already been computed elsewhere.
+
+\subsection{Projection cost, singularities and finite time steps}
+Equation~\eqref{eq:projector} assumes full row rank. A pseudoinverse gives $P=I-J_c^\dagger J_c$, a projector onto the Jacobian nullspace, but its smoothness requires constant rank. At a singular point the linear nullspace can misrepresent the nonlinear zero set. For example, if $c(u,v)=u^2+v^2$, then $J_c(0,0)=0$ and its nullspace is all of $\mathbb R^2$, even though the zero set is only the origin.
+
+Replacing $(J_cJ_c^\top)^{-1}$ by $(J_cJ_c^\top+\varepsilon I)^{-1}$ improves conditioning but generally gives $J_cP\ne0$. That is approximate tangency, with a leakage term that must be bounded or measured. Jacobian-vector products, vector-Jacobian products and an $r\times r$ solve can avoid materializing every large matrix, but computation and higher-order training derivatives remain substantial. This is not a free architectural layer.
+
+Most neural reasoners use discrete steps, not exact ODE solutions. A tangent Euler step $s'=s+\eta T(s)$ generally leaves a curved manifold by $O(\eta^2)$. On the unit circle, $T=\omega Js$ gives
+\[
+\norm{s+\eta\omega Js}^2=1+\eta^2\omega^2,
+\]
+so the radius grows even when the starting point is exactly on the desired set. Continuous-time invariance cannot simply be quoted as a discrete-network guarantee.
+
+For the circle, the exact rotation $s'=\exp(\eta\omega J)s$ preserves radius; a split method can combine a controlled radial step with this rotation. For a learned manifold, one can use retraction or projection back onto $c=0$, a constraint-preserving integrator, or a discrete acceptance/correction rule. Each adds assumptions, possible solver failures and cost. Projection onto $c=0$ also remains useless for task correctness if the learned constraint is wrong.
+
+\subsection{Why the GNN precedent does not end this direction}
+TANGO~\cite{tango} already motivates energy-guided dynamics with a tangential component for graph learning. Therefore we must not claim that combining energy dissipation and tangent motion is a new mathematical principle. Projected neural differential equations also provide constraint-tangent constructions~\cite{pnde}. The fact that an existing method is used in GNNs does not prove it works as a recurrent reasoning architecture, nor does it make that transfer scientifically uninteresting.
+
+The reasoning setting introduces specific requirements: the readout is a discrete candidate solution; computation continues for variable depth; a correct answer should remain correct; trajectories must still revise wrong hypotheses; and every extra gradient/projection must be charged to inference cost. These are different design pressures from simply preserving a learned graph representation. An input-conditioned constraint manifold aligned with a solution decoder, together with a discrete update that preserves it while retaining useful search dynamics, could constitute an architectural contribution if it solves these problems in a way existing methods do not.
+
+The publication claim must rest on that mechanism and evidence. Merely applying the same energy-plus-tangent layer to Sudoku and renaming it would be weak. A useful study would adapt the strongest relevant GNN construction to the same backbone, compare it with the product-fiber architecture and energy/optimizer baselines, and isolate the contribution of readout alignment, discrete preservation and tangent workspace. Detailed TANGO theorem/code comparison remains pending; the current source review establishes overlap, not an exhaustive equivalence result.
+
+\subsection{Product fibers versus learned attracting manifolds}
+\begin{tabularx}{\linewidth}{@{}P{32mm}Y Y@{}}\toprule
+Question & Main proposal & Attracting-set alternative\\\midrule
+Target geometry & $\{q_*\}\times\mathcal W$ at stationary semantic states. & Learned curved $\{s:c(s;x)=0\}$, potentially without a global coordinate split.\\
+Useful motion & Workspace changes preconditioning away from roots. & Tangent computation can move on consistency level sets and interact with normal search.\\
+Protection & Exact semantic invariance at a root, by multiplication with zero gradient. & Requires correct tangent construction, readout alignment and discrete preservation.\\
+Attraction & Conditional common-energy descent; stronger convergence assumptions needed. & Residual contraction under uniform rank and regional invariance; task alignment still needed.\\
+Main risk & Wrong roots are frozen; optimizer novelty may be limited. & Residual collapse, rank loss, projection cost, readout leakage and numerical drift.\\
+Research value & A simpler direct test of useful history plus a stable semantic interface. & A more general answer to the original manifold question, deserving a separate architectural branch.\\\bottomrule
+\end{tabularx}
+
+\takeaway{The attracting-answer-set idea remains a serious research option. Its strongest version learns meaningful input-dependent geometry and preserves a task-aligned set in the actual discrete model. The GNN precedent raises the standard for the contribution; it does not rule out a new reasoning architecture.}
 
 \newtopic
 \section{The actual machine: what TRM updates}\label{sec:machine}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
 \subsection*{One Sudoku, two arrays, one shared network}
 For one Sudoku puzzle, TRM stores two arrays of real-valued features. We call them:
 \begin{itemize}
@@ -187,6 +629,7 @@ Our current experiments freeze the pretrained weights. Ground-truth boards are u
 
 \newtopic
 \section{Fixed points, stable answers and moving states}\label{sec:background}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
 \subsection*{A fixed point need not be unique}
 Write $s=(h,w)$ for the full internal state, and $F$ for a complete update rule. A fixed point satisfies $F(s_*)=s_*$. If the model reaches that exact state, the next update leaves it unchanged. The equation may have no solutions, one solution, or many solutions. ``Fixed point'' by itself does \emph{not} mean ``one unique representation for every answer.''
 
@@ -210,10 +653,11 @@ The radius approaches 1 while the angle keeps rotating. The attracting object is
 
 In dynamical-systems language, \textbf{transverse stability} concerns disturbances away from such an orbit or set; motion along it can remain. \textbf{Output contraction} asks for readout differences to shrink, a weaker requirement than shrinking every state difference. \textbf{Partial contraction} concerns selected relations or components. These concepts motivate what to measure, but transferring their guarantees requires checking their assumptions~\cite{partial,transverse,output}.
 
-\takeaway{The original point-versus-set question remains meaningful. Our experiments have not identified a manifold or proved any contraction property. The current direction focuses on the coupled update rule that moves the state, because that is something we can directly manipulate.}
+\takeaway{The original point-versus-set question remains meaningful. Our experiments have not identified a manifold or proved any contraction property. The November 6 direction focused on the coupled update rule because it could be directly manipulated. The current architecture direction is in Section~\ref{sec:currentplan}.}
 
 \newtopic
 \section{The experiment ledger: what actually exists}\label{sec:ledger}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
 These IDs are stable references for this notebook. They are not new runs. All completed trained-model experiments used the same third-party MLP checkpoint, with the eight-puzzle cohorts nested inside the 32-puzzle cohort.
 
 {\small
@@ -225,7 +669,7 @@ E1a & Observed & 32 puzzles; native BF16; 16 macros. & 25/32 correct at the endp
 E1b & Observed & Same 32; FP32; continue to 64 macros. & 25/32 correct at 16, 27/32 at 64. No logged loss after solving.\\
 E2 & Observed control & Eight puzzles; fork at macros 4, 8, 16; zero perturbation; 16-macro branches. & All 1,152 branch records exactly matched the natural continuation.\\
 E3 & Observed & Same eight; perturb only $w$ by 1\% relative norm; random and gradient directions. & Immediate logits unchanged. Some wrong trajectories changed; no correct-at-fork answer was lost.\\
-E4 & Implemented; not run & 1,024 new dev puzzles; two checkpoints, two precisions; equal-budget $L=6$ versus $L=12$. & The next scientific result we need. See Section~\ref{sec:next}.\\
+E4 & Implemented; not run & 1,024 new dev puzzles; two checkpoints, two precisions; equal-budget $L=6$ versus $L=12$. & The next result planned on November 6; now optional. See Appendix~\ref{sec:next}.\\
 T0/T1 & Proved / checked & Original transient example (T0), then shared-core feedback example (T1). & Possibility examples, not tests of trained networks.\\
 E5 & Proposed only & If justified by E4: equal numbers of working and answer updates, differently interleaved. & No real-model launcher or outcomes for this follow-up yet.\\\bottomrule
 \end{tabularx}}
@@ -239,6 +683,7 @@ No FPRM or InfiLoop backend has been implemented in this repository. No learned 
 
 \newtopic
 \section{What the natural-continuation pilot tells us}\label{sec:results}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
 \status{OBSERVED: E1a and E1b. Depths on this page are native macro-steps.}
 \begin{tabularx}{\linewidth}{@{}Y c c c@{}}
 \toprule
@@ -270,6 +715,7 @@ We have \textbf{not} measured BF16 continuation beyond macro 16 in this pilot. I
 
 \newtopic
 \section{What the perturbation experiment changed}\label{sec:perturb}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
 \status{OBSERVED: E2 and E3. A sensitivity experiment, not an inference method.}
 \subsection*{The intervention, step by step}
 At each predetermined macro (4, 8 or 16), we saved the same $(h,w)$ and made several copies. One copy continued unchanged. In the others we replaced $w$ with $w+\delta$, keeping $h$ untouched. The nonzero intervention was chosen so that
@@ -327,7 +773,8 @@ The desired practical motivation was to preserve already correct answers. Neithe
 \takeaway{``An intervention changed future correctness'' is the observed fact. ``We identified and repaired the cause of overthinking'' would be an unsupported interpretation.}
 
 \newtopic
-\section{Why the project changed direction}\label{sec:shift}
+\section{Why the early diagnostic programme changed direction}\label{sec:shift}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
 \subsection*{The apparent disagreement with InfiLoop}
 InfiLoop v2 reports a TRM retention problem: its Figure 1 shows 19.7\% solved-puzzle loss after 36 additional outer updates. The cohort contains puzzles both compared models solve within the initial 36 updates. A separate 20.9\% statistic concerns cells, not whole solved puzzles~\cite{infiloop}.
 
@@ -356,7 +803,8 @@ By contrast, changing $L$ from 6 to 12 inserts six extra working updates before 
 \takeaway{We chose a controlled schedule comparison to distinguish observation effects, numerical/checkpoint effects and continuation-schedule effects. A positive result would still need a predictive mechanism and a useful intervention to support a new method.}
 
 \newtopic
-\section{The new insight, explained before the algebra}\label{sec:insight}
+\section{Historical coupled-feedback insight}\label{sec:insight}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
 \status{HYPOTHESIS ABOUT TRM; SUPPORTED BY A MATHEMATICAL POSSIBILITY EXAMPLE}
 \subsection*{The intuition: local improvement can worsen the feedback}
 During working updates, $w$ repeatedly uses the same held-fixed $h$. Then $h$ changes using the resulting $w$. More working updates may make $w$ better adjusted to the \emph{old} $h$, while making the next change of $h$ larger or badly coordinated with the coupled system.
@@ -419,11 +867,12 @@ They do not construct actual post-normalized Transformer weights, demonstrate a 
 
 \textbf{A hard limit:} timing alone cannot move an exact state fixed by both $A$ and $B$. If that state decodes incorrectly, repeating or damping those unchanged updates still leaves it there. A constant wrong board, however, is not proof of an exact latent fixed point.
 
-\takeaway{The surviving idea is a causal account of coupled feedback, with a useful intervention predicted in advance. The mathematical example establishes possibility. E4 must establish whether there is a relevant trained-model effect to pursue.}
+\takeaway{The idea retained on November 6 was a causal account of coupled feedback, with a useful intervention predicted in advance. The mathematical example establishes possibility. For this historical diagnostic branch, E4 was intended to establish whether there is a relevant trained-model effect to pursue. It does not gate the current architecture programme.}
 
 \newtopic
-\section{The next experiment, with every comparison spelled out}\label{sec:next}
-\status{E4: IMPLEMENTED; FULL TRAINED-CHECKPOINT STUDY NOT YET RUN}
+\section{Optional historical E4 protocol, preserved in full}\label{sec:next}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
+\status{E4: OPTIONAL; IMPLEMENTED; FULL TRAINED-CHECKPOINT STUDY NOT YET RUN}
 \subsection*{The question}
 From the same state reached by normal TRM computation, does changing the balance of working updates and answer updates alter retention or recovery, when both continuations get the same block budget?
 
@@ -474,7 +923,8 @@ Secondary outcomes include final correctness, recovery from wrong-at-fork states
 The sample size is fixed. At least 300 correct-at-fork puzzles is an adequacy flag, not permission to keep collecting until a favorable answer appears. The full four-condition design costs 20,643,840 sample-block evaluations, excluding output heads, input embeddings and analysis.
 
 \newtopic
-\section{How results will change the research plan}\label{sec:decisions}
+\section{Historical E4/E5 decision rules}\label{sec:decisions}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
 \begin{tabularx}{\linewidth}{@{}P{68mm}Y@{}}
 \toprule
 Possible E4 outcome & Consequence\\\midrule
@@ -498,7 +948,8 @@ A mechanism should predict which states benefit, or predict a component-specific
 If the only effect is damage from schedules the model never trained on, we have not produced a useful method. A toy and a schedule sweep do not establish conference-level novelty. Stopping an unsupported line is part of the plan.
 
 \newtopic
-\section{How the papers fit together}\label{sec:papers}
+\section{Earlier literature review: November 6 snapshot}\label{sec:papers}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
 These are orientation notes, not interchangeable claims of full reproduction. The project reviewed the closest work to narrow the question; it has implemented only a TRM experimental backend.
 
 \subsection*{The three starting architectures}
@@ -535,39 +986,10 @@ A learned schedule, high-state damping, a readout-preserving stabilization loss,
 The broader resource index also covers DEQs, path independence, normalization/gain control, stochastic stopping, probabilistic TRM, attractor models and torus networks. Those are reading leads rather than results of this project. The maintained full index is \repo{docs/RESOURCES.md}{docs/RESOURCES.md}; it records review depth and source links so incomplete paper review is not mistaken for established novelty clearance.
 
 \newtopic
-\section{Keeping this notebook useful as research progresses}\label{sec:living}
-\subsection*{The next concrete action}
-Run E4 using its frozen settings, preserve the raw records and manifests, and independently regenerate each report. Then update the ledger, result tables and decision section before proposing a new model. The implementation and launch commands are in Appendix~\ref{app:run}. This documentation work has not started that compute-heavy study.
 
-\subsection*{One record for every consequential experiment}
-When adding a result, use the following structure. It is designed to keep the research story reconstructible months later.
-\begin{enumerate}
-\item \textbf{Question and prediction.} What alternative explanations are being distinguished? What result was predicted before the run?
-\item \textbf{Frozen protocol.} IDs and counts, checkpoint and code revisions, precision, full state/phase, intervention, comparison, compute budget and output policy.
-\item \textbf{Evidence.} Run paths, manifests/hashes, report verification and completion status. Show puzzle denominators and uncertainty, not just a percentage.
-\item \textbf{Interpretation.} What did the result establish? What alternative explanations survive? What remains untested?
-\item \textbf{Decision.} Continue, revise or stop; state the next falsifiable question. Keep post-hoc discoveries separate from prespecified tests.
-\end{enumerate}
-
-\subsection*{Where changes belong}
-This notebook is the readable explanation. \repo{docs/STATUS.md}{STATUS.md} is the chronological execution log. \repo{docs/NEXT_EXPERIMENT.md}{NEXT\_EXPERIMENT.md} is the detailed frozen protocol. \repo{docs/RESEARCH_DIRECTIONS.md}{RESEARCH\_DIRECTIONS.md} holds compact derivations; \repo{docs/CRITIC_REVIEW.md}{CRITIC\_REVIEW.md} records objections and corrections. When any of those changes materially, this source and its PDF must be updated together.
-
-Earlier broad sweep suggestions in \repo{docs/EXPERIMENTS.md}{EXPERIMENTS.md} are historical command examples, not the current priority. The fixed E4 protocol and current roadmap supersede them.
-
-Do not rewrite the past to make a later finding look predicted. Preserve E1--E3 as completed exploratory work, E4 as the frozen study, and E5 as conditional until its own protocol is fixed. If the direction changes, explain which evidence caused the change.
-
-\begin{tabularx}{\linewidth}{@{}P{18mm}P{28mm}Y@{}}
-\toprule
-Version & Date & Change\\\midrule
-1.0 & 6 Nov 2026 & First integrated guide: reconciles experiment units, reported pilot results, current proofs, critic qualifications, unrun E4 and conditional E5. No new trained-model outcome.\\\bottomrule
-\end{tabularx}
-
-\takeaway{After the next run, the first update should be one clear sentence: ``We expected X, observed Y under protocol Z, and therefore will do W.'' The supporting tables and proofs should make that sentence auditable.}
-
-\appendix
 \newtopic
-\section{Mathematical details, in small steps}\label{app:proofs}
-The main argument does not require reading this appendix. Its purpose is to make the theoretical claims explicit, checkable and reusable. All maps below hold the input fixed.
+\section{Historical TRM proofs and coupled-feedback example}\label{app:proofs}
+This appendix preserves the earlier diagnostic theory, not the guarantees of the newly proposed architecture. The current main argument does not require reading this appendix. Its purpose is to make the theoretical claims explicit, checkable and reusable. All maps below hold the input fixed.
 
 \subsection{The earlier theory: why stable eigenvalues were not enough}
 Before the coupled-feedback example, the project used this two-coordinate linear illustration (T0):
@@ -774,7 +1196,8 @@ Run names are \code{pilot-native-32}, \code{pilot-fp32-32-depth64}, \code{pilot-
 Recorded wall times were 461.1, 542.2, 372.8 and 520.6 seconds, respectively. Some runs overlapped. These times describe execution history, not a fair hardware or precision speed benchmark.
 
 \newtopic
-\section{Run commands and code map}\label{app:run}
+\section{Historical diagnostic commands and code map}\label{app:run}
+\status{OPTIONAL EXISTING CODE --- these commands do not implement the new architecture.}
 Run commands from the repository root. The experiment environment used Python 3.12 and PyTorch 2.7.0; CPU quickstart instructions are in the README. The full E4 launcher normally requires a CUDA-compatible PyTorch installation and a GPU. The CPU-only quickstart does not supply GPU support.
 
 \subsection*{Reproduce the mathematical example}
@@ -844,12 +1267,32 @@ The build produces \code{docs/notebook/project_notebook.pdf}. Check unresolved r
 
 \newtopic
 \section{Glossary and notation}\label{app:glossary}
+Symbols are local to each model. In particular, the new workspace $w$ is not the existing TRM tensor $z_L$, and the historical toy's scalar $q=0.9^L$ is not the new semantic vector. The following entries separate those uses.
+\begin{longtable}{@{}P{38mm}P{118mm}@{}}
+\toprule
+New architecture & Meaning\\\midrule\endhead
+$q$; $w$ & Semantic latent decoded into an answer; persistent workspace that changes its search geometry.\\
+$E$; $g$; $H$ & Learned scalar energy; gradient $\nabla_qE$; Hessian $\nabla_q^2E$. The historical TRM symbol $H$ instead counts outer cycles.\\
+$M$; $m$, $\bar m$ & Positive-definite preconditioner; uniform lower/upper eigenvalue bounds.\\
+$\alpha$; $\beta$; $\mu$ & Step size; gradient smoothness constant; PL or strong-convexity constant as specified.\\
+$B$; $\mathcal W$ & Bounded workspace update; its invariant domain. Historical TRM $B$ instead denotes its answer-only update.\\
+$R$; $D$ & Real-valued logit readout; discrete decoder, typically tokenwise argmax.\\
+$\mathcal M$; $V$ & Intended attracting set; nonnegative potential measuring deviation from consistency.\\
+$c$; $J_c$; $P$ & Learned constraint residual; its state Jacobian; tangent-nullspace projector.\\
+$K$; $T$ & Dissipative matrix and energy-orthogonal velocity in the continuous attracting-set model.\\
+Lyapunov function & A scalar progress measure non-increasing along the specified dynamics.\\
+PL inequality & Gradient magnitude controls energy error; not automatically a pointwise state-distance bound.\\
+Tangent / normal & Directions along a smooth manifold / perpendicular to it.\\
+Gauge orbit / quotient & States related by a specified symmetry / the space after identifying those states.\\
+\bottomrule
+\end{longtable}
+\textbf{Historical TRM notation and shared experimental terms}
 \begin{longtable}{@{}P{38mm}P{118mm}@{}}
 \toprule
 Term & Meaning here\\\midrule
 \endhead
-$h$, answer state & The tensor called \code{z_H}; its readout predicts the board.\\
-$w$, working state & The tensor called \code{z_L}; affects future $h$ but is not directly decoded.\\
+$h$, historical answer state & The tensor called \code{z_H}; its readout predicts the board.\\
+$w$, historical working state & The tensor called \code{z_L}; affects future $h$ but is not directly decoded.\\
 $x$ & Fixed puzzle embedding/injection for one continued computation.\\
 $G$ & One shared two-block neural module used for both state updates.\\
 $L$; $H$ & Working calls per outer update; outer updates per native macro. Native values are 6 and 3.\\
@@ -861,7 +1304,7 @@ Retention / loss & A correct answer stays correct / later becomes wrong, under a
 Recovery & A previously wrong answer becomes correct. Different from retention.\\
 Logit / margin & A prediction score / the score gap between a chosen token and alternatives. Neither proves correctness.\\
 $Q$ head & Model output trained for halting-related decisions; not an oracle of correctness.\\
-Residual & Size of the change proposed by an update, e.g. $\norm{F(s)-s}$. A small residual is not a correctness certificate.\\
+Residual & Size of the change proposed by an update, e.g. $\norm{F(s)-s}$. A small residual is not a correctness certificate. The learned constraint residual $c$ in Appendix~\ref{app:sets} is a different object.\\
 Fixed point & An exact state unchanged by the specified update map. Not necessarily unique, attracting or correct.\\
 Attraction / basin & Nearby states approach a set; the collection of starting states that approach it.\\
 Jacobian & Matrix describing the update's first-order response to small state changes.\\
@@ -896,5 +1339,11 @@ Dev / held-out & Data for developing the idea / data reserved from that developm
 \bibitem{transverse} I. R. Manchester and J.-J. E. Slotine. Transverse contraction and orbital stability. \url{https://arxiv.org/abs/1209.4433}.
 \bibitem{output} Output contraction for discrete-time nonlinear systems and recurrent neural networks. Source record: \url{https://pubmed.ncbi.nlm.nih.gov/40669402/}. Check the theorem's assumptions before applying it to a new architecture.
 \bibitem{trefethen} L. N. Trefethen et al. \emph{Hydrodynamic Stability Without Eigenvalues}. Primary paper: \url{https://people.maths.ox.ac.uk/trefethen/ttrd.pdf}.
+
+\bibitem{ebr} W. X. Chen, A. Gladstone, Z. M. Li, H. Ji and Y. Du. \emph{Energy-Based Reasoners: Your Recurrent Reasoner Should Be an Energy-Based Model}. 2026. \url{https://arxiv.org/abs/2611.08977}. Full-text method reviewed; no reproduction claimed.
+\bibitem{irem} Y. Du, S. Li, J. B. Tenenbaum and I. Mordatch. \emph{Learning Iterative Reasoning through Energy Minimization}. ICML 2022. \url{https://energy-based-model.github.io/iterative-reasoning-as-energy-minimization/}.
+\bibitem{tango} M. Eliasof, E. Haber and C. B. Sch\"onlieb. \emph{Graph Neural Dynamics via Learned Energy and Tangential Flows} (TANGO). ICML 2026. Primary proceedings entry: \url{https://proceedings.mlr.press/v306/eliasof26a.html}. Primary description reviewed; detailed theorem/code audit pending.
+\bibitem{lsr1} G. Lifshitz, S. Zuler, O. Fouks and D. Raviv. \emph{L-SR1: Learned Symmetric-Rank-One Preconditioning}. ICML 2026. Primary proceedings entry: \url{https://proceedings.mlr.press/v306/lifshitz26a.html}. Learned preconditioning comparator; primary description reviewed.
+\bibitem{pnde} A. White et al. \emph{Projected Neural Differential Equations for Learning Constrained Dynamics}. 2024; revised 2026. \url{https://arxiv.org/abs/2410.23667}. Constraint-preserving differential-model reference; no direct reasoning-performance claim.
 \end{thebibliography}
 \end{document}
