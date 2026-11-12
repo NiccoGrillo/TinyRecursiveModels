@@ -6,11 +6,11 @@ This project starts from [SamsungSAILMontreal/TinyRecursiveModels](https://githu
 
 The working hypothesis is that useful internal computation and harmful future decision changes should be distinguished before imposing contraction on the whole latent state. This is a hypothesis to test, not a demonstrated improvement or a claim of publication novelty.
 
-**Current direction (12 November 2026):** directly develop a persistent-workspace energy reasoner whose workspace shapes search but cannot move an exact stationary semantic state. The architecture, conditional proofs, training design and expanded attracting-answer-set alternative are in the version 2.0 guide below. No new architecture has yet been implemented or trained. The earlier clock study remains an optional diagnostic, not a prerequisite.
+**Current direction (12 November 2026, notebook v2.1):** a grounded reasoning architecture learns interactions between task residuals **before** forming its state correction. This preserves common solutions while allowing moves that an aggregate-gradient preconditioner cannot make. Four critique rounds narrowed the contribution: Sketched Newton–Raphson and random mixing are direct controls; learned coordination must earn its cost. The PyTorch operator prototype is tested, but the full Sudoku controller is not implemented or trained. Earlier clock diagnostics remain optional.
 
 ## Start here
 
-**Read the [living project guide (PDF)](docs/notebook/project_notebook.pdf) first.** It explains the new architecture and mathematics first, then preserves the experiment history, TRM update units, critic qualifications and optional old protocols. The [self-contained LaTeX source](docs/notebook/project_notebook.tex) is editable in Overleaf with XeLaTeX; [build/update instructions](docs/notebook/README.md) keep it current as the research progresses.
+**Read the [living project guide (PDF)](docs/notebook/project_notebook.pdf) first.** Start with Section 1 for the newest critique cycle, QRR review assessment, residual-mixing architecture and concrete grounded Sudoku specification. It explains the mathematics first, then preserves the experiment history, TRM update units, critic qualifications and optional old protocols. The [self-contained LaTeX source](docs/notebook/project_notebook.tex) is editable in Overleaf with XeLaTeX; [build/update instructions](docs/notebook/README.md) keep it current as the research progresses.
 
 | File | Purpose |
 | --- | --- |
@@ -45,7 +45,7 @@ python -m experiments.decision_stability.report runs/smoke
 
 The smoke test uses **random weights and two synthetic puzzles**. Its accuracy and perturbation effects are not research results. Output directories must be new. For trained weights, use the [checkpoint/data runbook](docs/EXPERIMENTS.md). No checkpoint or benchmark data is bundled, and no full training run has been performed for this project.
 
-## Implemented experiments
+## Implemented experiments and operator prototype
 
 1. Extend a frozen TRM at a fixed recursion phase, logging retention, recovery, rule validity, margins, Q output, and latent changes.
 2. At predetermined times, fork the same state and perturb only `z_L`. Assert identical immediate logits; compare clean, random ±, and optional future-margin gradient ± continuations.
@@ -55,6 +55,8 @@ The smoke test uses **random weights and two synthetic puzzles**. Its accuracy a
 Gradient arms are **offline sensitivity attacks** with extra compute. They are not a stopping policy, a validated predictor of spontaneous errors, or evidence of the cause of native failures.
 
 For the optional historical clock study, reuse pilot inputs, run `.venv/bin/python scripts/fetch_attention_checkpoint.py`, then `bash scripts/run_clock_study.sh` on a GPU host with CUDA PyTorch. The [runbook](docs/NEXT_EXPERIMENT.md#checkpoints-and-launch) documents paths and overrides. The full 1,024-puzzle study has not been executed in this workspace; CPU-only implementation checks and strict attention-checkpoint compatibility have passed.
+
+The separate `experiments/residual_reasoning/operators.py` prototype implements bounded low-rank residual mixing and its differentiable VJP. `tests/residual_reasoning/test_operators.py` checks exact counterexamples, metric bounds and training derivatives. These are mathematical/software checks, not a trained-model experiment.
 
 The additions are in `experiments/decision_stability/`, with tests in `tests/decision_stability/`. The upstream `models/`, `pretrain.py`, `dataset/`, and `config/` are unchanged. One macro-step uses `H_cycles*(L_cycles+1)*L_layers` block evaluations: **42** at the original Sudoku settings. Probe and branch costs are logged separately.
 

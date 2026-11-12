@@ -38,7 +38,7 @@
 \fancyhf{}
 \fancyhead[L]{\sffamily\small\color{muted}TRM \textbar\ Living project guide}
 \fancyhead[R]{\sffamily\small\color{muted}12 November 2026}
-\fancyfoot[L]{\sffamily\footnotesize Version 2.0 \textbar\ Evidence and hypotheses kept separate}
+\fancyfoot[L]{\sffamily\footnotesize Version 2.1 \textbar\ Evidence and hypotheses kept separate}
 \fancyfoot[R]{\sffamily\small\thepage}
 \renewcommand{\headrulewidth}{0.3pt}
 \setcounter{tocdepth}{1}
@@ -50,19 +50,19 @@
 \vspace{7mm}
 {\Large A mathematical guide to the proposed architecture, the attracting-answer-set alternative, and the evidence so far\par}
 \vspace{8mm}
-\textbf{Version 2.0 --- 12 November 2026.}\\
+\textbf{Version 2.1 --- 12 November 2026.}\\
 Repository: \href{https://github.com/NiccoGrillo/TinyRecursiveModels}{NiccoGrillo/TinyRecursiveModels}.\\
-Previous document commit: \code{90768a5}; pilot report snapshot: \code{98689fb}.
+Previous document commit: \code{b747abb}; pilot report snapshot: \code{98689fb}.
 
 \section*{The idea in one paragraph}
-Give the model two kinds of memory. The \textbf{semantic state} contains the information from which an answer is decoded. The \textbf{workspace} remembers the history of the search and chooses how the semantic state should move downhill in a learned energy. The workspace can substantially change the path while a problem remains unsolved. At an exact stationary point of that energy, its influence on the semantic update vanishes automatically. Internal computation can therefore continue without moving that stationary answer. The proposed contribution is to make this separation \emph{useful for reasoning}, rather than to claim a new principle of optimization.
+Keep a vector of unresolved consistency errors instead of immediately combining them into one energy gradient. A persistent workspace can mix these errors before they update the answer state. This preserves every common residual zero while allowing departure from some wrong states where the original gradient cancels. The leading question is whether learned interactions improve reasoning beyond fixed or random mixing and established nonlinear solvers. The previous energy-preconditioning architecture remains a baseline, and the attracting-answer-set alternative remains a serious branch.
 
-\section*{What has changed since version 1}
+\section*{What changed in the latest critique session}
 \begin{enumerate}
-\item \textbf{Architecture is now the main research direction.} We will directly investigate a persistent-workspace energy reasoner. The earlier clock study is optional historical work, not a gate that must be passed before building it.
-\item \textbf{There is no new trained result.} The completed TRM pilot remains exploratory evidence: late solving occurred, and correct-answer loss was not observed in that small cohort. It does not validate the proposed architecture.
-\item \textbf{The previous attracting-answer-set idea remains alive.} Appendix~\ref{app:sets} develops it as a more general alternative, with explicit examples, proofs, implementation issues and a comparison to GNN work.
-\item \textbf{Internal criticism has narrowed the claims.} The equations are coherent under stated assumptions. Novelty and benefits remain open, especially against energy reasoners and learned stateful optimizers.
+\item \textbf{The critique changed the architecture.} The earlier preconditioner protects wrong stationary points as well as solutions. Residual-side cross-coupling is the stronger candidate developed in Section~\ref{sec:session}.
+\item \textbf{The novelty claim became narrower.} Randomized residual mixing and Sketched Newton--Raphson are close precedents. Useful learned control must beat these methods; root preservation alone is not new.
+\item \textbf{The QRR reviews changed the comparison design.} Separate fixed-compute solving from adaptive stopping, match checkpoint settings, and report failures and cap hits.
+\item \textbf{There is no new trained result.} A bounded residual-mixing operator and analytic/autograd tests now exist. The complete architecture, residual training and performance claims remain untested.
 \end{enumerate}
 \vfill
 {\small This is a project specification and research record, not a paper reporting a successful new model. Both the editable source and the compiled PDF are maintained together.}
@@ -70,9 +70,9 @@ Give the model two kinds of memory. The \textbf{semantic state} contains the inf
 \newtopic
 \section*{How to read this document}
 \addcontentsline{toc}{section}{How to read this document}
-Read Sections~\ref{sec:question}--\ref{sec:architecture} for the motivation and the architecture. Section~\ref{sec:guarantees} supplies the proofs; Section~\ref{sec:training} explains how a trainable model would be built. Sections~\ref{sec:benefits}--\ref{sec:currentplan} distinguish expected gains, competing ideas and the next substantial comparison. Appendix~\ref{app:sets} is a self-contained treatment of attracting answer sets. The remaining appendices preserve the earlier experiments, theory, exact protocols and provenance.
+Start with Section~\ref{sec:session} for the latest research session, equations, critique rounds and decision. Sections~\ref{sec:question}--\ref{sec:architecture} retain the previous state-preconditioning baseline and its motivation. Section~\ref{sec:guarantees} supplies the proofs; Section~\ref{sec:training} explains how a trainable model would be built. Sections~\ref{sec:benefits}--\ref{sec:currentplan} distinguish expected gains, competing ideas and the next substantial comparison. Appendix~\ref{app:sets} is a self-contained treatment of attracting answer sets. The remaining appendices preserve the earlier experiments, theory, exact protocols and provenance.
 
-\textbf{Status vocabulary.} \emph{Observed} means reported in the committed trained-checkpoint pilot. \emph{Proved} means derived here under explicit assumptions. \emph{Implemented} means code exists, not that a benchmark succeeded. \emph{Proposed} means an unbuilt or untested idea. None of the new architectures in this version has been trained or evaluated in this repository.
+\textbf{Status vocabulary.} \emph{Observed} means reported in the committed trained-checkpoint pilot. \emph{Proved} means derived here under explicit assumptions. \emph{Implemented} means code exists, not that a benchmark succeeded. \emph{Proposed} means an unbuilt or untested idea. No new complete architecture has been trained or benchmarked in this repository. The residual-mixing operator has focused analytic and automatic-differentiation checks.
 
 \textbf{Evidence boundary.} Pilot values are transcribed from committed \repo{docs/STATUS.md}{STATUS.md} and \repo{docs/PILOT.md}{PILOT.md}; raw pilot records are not present in this documentation workspace. The current update does not claim a fresh reanalysis. Historical sections retain the November 6 reasoning and protocols under explicit archival labels; their old gates do not govern the present architecture programme.
 
@@ -81,12 +81,215 @@ Read Sections~\ref{sec:question}--\ref{sec:architecture} for the motivation and 
 \tableofcontents\endgroup
 
 \newtopic
-\section{The question and the current research decision}\label{sec:question}\label{sec:story}
+\section{Research session: preserve solutions, not every stationary point}\label{sec:session}
+\status{12 NOVEMBER 2026 --- FOUR ADVERSARIAL REVIEW ROUNDS; NEW LEADING CANDIDATE}
+\subsection{The conclusion before the details}
+The previous proposal lets a persistent workspace reshape the gradient of one scalar energy. Its central protection is also its central weakness: \emph{every} zero-gradient state is protected, including a wrong local minimum. Moreover, a learned history-dependent preconditioner is already a learned optimizer. That proposal remains a useful baseline, but its invariant fiber is not a sufficient novelty argument.
+
+The stronger candidate gives the model a vector of consistency residuals rather than immediately reducing all disagreement to one gradient. A workspace mixes those residuals \emph{before} they are sent back into the semantic state. Off-diagonal mixing allows an unresolved constraint to borrow a direction that is visible through another constraint. This can move out of some wrong local minima that neither the earlier preconditioner nor ordinary independent constraint weights can leave. It still leaves every common zero of the residuals fixed.
+
+The new goal is therefore \textbf{solution-preserving residual mixing}, with learned memory as a hypothesis to test rather than a feature whose value is assumed. The mathematical distinction is solid. The claims that it is novel enough, that real models encounter the relevant obstruction, and that learned memory improves on cheap random mixing are still open. The critic did not approve a publication-ready method.
+
+\takeaway{Protect the states where the modeled constraints agree, rather than every state where their aggregate gradient happens to cancel. This changes the architecture's protected set. It does not guarantee that learned constraints describe correct answers or that the controller finds a solution.}
+
+\subsection{What the supplied QRR reviews change}
+The user supplied three review texts in \emph{Pasted markdown(1).md}, identifying reviewers 6QHq, 9Sdw and tDyW. We use that supplied text, not a fresh verification of the OpenReview thread or a prediction of the conference decision. The following distinctions affect our own project.
+
+\begin{longtable}{@{}P{43mm}P{116mm}@{}}\toprule
+Review issue & Assessment and consequence for this project\\\midrule\endhead
+Architecture versus stopping rule & Strong objection. A quotient residual and a raw-state residual do not test the same notion of completion. First compare accuracy at fixed total compute without adaptive halting. Then cross architectures with the same deployable readout rule, followed by each native rule.\\
+Checkpoint and coverage mismatch & Strong objection. Record source, training configuration, controller settings and precision. Count every example, including cap hits. Conditional runtime on solved or halted cases can conceal failures.\\
+Symmetry versus fast quotient spectrum & Strong distinction. Exact gauge decoupling does not force rapid quotient convergence. Likewise, our common-zero protection does not imply faster or more accurate solving.\\
+Non-isolated latent solutions & A valid scope question, but unique discrete answers do not imply isolated latent roots, and multiple discrete answers do not imply a continuous latent manifold. Analyze the actual state geometry and the specific theorem assumptions.\\
+Semantic collapse on gauge orbits & Equivariance plus invariant readout protects future quotient behavior, not just the current logits. ``Same current output'' alone would be insufficient. The remaining question is whether the imposed representational restriction harms task capacity.\\
+Lack of chain-of-thought & Limits demonstrated application scope; it is not itself a mathematical defect in latent reasoning. We should not claim natural-language/process-supervision benefits from puzzle results.\\
+Alleged need for labeled trajectories & Not supported by QRR's described segment-wise prediction supervision. Reusing an answer label across segments is not a labeled reasoning trajectory. Gauge symmetry does not by itself prohibit outcome-level RL; successful RL training remains untested.\\\bottomrule
+\end{longtable}
+
+The reviews motivate stricter comparisons, not copying every criticism as fact. In particular, time until the correct output first appears is an offline diagnostic using labels, not an executable stopping rule. A common patience rule may halt on a stable wrong answer, so compare the full accuracy--cost tradeoff and calibrate thresholds on development data.
+
+\subsection{Round 1: why the previous construction is too protective}
+Write a vector of residuals $c(q;x)\in\mathbb R^r$, its Jacobian $J(q)=D_qc(q;x)\in\mathbb R^{r\times n}$, and the scalar energy
+\[
+E(q;x)=\tfrac12\norm{c(q;x)}^2,\qquad \nabla E(q;x)=J(q)^\top c(q;x).
+\]
+The earlier update is
+\[
+q'=q-\alpha M(q,w,x)J(q)^\top c(q;x).
+\]
+At any $J^\top c=0$, it is frozen for every workspace and every finite matrix $M$. There are two ways to obtain zero: the constraints are satisfied, $c=0$, or their effects cancel or vanish despite $c\ne0$. A readout can also be wrong at $c=0$ if the residual model is badly learned. Keeping these cases separate is essential.
+
+The limitation applies to the stated multiplicative-gradient interface, not to every learned optimizer. A generic stateful optimizer with additive momentum or exploratory proposals can move at zero current gradient. Such methods remain strong controls. They may also disturb a correct root unless their carried velocity or forcing is handled appropriately.
+
+\subsection{Round 2: move the workspace to the residual side}
+The revised update is
+\begin{align}
+c_t&=c_\theta(q_t;x),\qquad J_t=D_qc_\theta(q_t;x),\nonumber\\
+q_{t+1}&=q_t-\alpha J_t^\top W_\theta(q_t,w_t,x)c_t,\label{eq:resmix}\\
+w_{t+1}&=B_\theta(w_t,q_t,c_t,x),\qquad \hat y_t=D_\theta(q_t).\nonumber
+\end{align}
+Here $W\in\mathbb R^{r\times r}$ acts on residual coordinates, whereas the old $M\in\mathbb R^{n\times n}$ acts on semantic coordinates. The order is consequential: in general $J^\top Wc$ cannot be recovered by multiplying the already-zero vector $J^\top c$.
+
+A positive diagonal $W$ simply changes the weight of each squared residual. This already breaks some cancellation equilibria, but constraint reweighting has extensive prior art, including Breakout and analog SAT dynamics~\cite{breakout,analog}. It also fails whenever every individual vector $c_i\nabla c_i$ is zero. The next round therefore targets interactions between residuals, not just changing their separate weights.
+
+\subsection{Round 3: off-diagonal mixing has a stricter separation}
+Consider one scalar semantic state $q$ and two residuals
+\begin{equation}
+c_1(q)=q^2-1,\qquad c_2(q)=2q(q-1).\label{eq:cross-example}
+\end{equation}
+Their common zero is $q_*=1$. At the wrong state $q=0$,
+\[
+c(0)=\begin{pmatrix}-1\\0\end{pmatrix},\quad
+J(0)=\begin{pmatrix}0\\-2\end{pmatrix},\quad
+E'(0)=0,\quad E''(0)=2>0.
+\]
+Thus $q=0$ is a strict local minimum of the unweighted energy, not merely a saddle. The first residual is unsatisfied but locally flat; the second is satisfied but has a nonzero derivative. Both individual squared-residual gradients are zero. Every diagonal residual weighting and every old state-side preconditioner therefore proposes zero movement there.
+
+Now choose
+\[
+W=\begin{pmatrix}1&-\eta\\-\eta&1\end{pmatrix},\quad0<\eta<1.
+\]
+Its eigenvalues are $1-\eta$ and $1+\eta$, so it is positive definite. Direct multiplication gives
+\[
+J(0)^\top Wc(0)=-2\eta,\qquad q'=2\alpha\eta>0.
+\]
+The unresolved first residual is transmitted through the second residual's derivative. The common solution $q=1$ remains fixed because $c(1)=0$.
+
+This proves a difference between update classes. It does not prove that a rollout reaches one, that this mechanism occurs in trained TRM, or that learning a workspace is needed: a fixed $W$ already moves in this example. Those are precisely the rival explanations the experiment must address.
+
+\subsection{A bounded low-rank implementation}
+Use
+\begin{equation}
+W=mI+\frac{bUU^\top}{1+\norm{U}_F^2},\qquad
+m>0,\quad 0<b\le b_{\max},\quad U\in\mathbb R^{r\times k}.\label{eq:resmetric}
+\end{equation}
+Then $mI\preceq W\preceq(m+b_{\max})I$. Off-diagonal entries can be negative even though $UU^\top$ is positive semidefinite. Low rank does not mean diagonal: a rank-one vector with mixed signs already couples residuals. Compute
+\[
+v=Wc=mc+\frac{bU(U^\top c)}{1+\norm{U}_F^2},\qquad f=J^\top v,
+\]
+using $O(rk)$ arithmetic for mixing and one vector-Jacobian product (VJP) for the force. The residual network and its derivatives still dominate cost in many settings; this is not a free operation.
+
+The VJP must calculate $J^\top v$ with $v$ as its supplied cotangent. Taking the total derivative of $\frac12c^\top W(q,w)c$ would add derivatives of $W$ and implement a different update. Conversely, permanently detaching $v$ would lose training gradients to the mixing controller. The correct construction treats the cotangent as fixed in the inner VJP while retaining its graph for differentiation of the completed update during outer training. The operator prototype in \code{experiments/residual_reasoning/operators.py} checks that distinction with finite differences. It is not a complete trained reasoner; the focused tests are in \code{tests/residual_reasoning/test_operators.py}.
+
+\subsection{Which states are protected for every workspace choice?}
+\textbf{Proposition 3 (common-root family).} Fix $q,x$, and allow $W$ to range over an open neighborhood of positive-definite matrices. Then
+\[
+J^\top Wc=0\ \text{for every admissible }W
+\quad\Longleftrightarrow\quad c=0\ \text{or}\ J=0.
+\]
+\textbf{Proof.} The reverse implication is immediate. If $c\ne0$, variations of $W$ around an interior point include small symmetric matrices $S$. For every $v\in\mathbb R^r$, the symmetric matrix
+\[
+S=\frac{vc^\top+cv^\top}{\norm{c}^2}
+-\frac{v^\top c}{\norm{c}^4}cc^\top
+\]
+satisfies $Sc=v$. Subtracting the equations for nearby admissible matrices yields $J^\top Sc=0$ for every $v$, hence $J=0$.\hfill$\square$
+
+At an ordinary cancellation root $J^\top c=0$ with $c\ne0,J\ne0$, even the rank-one family in~\eqref{eq:resmetric} has an escaping choice. Pick $a$ with $Ja\ne0$ and set $u=c+Ja$. Then $u^\top c=\norm{c}^2$ and $J^\top u=J^\top Ja\ne0$. The low-rank correction therefore gives a nonzero force.
+
+The quantifier matters: this is an intersection over \emph{possible} workspace-controlled matrices. A trained deterministic controller can select bad matrices, converge to an unhelpful weight pattern, or enter a wrong cycle. The proposition does not say the trained architecture has no incorrect equilibria. If $J=0$ with $c\ne0$, all such first-order residual mixing is blind. Extra search mechanisms would be required.
+
+\subsection{Local attraction without requiring the original energy to decrease}
+Escaping a strict local minimum of $E$ necessarily increases $E$ for sufficiently small nonzero steps. An Armijo gate on that same unweighted energy would reject the very behavior we seek. The previous global common-energy argument therefore does \textbf{not} transfer to this proposal.
+
+There is instead a local common-distance argument near a regular zero. Suppose $c(q_*)=0$, $c$ is twice continuously differentiable nearby, $J_*=J(q_*)$ has full column rank with smallest singular value $\sigma>0$, and $mI\preceq W\preceq\bar mI$ uniformly. Put $e=q-q_*$ and $f_W(q)=J(q)^\top Wc(q)$. Taylor expansion gives, uniformly over those $W$,
+\[
+f_W(q)=J_*^\top WJ_*e+O(\norm{e}^2).
+\]
+In a sufficiently small ball there is a finite $K$ such that
+\[
+e^\top f_W(q)\ge\tfrac12m\sigma^2\norm{e}^2,
+\qquad\norm{f_W(q)}\le K\norm{e}.
+\]
+Consequently,
+\begin{equation}
+\norm{e-\alpha f_W(q)}^2
+\le\bigl(1-\alpha m\sigma^2+\alpha^2K^2\bigr)\norm{e}^2.\label{eq:localres}
+\end{equation}
+Choosing a sufficiently small fixed $0<\alpha<m\sigma^2/K^2$ gives a contraction factor below one and makes the ball invariant. The bound is common to all admissible $W$, so arbitrary workspace switching is allowed locally. No bound on $D_qW$ is needed for this pointwise argument. The constants and the neighborhood are conditional mathematical quantities, not certified values for an untrained neural model.
+
+For a smooth zero manifold $\mathcal M=\{q:c(q)=0\}$, a parallel argument works in a uniform regular tube around a compact component, or on a regular tube in whose geometric domain the iterates are separately assumed to remain. The tube must have a unique nearest projection $p$, uniform derivative bounds, and a uniform lower singular-value bound for $J(p)$ restricted to normal directions. The normal error $e=q-p$ obeys the same estimates. Since
+\[
+\operatorname{dist}(q-\alpha f_W(q),\mathcal M)
+\le\norm{q-\alpha f_W(q)-p},
+\]
+small-step distance contraction follows without assuming the manifold is a single point. This requires regular geometry; singular or rank-changing zero sets are excluded. Readout correctness and a robust margin neighborhood remain separate assumptions.
+
+On the zero set the semantic update stops; only workspace motion persists. A model that also moves tangentially in semantic coordinates still needs the additional constructions in Appendix~\ref{app:sets}. This proposal does not silently solve that harder problem.
+
+\subsection{Round 4: the random-mixing and change-of-basis objections}
+The critic's strongest cheap control is fresh random rank-one mixing. At a cancellation state with $c\ne0,J\ne0$, an absolutely continuous, full-dimensional random $u$ has $(u^\top c)J^\top u\ne0$ almost surely. Therefore random mixing already produces a nonzero step, without learned memory. This is only departure from the current point, not guaranteed escape from a basin or eventual solution.
+
+For an unnormalized Gaussian $u\sim\mathcal N(0,I)$, the corresponding force $h=J^\top uu^\top c$ satisfies
+\[
+\mathbb E[h]=J^\top c,\qquad
+\mathbb E\norm{h}^2=\norm{c}^2\norm{J}_F^2+2\norm{J^\top c}^2.
+\]
+The second identity follows from Gaussian fourth moments. At aggregate cancellation it has zero mean but nonzero variance. At $c=0$ it vanishes exactly. This is structured, residual-dependent exploration. The bounded normalized operator has a different expectation and second moment, so these displayed formulas must not be copied onto it unchanged.
+
+For fixed $u$, $h$ is the gradient of the randomly projected residual loss $\frac12(u^\top c)^2$. This connects the mechanism to randomized least-squares sketching, which is established literature~\cite{sketch}. Likewise, a fixed SPD $W=L^\top L$ can be absorbed into a new residual basis $\widetilde c=Lc$. Hence a fixed mixing matrix is not inherently a new expressive neural architecture if the residual head is freely learnable.
+
+A closer predecessor is \emph{Sketched Newton--Raphson} (SNR)~\cite{snr}. Its Section 3, equations (3.1)--(3.5), formulates residual losses with a sketch-dependent metric frozen for the inner derivative, then updates that metric at the next iterate. In our Jacobian convention its force has the form $J^\top H_Sc$, with $H_S=S(S^\top JJ^\top S)^\dagger S^\top$. Its analysis explicitly uses the fact that every residual zero makes each stochastic gradient vanish. SNR's specific metric is positive semidefinite and may involve a pseudoinverse; our proposed bounded learned SPD controller is different, but the general residual-space construction and root preservation are established. SNR, including a documented regularized variant where needed, is therefore a direct solver control, not merely a related-work citation.
+
+Persistent constraint memory is also not enough by itself: the recent \emph{Lagrangian Brain} manuscript~\cite{lagbrain}, Appendix F.3, updates constraint multipliers while changing discrete candidate states. Its Sudoku protocol allows unrestricted thinking time; its headline result must not be treated as an equal-cost comparison. We have inspected that update description, not reproduced its results or verified its wider claims.
+
+Memory-dependent mixing could adapt which residual combinations matter as the search evolves. That is the remaining hypothesis. It must beat fixed full mixing, stateless full mixing, random mixing and a generic factor-aware learned optimizer. We should drop the memory component if it does not earn its extra cost. Even if random mixing works well, its optimization interpretation must be acknowledged rather than advertised as a wholly new principle.
+
+Residual coordinates also have conventions: replacing $c$ with $Sc$ for nonsingular $S$ preserves its zero set but changes its dynamics unless $W$ transforms consistently. Factor permutations can be handled by a shared equivariant controller; arbitrary sign and scale changes require explicit design or a documented fixed convention. A freely rescaled learned head can otherwise manufacture the apparent effect. Normalize and pin residual units for the controlled comparison, then separately test a freely learned head. Do not claim basis-independent geometry without proving it.
+
+\subsection{Concrete first architecture: grounded constraints and learned coordination}
+The critique exposed a major avoidable ambiguity: a learned residual can collapse to zero or encode wrong answers. The first full architecture should therefore use \textbf{known task residuals and a learned factor controller}. This is a neuro-symbolic reasoner, not a general-purpose latent language model. The residuals and verifier access must be identical for all controlled baselines.
+
+For Sudoku, let $p_{i,d}\in\mathbb R$ represent cell $i$ choosing digit $d$. Include all of the following residuals, with fixed documented scales:
+\[
+ c^{\rm bin}_{i,d}=p_{i,d}(1-p_{i,d}),\qquad
+ c^{\rm cell}_{i}=\sum_d p_{i,d}-1,
+\]
+\[
+ c^{\rm unit}_{U,d}=\sum_{i\in U}p_{i,d}-1,
+ \qquad c^{\rm clue}_i=p_{i,d_i}-1.
+\]
+Here $U$ ranges over every row, column and box, and $d_i$ is the observed clue digit, not the unknown answer. All Boolean residuals must be included. A common zero forces every entry to be zero or one, one digit per cell, one occurrence of each digit per unit, and preservation of clues. Therefore every common zero is a valid one-hot solution, including alternative valid solutions when the puzzle is not unique. This removes residual-collapse ambiguity for the first study.
+
+At any such zero, the Jacobian rows of $c^{\rm bin}$ form a diagonal matrix with entries $1-2p_{i,d}\in\{-1,1\}$. Thus the full residual Jacobian has full column rank: with unit Boolean scaling, $J^\top J\succeq I$. The regular-root premise of the local attraction argument is therefore structurally satisfied. This does not supply a global basin or a universal step size; polynomial derivatives outside the Boolean region can be large.
+
+Use a bipartite variable--factor network with shared updates. Variable nodes carry $p$, input clues and structural type information; factor nodes carry their residual, type and bounded memory $w_a$. A factor's output row $U_a\in\mathbb R^k$ specifies its participation in the low-rank residual mixing. Message passing respects variable/factor relabeling; ordering conventions, digit symmetries and signed incidence must be implemented explicitly rather than merely asserted. Both current residuals and memory may inform $U$. Read out a Sudoku by argmax across each cell's digits and verify all constraints. Keep the same initial-state distribution and graph information across controls.
+
+The mathematical specification initially uses unconstrained real $p$, without sigmoid saturation or projection, so Boolean zeros occur at finite states and the stated VJP update applies literally. It does not guarantee that iterates stay in $[0,1]$ or remain bounded globally. Count numerical divergence and invalid output as failures. If clipping, projection or an acceptance policy is added, document it as a changed update, apply it comparably to controls and recheck the local claims.
+
+A second factor-graph family can use satisfiable 3SAT: Boolean residuals $p_i(1-p_i)$ and one clause residual equal to the product of its literal-false factors, $(1-p_i)$ for a positive literal and $p_i$ for a negative literal. Common zeros are exactly satisfying assignments and the same Boolean Jacobian argument applies. This is witness finding, not an UNSAT certificate. At an unsatisfying Boolean vertex, violated-clause gradients agree in sign for any shared variable, so the aggregate cancellation mechanism of interest concerns fractional search states, not arbitrary wrong Boolean vertices.
+
+This grounded setup is the implementation target, with Sudoku providing continuity and a second family testing whether coordination transfers. Exact sizes, training budget and datasets remain to be frozen before a training launch. A fully learned latent residual head remains a later branch: it would require explicit noncollapse and answer-alignment training and cannot inherit the grounded correctness theorem. The present operator prototype does not yet implement the factor network or task residual modules.
+
+\subsection{The substantial experiment that could justify the project}
+The central comparison is a shared-residual search study with the following mechanisms: state-side preconditioning; diagonal adaptive weights; fixed off-diagonal mixing; stateless learned mixing; recurrent learned mixing; fresh random low-rank mixing; Sketched Newton--Raphson, and a strong factor-aware learned optimizer or solver. Published energy reasoners and QRR provide external references with clearly separated reproduction settings. Match total inference cost, account for training resources and parameter capacity, and do not handicap baseline access to residual information.
+
+First run fixed total-compute budgets with no adaptive stopping. Primary outcomes are exact validity/accuracy across all instances, cost curves, and task-size/depth generalization over multiple training seeds. Use a task family with room to improve and meaningful constraint interactions; avoid making a near-ceiling Sudoku percentage the whole paper. Cases with multiple valid answers require validity-aware scoring, not rejection of alternative correct solutions because only one label was stored.
+
+Within the same study, identify states with large $\norm{c}$ but small $\norm{J^\top c}$, then perform matched continuation interventions: change only $W$, reset workspace, substitute random mixing, and compare the resulting valid-solve rate at equal remaining cost. Numerical thresholds and cohorts must be fixed on development data. Small gradient is not evidence of cancellation unless residual size and derivative information support that diagnosis. This is a mechanistic analysis embedded in the substantial run, not a gate requiring another series of tiny pilots.
+
+Only afterwards compare a shared deployable stopping rule across models and native stopping rules separately. Calibrate on development data, count rule evaluation cost, include cap hits and all failed examples, and report accuracy--coverage--runtime curves. Output stabilization and first correctness can be offline references, never oracle deployment policies. This directly addresses the strongest QRR review confound.
+
+A convincing result would show that learned off-diagonal interactions improve valid solving and cost/generalization beyond random mixing and generic factor-aware optimization, with evidence connecting the gain to unresolved residual interactions. If random mixing matches the controller, retain the simpler method and narrow the claim. If a freely learned static residual basis erases the gain, reject the dynamic-mixing explanation. If benefits appear only through a more favorable stopping test, reject the faster-computation claim.
+
+\subsection{Critique ledger and current status}
+\begin{tabularx}{\linewidth}{@{}P{13mm}Y Y@{}}\toprule
+Round & Objection & Revision or consequence\\\midrule
+1 & V2 is a learned optimizer and protects wrong roots. & Retain as baseline; examine residual-side control.\\
+2 & Diagonal weighting is old and can remain blind. & Analyze off-diagonal interactions and explicit strict-minimum separation.\\
+3 & Available escape does not guarantee a learned controller escapes; global descent conflicts with escape. & State family quantifiers; replace global descent claim with conditional local root/set attraction.\\
+4 & Random mixing and a learned static basis may explain the whole gain. & Make both strong controls; learning and memory remain contingent.\\\bottomrule
+\end{tabularx}
+
+\textbf{Solid now:} an exact distinction between update classes, a bounded operator specification, conditional local attraction, and a falsifiable architectural comparison. These are not claimed as new general optimization theorems. \textbf{Not solid yet:} the full trained factor controller, practical gains, empirical mechanism frequency, or publication-level novelty. The correct stopping point for this research session is a clear hypothesis and implemented mathematical core, not a critic pressured into declaring success.
+
+The remaining main sections preserve the version 2.0 state-preconditioning baseline, its proofs and training discussion. They are useful comparison material, but this section supersedes their claim to be the sole leading architectural direction. The attracting-set appendix and historical pilot evidence remain intact.
+\newtopic
+\section{The original question and the version 2.0 baseline}\label{sec:question}\label{sec:story}
 A recurrent reasoner repeatedly applies a learned computation to the same problem. If its entire state must converge to one vector, all internal degrees of freedom eventually stop changing. But an answer is only a small part of the information stored in the network. It is natural to ask whether answer stability can coexist with continuing internal motion.
 
 There are three different claims here. First, many hidden states can decode to the same answer; this follows from the readout being many-to-one. Second, those states could form an invariant, attracting set under the model's dynamics. That requires architectural or dynamical conditions. Third, allowing such a set could make reasoning faster or more accurate. That is an empirical hypothesis, not a consequence of the first two claims.
 
-Our initial project tested frozen TRM checkpoints and developed a schedule-dependent feedback example. The pilot found recovery without observed retention failure. The example established that update timing can change stability while preserving a root. These results remain useful, but neither requires postponing architectural research until a particular failure is observed. At the user's request, the project now prioritizes a new model directly.
+Our initial project tested frozen TRM checkpoints and developed a schedule-dependent feedback example. The pilot found recovery without observed retention failure. The example established that update timing can change stability while preserving a root. These results remain useful, but neither requires postponing architectural research until a particular failure is observed. At the user's request, version 2.0 prioritized a new model directly. The following baseline motivation is preserved; Section~\ref{sec:session} records the subsequent critique and revised leading candidate.
 
 \subsection{The central tension: harmless motion versus useful motion}
 Suppose a hidden variable can never affect the answer, now or at any future time. It is safe, but it cannot help solve the problem. Conversely, if a workspace can change the semantic state without restriction, it can disturb an answer after solving it. The proposed architecture resolves this tension \emph{conditionally}: workspace motion matters away from stationarity, and its semantic influence vanishes at stationarity.
@@ -103,7 +306,7 @@ Attracting answer sets & A serious alternative architecture, developed in Append
 Transient amplification & A warning that stable eigenvalues alone do not bound finite-time disturbances.\\
 TRM coupled feedback & A proved artificial example and optional diagnostic programme; no longer a prerequisite.\\
 QRR quotient dynamics & Inspiration for separating answer-relevant and answer-irrelevant motion; not a proof that every useful mode should be quotiented out.\\
-Persistent workspace & The leading proposal: affect search through a bounded positive-definite metric and lose influence at energy stationarity.\\\bottomrule
+Persistent workspace & Version 2.0 proposal: affect search through a bounded positive-definite metric and lose influence at energy stationarity.\\\bottomrule
 \end{tabularx}
 
 \newtopic
@@ -148,8 +351,8 @@ The Jacobian $DF(s)$ is the linear map describing how a small state perturbation
 A smooth manifold is a set that locally resembles Euclidean space of a smaller dimension. Its tangent directions stay in the set to first order; normal directions leave it. A circle has one tangent and one normal direction at each point. A quotient identifies states deemed equivalent: if a group $G$ acts on states, the orbit $G\cdot s$ is the collection of transformations of $s$, and $[s]$ denotes its equivalence class. Gauge directions are tangent to such orbits. A quotient readout ignores the chosen group transformations. These definitions describe geometry, not correctness. Appendix~\ref{app:sets} develops the geometry without assuming a group action.
 
 \newtopic
-\section{The proposed persistent-workspace energy architecture}\label{sec:architecture}
-\status{PROPOSED --- equations specified; implementation and trained evaluation pending}
+\section{The state-preconditioning baseline architecture}\label{sec:architecture}
+\status{V2 BASELINE --- current leading candidate is in Section~\ref{sec:session}; no trained evaluation}
 \subsection{Two states and one shared objective}
 Let $q_t\in\mathbb R^{S\times d_q}$ be the semantic state, $w_t\in\mathcal W\subseteq\mathbb R^{S\times d_w}$ the workspace, and $x$ the fixed input. Matrices below act on flattened vectors; token structure is retained in implementation. Define
 \begin{align}
@@ -359,7 +562,8 @@ The independent agent review accepted the stationary-fiber construction, bounded
 The surviving research question is precise: can a task-trained, persistent, causally useful workspace improve energy-based reasoning while its semantic coupling vanishes at stationarity, and does this offer a better accuracy/cost/retention tradeoff than strong stateful optimizers? If the answer is no, the mathematical invariant alone is not enough for a method paper.
 
 \newtopic
-\section{The next substantial study and the living project record}\label{sec:currentplan}\label{sec:living}
+\section{Version 2.0 comparison design and living record}\label{sec:currentplan}\label{sec:living}
+\status{BASELINE PLAN --- Section~\ref{sec:session} adds the current residual-space comparison and review findings.}
 \subsection{One architectural comparison, not a staircase of tiny gates}
 Implement the shared energy/readout/initialization backbone and compare the following search mechanisms under a frozen training recipe and data split:
 \begin{enumerate}
@@ -386,7 +590,8 @@ For every new result preserve: the prespecified question; code/checkpoint/data h
 \begin{tabularx}{\linewidth}{@{}P{18mm}P{25mm}Y@{}}\toprule
 Version & Date & Change\\\midrule
 1.0 & 6 Nov 2026 & Integrated pilot, TRM feedback example and optional clock protocol; no new trained model.\\
-2.0 & 12 Nov 2026 & Reorganized around persistent-workspace energy reasoning; added mathematical primer, proofs, training/cost design, QRR critique and expanded attracting-answer-set appendix. Preserved old evidence and protocols as history. No new trained-model result.\\\bottomrule
+2.0 & 12 Nov 2026 & Reorganized around persistent-workspace energy reasoning; added mathematical primer, proofs, training/cost design, QRR critique and expanded attracting-answer-set appendix. Preserved old evidence and protocols as history. No new trained-model result.\\
+2.1 & 12 Nov 2026 & Four critique rounds, supplied QRR review assessment, residual-space architecture and exact separation, local attraction, SNR/random-mixing novelty limits, and an operator prototype. No new trained-model result.\\\bottomrule
 \end{tabularx}
 \appendix
 \newtopic
@@ -561,7 +766,7 @@ Research value & A simpler direct test of useful history plus a stable semantic 
 
 \newtopic
 \section{The actual machine: what TRM updates}\label{sec:machine}
-\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:session}.}
 \subsection*{One Sudoku, two arrays, one shared network}
 For one Sudoku puzzle, TRM stores two arrays of real-valued features. We call them:
 \begin{itemize}
@@ -629,7 +834,7 @@ Our current experiments freeze the pretrained weights. Ground-truth boards are u
 
 \newtopic
 \section{Fixed points, stable answers and moving states}\label{sec:background}
-\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:session}.}
 \subsection*{A fixed point need not be unique}
 Write $s=(h,w)$ for the full internal state, and $F$ for a complete update rule. A fixed point satisfies $F(s_*)=s_*$. If the model reaches that exact state, the next update leaves it unchanged. The equation may have no solutions, one solution, or many solutions. ``Fixed point'' by itself does \emph{not} mean ``one unique representation for every answer.''
 
@@ -653,11 +858,11 @@ The radius approaches 1 while the angle keeps rotating. The attracting object is
 
 In dynamical-systems language, \textbf{transverse stability} concerns disturbances away from such an orbit or set; motion along it can remain. \textbf{Output contraction} asks for readout differences to shrink, a weaker requirement than shrinking every state difference. \textbf{Partial contraction} concerns selected relations or components. These concepts motivate what to measure, but transferring their guarantees requires checking their assumptions~\cite{partial,transverse,output}.
 
-\takeaway{The original point-versus-set question remains meaningful. Our experiments have not identified a manifold or proved any contraction property. The November 6 direction focused on the coupled update rule because it could be directly manipulated. The current architecture direction is in Section~\ref{sec:currentplan}.}
+\takeaway{The original point-versus-set question remains meaningful. Our experiments have not identified a manifold or proved any contraction property. The November 6 direction focused on the coupled update rule because it could be directly manipulated. The current architecture direction is in Section~\ref{sec:session}.}
 
 \newtopic
 \section{The experiment ledger: what actually exists}\label{sec:ledger}
-\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:session}.}
 These IDs are stable references for this notebook. They are not new runs. All completed trained-model experiments used the same third-party MLP checkpoint, with the eight-puzzle cohorts nested inside the 32-puzzle cohort.
 
 {\small
@@ -683,7 +888,7 @@ No FPRM or InfiLoop backend has been implemented in this repository. No learned 
 
 \newtopic
 \section{What the natural-continuation pilot tells us}\label{sec:results}
-\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:session}.}
 \status{OBSERVED: E1a and E1b. Depths on this page are native macro-steps.}
 \begin{tabularx}{\linewidth}{@{}Y c c c@{}}
 \toprule
@@ -715,7 +920,7 @@ We have \textbf{not} measured BF16 continuation beyond macro 16 in this pilot. I
 
 \newtopic
 \section{What the perturbation experiment changed}\label{sec:perturb}
-\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:session}.}
 \status{OBSERVED: E2 and E3. A sensitivity experiment, not an inference method.}
 \subsection*{The intervention, step by step}
 At each predetermined macro (4, 8 or 16), we saved the same $(h,w)$ and made several copies. One copy continued unchanged. In the others we replaced $w$ with $w+\delta$, keeping $h$ untouched. The nonzero intervention was chosen so that
@@ -774,7 +979,7 @@ The desired practical motivation was to preserve already correct answers. Neithe
 
 \newtopic
 \section{Why the early diagnostic programme changed direction}\label{sec:shift}
-\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:session}.}
 \subsection*{The apparent disagreement with InfiLoop}
 InfiLoop v2 reports a TRM retention problem: its Figure 1 shows 19.7\% solved-puzzle loss after 36 additional outer updates. The cohort contains puzzles both compared models solve within the initial 36 updates. A separate 20.9\% statistic concerns cells, not whole solved puzzles~\cite{infiloop}.
 
@@ -804,7 +1009,7 @@ By contrast, changing $L$ from 6 to 12 inserts six extra working updates before 
 
 \newtopic
 \section{Historical coupled-feedback insight}\label{sec:insight}
-\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:session}.}
 \status{HYPOTHESIS ABOUT TRM; SUPPORTED BY A MATHEMATICAL POSSIBILITY EXAMPLE}
 \subsection*{The intuition: local improvement can worsen the feedback}
 During working updates, $w$ repeatedly uses the same held-fixed $h$. Then $h$ changes using the resulting $w$. More working updates may make $w$ better adjusted to the \emph{old} $h$, while making the next change of $h$ larger or badly coordinated with the coupled system.
@@ -871,7 +1076,7 @@ They do not construct actual post-normalized Transformer weights, demonstrate a 
 
 \newtopic
 \section{Optional historical E4 protocol, preserved in full}\label{sec:next}
-\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:session}.}
 \status{E4: OPTIONAL; IMPLEMENTED; FULL TRAINED-CHECKPOINT STUDY NOT YET RUN}
 \subsection*{The question}
 From the same state reached by normal TRM computation, does changing the balance of working updates and answer updates alter retention or recovery, when both continuations get the same block budget?
@@ -924,7 +1129,7 @@ The sample size is fixed. At least 300 correct-at-fork puzzles is an adequacy fl
 
 \newtopic
 \section{Historical E4/E5 decision rules}\label{sec:decisions}
-\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:session}.}
 \begin{tabularx}{\linewidth}{@{}P{68mm}Y@{}}
 \toprule
 Possible E4 outcome & Consequence\\\midrule
@@ -949,7 +1154,7 @@ If the only effect is damage from schedules the model never trained on, we have 
 
 \newtopic
 \section{Earlier literature review: November 6 snapshot}\label{sec:papers}
-\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:currentplan}.}
+\status{HISTORICAL RECORD --- November 6 snapshot; current architecture priority is Section~\ref{sec:session}.}
 These are orientation notes, not interchangeable claims of full reproduction. The project reviewed the closest work to narrow the question; it has implemented only a TRM experimental backend.
 
 \subsection*{The three starting architectures}
@@ -1345,5 +1550,11 @@ Dev / held-out & Data for developing the idea / data reserved from that developm
 \bibitem{tango} M. Eliasof, E. Haber and C. B. Sch\"onlieb. \emph{Graph Neural Dynamics via Learned Energy and Tangential Flows} (TANGO). ICML 2026. Primary proceedings entry: \url{https://proceedings.mlr.press/v306/eliasof26a.html}. Primary description reviewed; detailed theorem/code audit pending.
 \bibitem{lsr1} G. Lifshitz, S. Zuler, O. Fouks and D. Raviv. \emph{L-SR1: Learned Symmetric-Rank-One Preconditioning}. ICML 2026. Primary proceedings entry: \url{https://proceedings.mlr.press/v306/lifshitz26a.html}. Learned preconditioning comparator; primary description reviewed.
 \bibitem{pnde} A. White et al. \emph{Projected Neural Differential Equations for Learning Constrained Dynamics}. 2024; revised 2026. \url{https://arxiv.org/abs/2410.23667}. Constraint-preserving differential-model reference; no direct reasoning-performance claim.
+
+\bibitem{breakout} P. Morris. \emph{The Breakout Method for Escaping from Local Minima}. AAAI 1993, pp. 40--45. \url{https://cdn.aaai.org/AAAI/1993/AAAI93-007.pdf}.
+\bibitem{analog} M. Ercsey-Ravasz and Z. Toroczkai. \emph{Optimization hardness as transient chaos in an analog approach to constraint satisfaction}. Nature Physics 7, 966--970, 2011. \url{https://doi.org/10.1038/nphys2105}. Adaptive constraint-weight precedent; no digital-complexity improvement inferred.
+\bibitem{sketch} G. Raskutti and M. W. Mahoney. \emph{Statistical and Algorithmic Perspectives on Randomized Sketching for Ordinary Least-Squares}. ICML 2015. \url{https://proceedings.mlr.press/v37/raskutti15.html}. General sketching context, not an identical nonlinear solver.
+\bibitem{snr} R. Yuan, A. Lazaric and R. M. Gower. \emph{Sketched Newton--Raphson}. SIAM Journal on Optimization, 2022. \url{https://arxiv.org/abs/2006.12120v5}. Section 3 equations (3.1)--(3.5) inspected directly for the residual-metric update and zero-residual interpolation property.
+\bibitem{lagbrain} Y. He and S. Wu. \emph{The Lagrangian Brain: A Constraint Mechanics of Mind and Machine}. 2026. \url{https://arxiv.org/abs/2611.10737v1}. Appendix F.3 update description inspected; headline performance not reproduced.
 \end{thebibliography}
 \end{document}

@@ -1,6 +1,6 @@
 # Living project guide
 
-Start with [the PDF](project_notebook.pdf). Version 2.0 puts the proposed persistent-workspace energy architecture first: motivation, mathematical primer, recurrence, conditional proofs, training design, possible benefits, QRR critique and decisive comparisons. Appendix A expands the attracting-answer-set alternative with a circle example, learned residual manifolds, tangent projectors, readout alignment, discrete-time pitfalls and GNN transfer. Later appendices preserve completed experiments and optional historical protocols.
+Start with [the PDF](project_notebook.pdf), **Section 1**. Version 2.1 adds four adversarial critique rounds, an assessment of the supplied QRR reviews, and the leading residual-mixing architecture. It includes the strict-local-minimum example, precise preservation/attraction claims, random-mixing and Sketched Newton–Raphson objections, and a concrete grounded Sudoku factor-controller design. The old state-preconditioner remains a baseline; the expanded attracting-answer-set appendix and all historical results are preserved.
 
 [project_notebook.tex](project_notebook.tex) is the editable, self-contained source. Upload this one file to Overleaf and select **XeLaTeX**, or run from the repository root:
 
@@ -17,4 +17,4 @@ When results or the research direction change:
 3. Update relevant tables, source revision, limitations and the notebook change log alongside `docs/STATUS.md`.
 4. Rebuild, resolve references/overflow warnings and visually inspect the PDF. Commit source and PDF together.
 
-The notebook supplements the detailed runbooks; it does not silently change their protocols. Version 2.0 (12 November 2026) supersedes the diagnostic-first priority of version 1.0. E4/E5 remain optional historical protocols. The completed pilot results are sourced from committed reports, not a new raw-data reanalysis. The new architectures are proposed; no new trained result is claimed.
+The notebook supplements the detailed runbooks; it does not silently change their protocols. Version 2.1 (12 November 2026) continues the architectural pivot and supersedes version 2.0 as the current research decision. E4/E5 remain optional historical protocols. The completed pilot results are sourced from committed reports, not a new raw-data reanalysis. The operator prototype is tested; complete architectures and their gains remain untested. No new trained result is claimed.

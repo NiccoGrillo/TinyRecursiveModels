@@ -56,3 +56,13 @@ InfiLoop implementation inspected during planning: [`63716a9c46723d3592c8ad4fc58
 | `experiments/decision_stability/clock.py` | Dense observation, same-state schedule fork, equal-budget outcomes and exact paired bounds |
 
 Before comparing headline scores, record exact evaluation version, schedule search, verifier use, precision, and training budget. Results with different procedures are not directly interchangeable.
+
+## Residual-mixing research session — 2026-11-12
+
+- [Sketched Newton–Raphson](https://arxiv.org/abs/2006.12120v5), Yuan, Lazaric and Gower, SIAM Journal on Optimization 2022: **direct predecessor**, not just thematic overlap. Section 3 equations 3.1–3.5 inspected: residual metric frozen for the inner gradient, state-dependent sketch distribution, zero-residual interpolation. Include as a solver control; distinguish its pseudoinverse PSD metric from our bounded learned SPD choice.
+- [Breakout](https://cdn.aaai.org/AAAI/1993/AAAI93-007.pdf), Morris, AAAI 1993: adaptive constraint penalties to leave local minima. Full primary paper inspected for this mechanism.
+- [Analog SAT](https://doi.org/10.1038/nphys2105), Ercsey-Ravasz and Toroczkai, Nature Physics 2011: changing auxiliary clause weights and attracting solution sets. Do not infer efficient digital runtime from continuous-time claims.
+- [Randomized sketching for least squares](https://proceedings.mlr.press/v37/raskutti15.html), Raskutti and Mahoney, ICML 2015: general residual-sketching context, not an identical nonlinear solver.
+- [The Lagrangian Brain](https://arxiv.org/abs/2611.10737v1), He and Wu, November 2026: Appendix F.3 uses persistent constraint multipliers with discrete candidate changes. Full-text update and time-budget descriptions inspected. No reproduction or endorsement of headline results; unrestricted-thinking-time results are not matched-cost evidence.
+
+QRR review excerpts were supplied by the user; the notebook separates sound experimental objections from inaccurate geometry/training assertions. The current leading direction and exact comparison requirements are in notebook Section 1.
