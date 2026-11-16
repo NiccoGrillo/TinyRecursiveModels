@@ -1,20 +1,23 @@
-# Living project guide
+# Living research guide
 
-Start with [the PDF](project_notebook.pdf), **Section 1**. Version 2.1 adds four adversarial critique rounds, an assessment of the supplied QRR reviews, and the leading residual-mixing architecture. It includes the strict-local-minimum example, precise preservation/attraction claims, random-mixing and Sketched Newton–Raphson objections, and a concrete grounded Sudoku factor-controller design. The old state-preconditioner remains a baseline; the expanded attracting-answer-set appendix and all historical results are preserved.
+Read [project_notebook.pdf](project_notebook.pdf). **Version 3.0, 16 November 2026**, reorganizes the project around learned latent residuals, without hardcoded task rules in the main architecture.
 
-[project_notebook.tex](project_notebook.tex) is the editable, self-contained source. Upload this one file to Overleaf and select **XeLaTeX**, or run from the repository root:
+- Sections 1–2: objective, notation, architecture and one update.
+- Section 3: local calibration, signed learned invalidity, and task-through-unroll training. This is a proposed recipe, not a solved learning guarantee.
+- Sections 4–5: mathematical limits and the decisive comparison against simpler learned correctors.
+- Sections 6–7: actual evidence, critic verdict and relevant prior work.
+- Appendix A: proofs and counterexamples.
+- Appendix B: attracting answer sets, with intuition, equations, readout alignment and discrete-time limitations.
+- Appendix C: compact stable E0–E5 ledger and links to the full historical record.
+
+The [previous 60-page notebook](archive/project_notebook_v2_1.pdf) and its [source](archive/project_notebook_v2_1.tex) are archived byte-for-byte. Its grounded-Sudoku recommendation is superseded; its experiments and protocols are preserved rather than silently deleted.
+
+The current [LaTeX source](project_notebook.tex) is self-contained. Select XeLaTeX in Overleaf, or run from the repository root:
 
 ```bash
 bash scripts/build_notebook.sh
 ```
 
-A normal TeX Live installation needs the packages in the preamble (including fontspec, unicode-math, TikZ, fvextra and xurl) and Latin Modern fonts. Compilation intermediates go in the ignored `runs/notebook-build/` directory. Source and PDF are both versioned; no separate bibliography or image assets are required.
+A normal TeX Live installation needs the packages in the preamble and Latin Modern fonts. Intermediates go to ignored `runs/notebook-build/`. Keep source and PDF together in commits.
 
-When results or the research direction change:
-
-1. Update the dated status and stable experiment ledger; distinguish measured results, deductions, implementation checks and proposals.
-2. Preserve the original hypotheses and frozen protocols. Explain what evidence changed a decision.
-3. Update relevant tables, source revision, limitations and the notebook change log alongside `docs/STATUS.md`.
-4. Rebuild, resolve references/overflow warnings and visually inspect the PDF. Commit source and PDF together.
-
-The notebook supplements the detailed runbooks; it does not silently change their protocols. Version 2.1 (12 November 2026) continues the architectural pivot and supersedes version 2.0 as the current research decision. E4/E5 remain optional historical protocols. The completed pilot results are sourced from committed reports, not a new raw-data reanalysis. The operator prototype is tested; complete architectures and their gains remain untested. No new trained result is claimed.
+For future updates, revise the core explanation rather than prepend a long research-session transcript. Keep observations, proofs, implementation checks and proposals distinct. Update `docs/STATUS.md`, retain experiment IDs and frozen protocols, resolve references/overflow warnings, and visually inspect the rebuilt PDF. Only the mixing/VJP operator is implemented; the complete v3.0 architecture and training recipe are untrained.

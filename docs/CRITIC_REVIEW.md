@@ -64,3 +64,19 @@ The supplied review text (reviewer IDs 6QHq, 9Sdw, tDyW) rightly emphasizes arch
 Final grounding revision: use explicit Sudoku Boolean and sum/clue residuals. Their common zeros are exactly valid one-hot completions, and the Boolean Jacobian provides full column rank at each zero. This closes the learned-residual-collapse gap for the first architecture, while narrowing scope to a grounded neuro-symbolic solver. It does not establish global convergence, a learned semantic manifold, or language-model transfer. Optional 3SAT is satisfiable-instance witness finding, not UNSAT certification.
 
 **Critic verdict:** approve a bounded substantial architecture comparison; do not approve publication-ready novelty. Reject memory-coordination claims if random/stateless mixing or a learned static residual basis removes the advantage. Do not continue agent cycles merely to obtain approval. The notebook records the derivations and conditions in full.
+
+
+## 16 November 2026 — learned residuals and one further adversarial cycle
+
+The current decision supersedes the prior grounded-Sudoku target. The main architecture must learn from examples without symbolic inference rules. The cycle revised the objective, not just the framing:
+
+- Squared-energy ranking has zero output gradient at wrong residual zeros. Local calibration alone can leave unconditional codebook wells. Use a signed invalidity margin on a separate learned scalar channel instead.
+- Write `c=[g;s]`. Near a correct fixed answer embedding, train `g(q*+delta,x)≈delta` and `s≈0`; at known wrong candidates train normalized `s` above a positive margin. Unrolled task loss must teach useful search outside those neighborhoods.
+- Include wrong answer codes from other inputs when their incorrectness is known. Same-input pairs train candidate dependence; contradictory status across inputs trains input dependence. Do not label alternative valid answers as negatives.
+- Global denoising targets can reduce the task to direct correction. Local calibration is deliberately restricted; `q-g` remains a primary comparator.
+- At a hypothetical wrong state with `g=0`, `Dg=I`, `s>0`, `Ds=0`, off-diagonal mixing moves while diagonal energy inference stops. But a cheaper gated learned proposal can do the same. Compare `q-sH` and `q-Gc` explicitly.
+- Normalize score as `s=sqrt(S)*s_bar`, calibration per position and the negative margin on `s_bar`; a bounded raw scalar would otherwise bound total bridge-step norm independently of length. This convention does not prove length generalization.
+- Matching KL to the fixed anchor decoder avoids pushing confidence beyond the anchor, but zero KL need not uniquely determine the latent state. Calibration is a separate preference.
+- Full-row-rank Jacobians exclude nonzero-residual cancellation points. The new overdetermined anchor design and the underdetermined semantic-manifold alternative must have separate claims.
+
+Final internal verdict: coherent enough to implement and falsify; no empirical or publication-level approval. The complete learned model remains unimplemented and untrained. See notebook Sections 2–5 and Appendix B. Old v2.1 details are archived unchanged.

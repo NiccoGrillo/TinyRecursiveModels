@@ -1,6 +1,6 @@
 # First experiments and runbook
 
-These commands document the existing rollout/perturbation instruments. The pilot is complete; **the current next task is [the clock study](NEXT_EXPERIMENT.md)**. The sweeps below are available capabilities, not a recommendation to run them now.
+These commands document the existing rollout/perturbation instruments. The pilot is complete; **the current architecture study is specified in the [notebook](notebook/project_notebook.pdf); the [clock study](NEXT_EXPERIMENT.md) is optional historical work**. The sweeps below are available capabilities, not a recommendation to run them now.
 
 ## Environment and inputs
 

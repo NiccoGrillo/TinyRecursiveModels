@@ -1,20 +1,22 @@
 # Research roadmap
 
-## Current architecture direction — 12 November 2026, second research session
+## Current direction — 16 November 2026, notebook v3.0
 
-The leading candidate is now **solution-preserving residual mixing**: `q_next = q - alpha * J_c(q)^T W(q,w,x)c(q;x)`, with bounded positive-definite, low-rank residual-space mixing. It can move at some wrong stationary points that the previous state-side preconditioner and diagonal constraint weights cannot leave. Every common residual zero remains fixed. This is a distinction between update classes, not a claim of a new general optimizer: Sketched Newton–Raphson is a direct predecessor, and random residual mixing is a mandatory control.
+The main proposal is **learned latent residual coordination**, without symbolic Sudoku/SAT inference rules. The residual is split into geometric channels `g(q,x)` and a learned signed invalidity score `s(q,x)`. A bounded memory-conditioned SPD matrix mixes them before the update `q_next = q - alpha * J_c^T W c`, with `c=[g;s]`.
 
-The first full architecture is a grounded Sudoku factor-graph reasoner: Boolean, cell, row, column, box and clue residuals define valid solutions; a bounded per-factor workspace predicts their low-rank interactions. The controller is learned, the initial task residuals are specified. Generic learned latent residuals remain a later branch. No complete architecture has been trained or benchmarked. A tested PyTorch operator prototype is in `experiments/residual_reasoning/operators.py`.
+The concrete learning candidate combines local calibration near fixed generic answer embeddings, a signed invalidity margin on known incorrect candidates, and task loss through the actual recurrence. The signed margin replaces squared-energy ranking because it has nonzero output gradient at a wrong residual zero. It does not guarantee correct zeros, useful derivatives, or successful training. Use `s=sqrt(S)*s_bar` and documented per-position loss normalization for variable output length; this is a scale convention, not a transfer guarantee.
 
-Start with Section 1 of [notebook version 2.1](notebook/project_notebook.pdf), or its [LaTeX source](notebook/project_notebook.tex), for four adversarial critique rounds, the supplied QRR review assessment, exact proofs, limitations and the decisive comparison. The prior energy-preconditioner is retained as a baseline. E4/E5 remain optional historical diagnostics and do not gate architectural work.
+The decisive rivals include direct `q-g` correction, an invalidity-gated learned proposal `q-sH`, and a direct learned residual map `q-Gc`, alongside random/stateless mixing and established solvers. First compare controllers on a shared frozen learned field, then jointly trained systems whose competitors can adapt their own fields. Hardcoded residuals are optional controls. The attracting semantic-manifold branch remains separate from this anchor–workspace construction.
 
-## Next substantial task
+Read [the cleaned notebook](notebook/project_notebook.pdf), especially Sections 2–3 (architecture and learning) and Section 5 (study). [Version 2.1](notebook/archive/project_notebook_v2_1.pdf) preserves the full previous record. Only the mixing/VJP operator exists; the new residual heads, losses, controller and full benchmark are **unimplemented and untrained**. No new empirical gain or publication endorsement is claimed.
 
-Build the grounded Sudoku residual model and shared factor-graph controller. Compare state-side preconditioning, diagonal adaptive weights, fixed full residual mixing, stateless learned mixing, recurrent learned mixing, fresh random mixing, Sketched Newton–Raphson and a strong unrestricted factor-aware learned solver. Match information, initialization, training resources and total inference cost; separately allow strong controls to learn their own residual basis. Keep optional satisfiable-3SAT transfer distinct from UNSAT decision.
+## Next substantial implementation
 
-First compare fixed-compute solving with no adaptive stopping. Then cross architectures with a shared deployable readout rule and compare their native rules separately. Calibrate on development data; include failures and cap hits. Task sizes, seeds, data and accelerator budget must be frozen before training. This is one substantial architecture study, not a new sequence of small pilot gates.
+Implement the shared output codebook/decoder, learned `g` and signed normalized score, local perturbation calibration, known-negative sampling, and task-through-unroll training. The source of correct/incorrect labels must be explicit; alternative valid answers must not be mislabeled. Ground-truth answers are training-only inputs to losses and anchor construction.
 
-Stop the memory-coordination claim if recurrent mixing fails to beat random/stateless mixing at comparable cost or if a learned static basis removes its advantage. The critic accepted the mathematics and a bounded architecture comparison, not A* novelty or demonstrated gains. Preserve the attracting-answer-set branch; regular semantic solution manifolds remain a separate question from discrete valid assignments times workspace.
+Build the direct correction, invalidity-gated proposal and direct residual-map rivals alongside the mixing controller. Freeze task families, splits, seeds, training budgets, local radii, score scale, loop horizons and cost accounting before the substantial run. Include a non-puzzle structured-output task before making broad generality claims; exact datasets and budgets are not yet fixed. E4/E5 remain optional historical work.
+
+The study has a frozen-learned-field condition and a joint-training condition. Diagnose candidate/input dependence, Jacobian behavior, recurrence bypass, recovery and answer retention within those runs. A stronger field or easier stopping rule must not be mistaken for a better controller. Drop the derivative-based architecture if a cheaper gated corrector matches it at equal cost.
 
 ## Historical roadmap — superseded as current priority
 

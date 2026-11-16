@@ -6,11 +6,11 @@ This project starts from [SamsungSAILMontreal/TinyRecursiveModels](https://githu
 
 The working hypothesis is that useful internal computation and harmful future decision changes should be distinguished before imposing contraction on the whole latent state. This is a hypothesis to test, not a demonstrated improvement or a claim of publication novelty.
 
-**Current direction (12 November 2026, notebook v2.1):** a grounded reasoning architecture learns interactions between task residuals **before** forming its state correction. This preserves common solutions while allowing moves that an aggregate-gradient preconditioner cannot make. Four critique rounds narrowed the contribution: Sketched Newton–Raphson and random mixing are direct controls; learned coordination must earn its cost. The PyTorch operator prototype is tested, but the full Sudoku controller is not implemented or trained. Earlier clock diagnostics remain optional.
+**Current direction (16 November 2026, notebook v3.0):** learned latent residual coordination, without hardcoded puzzle rules. Local calibration teaches residual geometry near correct answer embeddings; a signed learned invalidity signal distinguishes incorrect candidates; task loss trains useful recurrent corrections. The main question is whether residual cross-coupling beats simpler invalidity-gated and direct learned correctors at matched cost. Only the mixing/VJP prototype is implemented; the full architecture is untrained.
 
 ## Start here
 
-**Read the [living project guide (PDF)](docs/notebook/project_notebook.pdf) first.** Start with Section 1 for the newest critique cycle, QRR review assessment, residual-mixing architecture and concrete grounded Sudoku specification. It explains the mathematics first, then preserves the experiment history, TRM update units, critic qualifications and optional old protocols. The [self-contained LaTeX source](docs/notebook/project_notebook.tex) is editable in Overleaf with XeLaTeX; [build/update instructions](docs/notebook/README.md) keep it current as the research progresses.
+**Read the [cleaned project guide (PDF)](docs/notebook/project_notebook.pdf) first.** Sections 2–3 explain the architecture and proposed learning recipe; Section 5 gives the decisive study. The attracting-answer-set alternative remains in Appendix B. The [previous 60-page notebook](docs/notebook/archive/project_notebook_v2_1.pdf) preserves the complete historical record. The [self-contained LaTeX source](docs/notebook/project_notebook.tex) works with XeLaTeX; [build instructions](docs/notebook/README.md) explain maintenance.
 
 | File | Purpose |
 | --- | --- |

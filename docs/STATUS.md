@@ -1,6 +1,24 @@
 # Status
 
-## Current architecture direction — 12 November 2026, second research session
+## Current direction — 16 November 2026, notebook v3.0
+
+The main proposal is **learned latent residual coordination**, without symbolic Sudoku/SAT inference rules. The residual is split into geometric channels `g(q,x)` and a learned signed invalidity score `s(q,x)`. A bounded memory-conditioned SPD matrix mixes them before the update `q_next = q - alpha * J_c^T W c`, with `c=[g;s]`.
+
+The concrete learning candidate combines local calibration near fixed generic answer embeddings, a signed invalidity margin on known incorrect candidates, and task loss through the actual recurrence. The signed margin replaces squared-energy ranking because it has nonzero output gradient at a wrong residual zero. It does not guarantee correct zeros, useful derivatives, or successful training. Use `s=sqrt(S)*s_bar` and documented per-position loss normalization for variable output length; this is a scale convention, not a transfer guarantee.
+
+The decisive rivals include direct `q-g` correction, an invalidity-gated learned proposal `q-sH`, and a direct learned residual map `q-Gc`, alongside random/stateless mixing and established solvers. First compare controllers on a shared frozen learned field, then jointly trained systems whose competitors can adapt their own fields. Hardcoded residuals are optional controls. The attracting semantic-manifold branch remains separate from this anchor–workspace construction.
+
+Read [the cleaned notebook](notebook/project_notebook.pdf), especially Sections 2–3 (architecture and learning) and Section 5 (study). [Version 2.1](notebook/archive/project_notebook_v2_1.pdf) preserves the full previous record. Only the mixing/VJP operator exists; the new residual heads, losses, controller and full benchmark are **unimplemented and untrained**. No new empirical gain or publication endorsement is claimed.
+
+## Documentation and critique update — 16 November 2026
+
+Completed one further adversarial design cycle and rewrote the guide around the current architecture, learning objective, mathematical limits and decisive study. Archived the prior 60-page PDF/source byte-for-byte. Retained the attracting-answer-set explanation in the new appendix and the stable E0–E5 ledger. This was a specification/documentation update, not an experiment or new training implementation.
+
+The cycle rejected global denoising regression as a default (an ideal direct corrector can solve it immediately), and replaced squared-energy contrastive negatives with a signed learned invalidity margin. A wrong candidate's zero score receives nonzero output-level gradient, without teaching the globally correct direction. The critic required cheaper verifier-gated/direct correction baselines, explicit length scaling, and a distinction between full-column-rank anchor geometry and full-row-rank semantic manifolds. Practical usefulness and novelty remain open.
+
+Validation: source/PDF rebuilt with XeLaTeX; references, local documentation links, archived-file identity, whitespace and rendered layout checked. No training or new benchmark run was launched; the previously reported eight operator tests remain implementation evidence only.
+
+## Historical architecture decision — 12 November 2026 (superseded by v3.0)
 
 The leading candidate is now **solution-preserving residual mixing**: `q_next = q - alpha * J_c(q)^T W(q,w,x)c(q;x)`, with bounded positive-definite, low-rank residual-space mixing. It can move at some wrong stationary points that the previous state-side preconditioner and diagonal constraint weights cannot leave. Every common residual zero remains fixed. This is a distinction between update classes, not a claim of a new general optimizer: Sketched Newton–Raphson is a direct predecessor, and random residual mixing is a mandatory control.
 

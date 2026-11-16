@@ -66,3 +66,14 @@ Before comparing headline scores, record exact evaluation version, schedule sear
 - [The Lagrangian Brain](https://arxiv.org/abs/2611.10737v1), He and Wu, November 2026: Appendix F.3 uses persistent constraint multipliers with discrete candidate changes. Full-text update and time-budget descriptions inspected. No reproduction or endorsement of headline results; unrestricted-thinking-time results are not matched-cost evidence.
 
 QRR review excerpts were supplied by the user; the notebook separates sound experimental objections from inaccurate geometry/training assertions. The current leading direction and exact comparison requirements are in notebook Section 1.
+
+
+## Learned-field design sources — 16 November 2026
+
+- [Structured Prediction Energy Networks, ICML 2016](https://proceedings.mlr.press/v48/belanger16.html): learned candidate energies and gradient-based structured inference; rules need not be handcoded.
+- [End-to-End Learning for SPENs, ICML 2017](https://proceedings.mlr.press/v70/belanger17a.html): task training through inference is established; it is not our novelty.
+- [Deep Equilibrium Models](https://arxiv.org/abs/1909.01377): using `q-F(q,x)` as the residual returns to full-state equilibrium solving; useful comparator, not the answer-manifold solution.
+- [VICReg](https://arxiv.org/abs/2105.04906): anti-collapse statistics do not establish answer alignment or useful search derivatives.
+- [What Regularized Auto-Encoders Learn, JMLR 2014](https://jmlr.org/beta/papers/v15/alain14a.html): score/reconstruction relationship and limits of treating denoising error as a correctness energy.
+
+Primary abstracts/proceedings descriptions were checked for these bounded claims. The local calibration + signed-invalidity proposal is our current untested specification, not a theorem attributed to these papers. Main current reading: notebook v3.0 Sections 2–5; explicit task residuals are optional controls only.
