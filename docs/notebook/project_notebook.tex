@@ -37,8 +37,8 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\sffamily\small\color{muted}TRM \textbar\ Living project guide}
-\fancyhead[R]{\sffamily\small\color{muted}16 November 2026}
-\fancyfoot[L]{\sffamily\footnotesize Version 3.0 \textbar\ Evidence and hypotheses kept separate}
+\fancyhead[R]{\sffamily\small\color{muted}20 November 2026}
+\fancyfoot[L]{\sffamily\footnotesize Version 3.1 \textbar\ Evidence and hypotheses kept separate}
 \fancyfoot[R]{\sffamily\small\thepage}
 \renewcommand{\headrulewidth}{0.3pt}
 \setcounter{tocdepth}{1}
@@ -50,9 +50,9 @@
 \vspace{7mm}
 {\Large Learning residuals and coordinating their influence on recurrent reasoning\par}
 \vspace{8mm}
-\textbf{Version 3.0 --- 16 November 2026.}\\
+\textbf{Version 3.1 --- 20 November 2026.}\\
 Repository: \href{https://github.com/NiccoGrillo/TinyRecursiveModels}{NiccoGrillo/TinyRecursiveModels}.\\
-Research baseline: \code{daaf2b3}; historical pilot report: \code{98689fb}.
+Previous guide \code{ff7c125}. Historical pilot report \code{98689fb}.
 
 \section*{The question}
 Can a recurrent model learn when and how to revise its answer, while keeping useful working memory active after the answer has settled? We want an architecture learned from examples, without writing Sudoku, SAT or other task rules into its inference procedure.
@@ -61,7 +61,7 @@ Can a recurrent model learn when and how to revise its answer, while keeping use
 A neural network reads the input and current latent candidate and produces a vector of \emph{learned residuals}. Another network uses persistent memory to mix those residuals before they produce a correction to the candidate. The correction vanishes whenever all residuals vanish; memory can continue changing. The central learning problem is making those residuals meaningful and their derivatives useful. A residual zero is not automatically a correct answer.
 
 \section*{The decision from the latest critic cycle}
-Use generic answer embeddings to calibrate residual behavior \emph{locally} near correct training answers. Train search through its final task performance, and use a signed, learned invalidity signal to distinguish wrong candidates during training. Hardcoded puzzle constraints are an optional scientific control, not the main architecture. The learning objective is a concrete experimental candidate, not an established solution to collapse.
+Keep the rule-free residual model. A checkpoint audit of CRAM gives an example where a learned score can recognize every valid Sudoku completion and search can still run out of time. The decisive test is whether our controller repairs genuine model errors faster than ordinary search or a cheap learned correction using the same information. Section~\ref{sec:cram} explains the finding and the revised comparison.
 
 \vfill
 \status{EVIDENCE STATUS}
@@ -321,6 +321,26 @@ Within the learning comparison, remove local calibration or replace the signed m
 If the gated corrector matches or beats the proposal, the Jacobian/SPD interface has not earned its cost. If random or stateless mixing matches recurrent mixing, remove the memory claim. If gains disappear when residual fields are free to adapt, report a frozen-field solver effect. If gains require known puzzle rules, report that limited scope instead of general latent reasoning. If only stopping changes, do not claim faster underlying solving.
 
 Conversely, a credible positive result combines better accuracy--cost tradeoffs with transfer across task families, informative mechanism interventions and sustained answer stability without sacrificing recovery from wrong answers. These outcomes are hypotheses, not benefits inferred from the equations.
+
+\newtopic
+\subsection{What the CRAM result changes}\label{sec:cram}
+Hoover, Blayney and Whittington~\cite{cram} learn pair costs from solved puzzles. During training they hide one cell of a completed board and score its possible values given all the others. At inference they start from an incomplete puzzle, clamp its clues, and search. These are very different amounts of information. Their Sudoku model solves 99.996\% after a 42\,ms warm fit on one H200. At matched accuracy their comparison reports 282 times fewer inference FLOPs than EBR.
+
+\textbf{What one-cell supervision leaves open.} A model can learn simply to count digits. If $n_d$ is the number of copies of digit $d$, the score $\sum_d\binom{n_d}{2}$ rises by one on \emph{every} wrong one-cell edit of \emph{every} valid Sudoku. Swapping two different digits leaves it unchanged, even when doing so invalidates the puzzle. This cheap score would pass a one-cell test on unseen puzzles.
+
+\textbf{What the released Sudoku models actually learned.} We checked the three original tables. All have the 810 true peer penalties, with some smaller negative terms outside those pairs. Using exact arithmetic on the weights, we obtained these bounds over \emph{all completed boards}:
+\[
+  E(\text{valid})\le0,\qquad
+  E(\text{invalid})\ge
+  \begin{cases}
+      0.2671 & \text{seed 0},\\
+      0.2963 & \text{seed 1},\\
+      0.2251 & \text{seed 2}.
+  \end{cases}
+\]
+The positive bounds are rounded down. An invalid grid has at least two conflicting pairs. Their positive cost exceeds even the largest possible offset from the remaining terms, bounded by relaxing each cell's neighbors separately. All reported stopping thresholds lie in the gap. With clues clamped, the exact discrete score identifies valid completions, even when there are several. Search can still exhaust its budget. On Maze-Unique the authors find the opposite ordering: their empty board scores below the correct path on every development maze, yet pruning from the all-open start solves all 1,000 test mazes. The \repo{docs/CRAM_REVIEW.md}{full review and proof} links the reproducible checkpoint audit.
+
+\textbf{How the comparison changes.} Test the signed score on composition-preserving errors and match against random edits at the same distance. The primary endpoint is repair of untouched, held-out model errors, paired at identical starting states for latent controllers. Give discrete search the same decoded board and learned score, both single- and two-token proposals, and a charged restart budget. Keep the direct neural correctors and compare stateless and persistent mixers at matched cost. Score-only supervision cannot train the controller or determine derivatives between answer codes. If persistent memory earns its cost, test whether recomputing the workspace from the current candidate reproduces its corrections. These are proposals; our trained-model evidence is still the pilot below.
 
 \newtopic
 \section{What has actually been learned so far}\label{sec:evidence}
@@ -594,6 +614,7 @@ This guide should explain the current architecture once, with current decisions 
 
 \newtopic
 \begin{thebibliography}{99}
+\small
 \bibitem{trm}A. Jolicoeur-Martineau. \emph{Less is More: Recursive Reasoning with Tiny Networks}. 2025. \url{https://arxiv.org/abs/2510.04871}. Official code: \url{https://github.com/SamsungSAILMontreal/TinyRecursiveModels}.
 
 \bibitem{fprm}S. Movahedi et al. \emph{Fixed-Point Reasoners: Stable and Adaptive Deep Looped Transformers}. 2026. \url{https://arxiv.org/abs/2606.18206v1}. See also Appendix F on allocation.
@@ -611,6 +632,8 @@ This guide should explain the current architecture once, with current decisions 
 \bibitem{irem} Y. Du, S. Li, J. B. Tenenbaum and I. Mordatch. \emph{Learning Iterative Reasoning through Energy Minimization}. ICML 2022. \url{https://energy-based-model.github.io/iterative-reasoning-as-energy-minimization/}.
 
 \bibitem{ebr} W. X. Chen, A. Gladstone, Z. M. Li, H. Ji and Y. Du. \emph{Energy-Based Reasoners: Your Recurrent Reasoner Should Be an Energy-Based Model}. 2026. \url{https://arxiv.org/abs/2611.08977}. Full-text method reviewed; no reproduction claimed.
+
+\bibitem{cram} B. Hoover, H. Blayney and J. C. R. Whittington. \emph{Classical Energies Learn to Reason 1,000$\times$ Faster than Looped Models}. Version 2, 2026. \url{https://arxiv.org/abs/2611.17309v2}.
 
 \bibitem{tango} M. Eliasof, E. Haber and C. B. Sch\"onlieb. \emph{Graph Neural Dynamics via Learned Energy and Tangential Flows} (TANGO). ICML 2026. Primary proceedings entry: \url{https://proceedings.mlr.press/v306/eliasof26a.html}. Primary description reviewed; detailed theorem/code audit pending.
 

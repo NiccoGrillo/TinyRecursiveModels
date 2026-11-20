@@ -1,6 +1,6 @@
 # Living research guide
 
-Read [project_notebook.pdf](project_notebook.pdf). **Version 3.0, 16 November 2026**, reorganizes the project around learned latent residuals, without hardcoded task rules in the main architecture.
+Read [project_notebook.pdf](project_notebook.pdf). **Version 3.1, 20 November 2026**, keeps the rule-free architecture and updates Section 5 with the CRAM checkpoint certificate, a score-only search comparison, and a natural-error repair endpoint. The [full research note](../CRAM_REVIEW.md) includes the proof and reproduction script.
 
 - Sections 1–2: objective, notation, architecture and one update.
 - Section 3: local calibration, signed learned invalidity, and task-through-unroll training. This is a proposed recipe, not a solved learning guarantee.

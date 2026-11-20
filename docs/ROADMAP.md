@@ -1,5 +1,7 @@
 # Research roadmap
 
+The 20 November [CRAM assessment](CRAM_REVIEW.md) revises the substantial study in notebook v3.1. Include score-only single- and two-token search on the same field, pair natural error recovery across controllers, and assess ordinary-start solve rate and retention. Workspace recomputation is conditional on a persistent-controller advantage. The underlying rule-free model below is still the candidate.
+
 ## Current direction — 16 November 2026, notebook v3.0
 
 The main proposal is **learned latent residual coordination**, without symbolic Sudoku/SAT inference rules. The residual is split into geometric channels `g(q,x)` and a learned signed invalidity score `s(q,x)`. A bounded memory-conditioned SPD matrix mixes them before the update `q_next = q - alpha * J_c^T W c`, with `c=[g;s]`.

@@ -6,7 +6,7 @@ This project starts from [SamsungSAILMontreal/TinyRecursiveModels](https://githu
 
 The working hypothesis is that useful internal computation and harmful future decision changes should be distinguished before imposing contraction on the whole latent state. This is a hypothesis to test, not a demonstrated improvement or a claim of publication novelty.
 
-**Current direction (16 November 2026, notebook v3.0):** learned latent residual coordination, without hardcoded puzzle rules. Local calibration teaches residual geometry near correct answer embeddings; a signed learned invalidity signal distinguishes incorrect candidates; task loss trains useful recurrent corrections. The main question is whether residual cross-coupling beats simpler invalidity-gated and direct learned correctors at matched cost. Only the mixing/VJP prototype is implemented; the full architecture is untrained.
+**Current direction (20 November 2026, notebook v3.1).** The model learns residuals without hardcoded puzzle rules. Local calibration teaches geometry near answer embeddings. A signed score identifies incorrect candidates, and task loss trains recurrent corrections. The [CRAM checkpoint audit](docs/CRAM_REVIEW.md) motivates a matched-cost test of recovery from genuine errors against score-only search and cheap learned correctors. Only the mixing/VJP prototype of the proposed architecture is implemented.
 
 ## Start here
 
