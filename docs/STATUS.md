@@ -2,6 +2,8 @@
 
 ## 20 November 2026 · CRAM checkpoint audit and notebook v3.1
 
+The experiment table and decision rules in Section 5 now include the score-only search comparison directly. They specify how to choose the repair cohort, measure retention, and interpret a tie at equal cost. This is an editorial clarification of the proposed study.
+
 We checked the three published CRAM Sudoku checkpoints at upstream revision 62bbe830. For every full board with clues clamped, exact energy is at most zero for valid completions and at least 0.2671, 0.2963 and 0.2251 for invalid boards respectively (lower bounds rounded down). An integer-arithmetic audit and an independent exact-rational calculation agreed. The authors’ fitted thresholds lie in this gap. This establishes recognition under exact discrete scoring. The search can still exhaust its budget. The Maze-Unique result gives a complementary case where initialization matters despite perfect test solving.
 
 Three design critiques and a fourth proof check changed the proposed study. Use untouched original-input rollout errors for paired repair, plus ordinary-start solve rate and correct-state retention. Include learned-score search with one- and two-token moves and strong cheap neural correctors. Compare balanced corruptions with equal-distance training controls. Test workspace recomputation only if persistent memory earns its extra cost. No v3 learner or benchmark was run. [Notebook §5](notebook/project_notebook.pdf) · [Full review, proof and reproduction](CRAM_REVIEW.md)

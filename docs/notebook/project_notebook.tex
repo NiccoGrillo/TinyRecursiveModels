@@ -281,17 +281,16 @@ A fixed SPD metric $W=L^\top L$ can be absorbed into the learned residual repres
 \newtopic
 \section{One substantial study, with decisive comparisons}\label{sec:study}
 \subsection{Two conditions answer two different questions}
-\textbf{Shared learned field.} Pretrain the residual field using the proposed supervision and a declared reference inference rule. Freeze $c_\phi$, the codebook, decoder and common initializer for controller comparisons. Train controller parameters on training data only. A reference field trained using $W=I$ may favor that update; document this and include an independently trained field or a second reference update within the same study. Do not select fields solely because they exhibit a desired failure.
-
-Freezing prevents controller-induced co-collapse but does not make a poor field meaningful. Report held-out candidate discrimination, local calibration, candidate/input dependence and derivative usefulness. These are analyses within the main study, not a sequence of small pilots that postpones the architectural comparison.
+\textbf{Shared learned field.} Pretrain the field using a declared reference update. Freeze $c_\phi$, the codebook, decoder and initializer, then fit each controller on training data. A field trained with $W=I$ may favor that solver. Include an independently trained field or a second reference update, chosen before inspecting failures. On held-out inputs, check candidate discrimination, local calibration, dependence on the input and candidate, and whether derivatives help repair errors.
 
 \textbf{Jointly trained systems.} Train each serious architecture with its own field and initializer at matched resources. Include a comparator with a freely learned residual basis and a general recurrent model with an unrestricted output interface. Give comparable supervision to methods that can use it, and separately expose auxiliary-supervision advantages. This condition determines whether the architecture has value after competitors can adapt.
 
-A frozen-field gain alone supports an inference-controller result. A joint-training gain across tasks supports a broader architectural result. Neither automatically proves that memory, cancellation escape or root preservation caused the gain.
+A frozen-field gain establishes an inference result. A joint-training gain across tasks supports an architectural claim. Attributing either gain to memory requires a separate comparison.
 
-\subsection{The primary rival is a cheaper learned correction}
+\subsection{Can ordinary search or a cheaper neural correction do the same job?}
 \begin{longtable}{@{}P{40mm}P{119mm}@{}}\toprule
 Comparator & Why it is necessary\\\midrule\endhead
+Score-only discrete search & Start at the same decoded answer. Propose one- and two-token edits, score their fixed embeddings with the frozen $\bar s$, and charge every proposal and restart. This tests how far the learned score and generic search can take us.\\
 Direct correction $q'=q-g$ & Tests whether local residual supervision already learns the needed correction. Charge the same residual evaluation.\\
 Invalidity-gated proposal $q'=q-sH$ & Tests whether a learned invalidity signal plus a proposal network explains the gain without the Jacobian or SPD restriction. Give it comparable memory and input access.\\
 Direct residual map $q'=q-Gc$ & Tests the value of the Jacobian-mediated interface against a general learned map with the same residual-zero invariance.\\
@@ -301,10 +300,10 @@ SNR / regularized nonlinear solver & A direct established residual-solving compa
 Unrestricted recurrent reasoner & Tests whether the whole constrained interface beats a comparably trained neural model, including one with a trainable output representation.\\\bottomrule
 \end{longtable}
 
-This is a comparison matrix within one study, not permission to run an unbounded hyperparameter sweep. Allocate the budget and primary contrasts before training. The direct and gated learned correctors are primary rivals, not optional ablations added only after favorable results.
+Fix budgets before training. Tune uphill moves and restarts on development data. Only the latent-controller comparisons preserve the state and move interface.
 
 \subsection{Measure solving before measuring stopping}
-First compare exact task accuracy against total inference cost at fixed budgets, with no adaptive stopping. Count all examples, failures, numerical divergence and cap hits. Report wall time on matched hardware and precision, parameter/training resources, residual forwards, VJPs and relevant solver operations. More expensive iterations can make a lower loop count misleading.
+First measure repair at fixed cost. Run a frozen reference solver on held-out inputs and save its states at prespecified steps. For wrong candidates, measure the fraction each method repairs by the end of the budget. Give latent controllers the same continuous state and discrete search its decoded answer. Track retention separately on initially correct candidates and report solve rate from ordinary initialization on all inputs. Ground truth labels these cohorts offline. Count failures, cap hits, score evaluations and derivatives, and measure wall time on the same hardware.
 
 Only then compare a shared deployable output-patience rule, calibrated on development data, and native stopping rules separately. A small learned residual or invalidity score is not an oracle correctness test. First-correct time and continued correctness are useful offline measurements, not deployment-time gates. This addresses the strongest issue raised in the supplied QRR reviews.
 
@@ -318,9 +317,9 @@ For the split-head hypothesis, separately inspect whether $g$ is small, $s$ is p
 Within the learning comparison, remove local calibration or replace the signed margin by energy ranking to test their distinct roles. Evaluate extra-loop answer retention and sensitivity to memory after reaching low-residual states. Compare with the zero-loop initializer to detect recurrence bypass. These measurements explain a substantial trained experiment; they are not claimed results today.
 
 \subsection{What would change our decision}
-If the gated corrector matches or beats the proposal, the Jacobian/SPD interface has not earned its cost. If random or stateless mixing matches recurrent mixing, remove the memory claim. If gains disappear when residual fields are free to adapt, report a frozen-field solver effect. If gains require known puzzle rules, report that limited scope instead of general latent reasoning. If only stopping changes, do not claim faster underlying solving.
+If score-only search matches or beats the mixer on held-out repair and ordinary-start solving at equal cost and comparable retention, prefer the simpler search procedure for that setting. A gain shared by all controllers after changing score training supports improving the field. A gain confined to artificial swaps supports better discrimination of that corruption. If a cheaper neural corrector matches the mixer, use that corrector. If stateless mixing matches persistent mixing, drop the memory claim. A gain confined to a frozen field supports a result about inference on that field.
 
-Conversely, a credible positive result combines better accuracy--cost tradeoffs with transfer across task families, informative mechanism interventions and sustained answer stability without sacrificing recovery from wrong answers. These outcomes are hypotheses, not benefits inferred from the equations.
+Fresh random mixing is also a control for the value of learned memory. A gain confined to adaptive stopping supports a stopping-policy improvement. A gain confined to hardcoded puzzle rules limits the claim to that setting. A broader architectural result requires a better accuracy--cost tradeoff across task families, with both recovery and retention measured.
 
 \newtopic
 \subsection{What the CRAM result changes}\label{sec:cram}
@@ -340,7 +339,7 @@ Hoover, Blayney and Whittington~\cite{cram} learn pair costs from solved puzzles
 \]
 The positive bounds are rounded down. An invalid grid has at least two conflicting pairs. Their positive cost exceeds even the largest possible offset from the remaining terms, bounded by relaxing each cell's neighbors separately. All reported stopping thresholds lie in the gap. With clues clamped, the exact discrete score identifies valid completions, even when there are several. Search can still exhaust its budget. On Maze-Unique the authors find the opposite ordering: their empty board scores below the correct path on every development maze, yet pruning from the all-open start solves all 1,000 test mazes. The \repo{docs/CRAM_REVIEW.md}{full review and proof} links the reproducible checkpoint audit.
 
-\textbf{How the comparison changes.} Test the signed score on composition-preserving errors and match against random edits at the same distance. The primary endpoint is repair of untouched, held-out model errors, paired at identical starting states for latent controllers. Give discrete search the same decoded board and learned score, both single- and two-token proposals, and a charged restart budget. Keep the direct neural correctors and compare stateless and persistent mixers at matched cost. Score-only supervision cannot train the controller or determine derivatives between answer codes. If persistent memory earns its cost, test whether recomputing the workspace from the current candidate reproduces its corrections. These are proposals; our trained-model evidence is still the pilot below.
+\textbf{How this informs training.} A swap preserves the digit counts while changing the arrangement. Compare swaps to random errors affecting the same number of free cells, holding the training budget fixed. On tasks with several valid answers, use a negative only when its invalidity is known. This trains the signed score to distinguish candidates. Its values at discrete answer embeddings leave open which direction the latent correction takes between them. That is why the study measures actual repairs. If persistent memory earns its cost, test whether recomputing the workspace from the current candidate reproduces its corrections.
 
 \newtopic
 \section{What has actually been learned so far}\label{sec:evidence}
@@ -361,7 +360,7 @@ Attracting semantic manifold & A theoretical alternative, not a measured learned
 
 The current edit changes the research specification and document organization. It does not add training results or reinterpret the analytic unit tests as benchmark evidence. Raw historical pilot records are not present in this documentation workspace; reported values are transcribed from committed reports, not freshly reanalyzed.
 
-\subsection{What the latest critic changed}
+\subsection{What the architecture and CRAM critiques changed}
 \begin{tabularx}{\linewidth}{@{}P{49mm}Y@{}}\toprule
 Objection & Decision\\\midrule
 Symbolic rules narrow the project & Learned residuals are central; symbolic tasks are optional controls.\\
@@ -369,6 +368,7 @@ Squared-energy negatives can be stationary at wrong zeros & Use a signed invalid
 Global denoising supervision can trivialize the problem & Calibrate only near answer anchors; compare against direct correction.\\
 A wrongness classifier does not provide useful derivatives & Train through actual search and test derivative use at wrong states.\\
 Mixing may be a disguised verifier-gated proposal & Make the gated proposal and direct residual map primary rivals.\\
+The score itself may explain successful repairs & Give ordinary search the same score and compare repair of genuine model errors at fixed cost.\\
 Manifold and cancellation stories use different rank assumptions & Separate the product-fiber proposal from the semantic-manifold appendix.\\\bottomrule
 \end{tabularx}
 
