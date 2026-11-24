@@ -1,0 +1,80 @@
+{
+  "architecture": {
+    "latent": 12,
+    "width": 64,
+    "heads": 4,
+    "layers": 2,
+    "rank": 2,
+    "alpha": 0.5,
+    "m": 1.0,
+    "b": 2.0,
+    "damping": 0.1,
+    "temperature": 0.3,
+    "max_length": 256,
+    "interface_seed": 812
+  },
+  "training": {
+    "steps": 250,
+    "batch": 64,
+    "loops": 4,
+    "lr": 0.0003,
+    "weight_decay": 0.01,
+    "clip": 1.0,
+    "calibration": 1.0,
+    "negative": 1.0,
+    "margin": 1.0,
+    "radius": 0.25,
+    "negative_loss": "signed",
+    "edits": "swap",
+    "save_every": 50,
+    "log_every": 25
+  },
+  "tasks": [
+    "sudoku",
+    "scan"
+  ],
+  "seeds": [
+    11
+  ],
+  "references": [
+    "identity"
+  ],
+  "shared": [
+    "identity",
+    "direct",
+    "gated",
+    "stateless",
+    "recurrent"
+  ],
+  "joint": [
+    "recurrent",
+    "gated"
+  ],
+  "ablations": {},
+  "evaluation": {
+    "forks": [
+      0,
+      2,
+      4
+    ],
+    "horizons": [
+      0,
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "batch": 16,
+    "patience": 3,
+    "time_reference_steps": 4,
+    "timing_batches": 5,
+    "max_cost_steps": 128,
+    "uphill": 0.0,
+    "restart_every": 16,
+    "diagnostic_examples": 64
+  },
+  "splits": [
+    "dev"
+  ]
+}

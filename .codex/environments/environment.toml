@@ -1,0 +1,15 @@
+version = 1
+name = "TRM residual reasoning"
+
+[setup]
+script = "bash scripts/setup_residual_cpu.sh"
+
+[[actions]]
+name = "Run research tests"
+icon = "run"
+command = "OMP_NUM_THREADS=1 .venv/bin/python -m pytest -q"
+
+[[actions]]
+name = "Preview training plan"
+icon = "run"
+command = ".venv/bin/python -m experiments.residual_reasoning.study plan --config config/residual/study.json"

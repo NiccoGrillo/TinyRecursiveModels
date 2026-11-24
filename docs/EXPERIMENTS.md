@@ -1,5 +1,8 @@
 # First experiments and runbook
 
+For the learned residual architecture, use the [training and evaluation runbook](RESIDUAL_TRAINING.md). The experiments below describe the earlier checkpoint diagnostics.
+
+
 These commands document the existing rollout/perturbation instruments. The pilot is complete; **the current architecture study is specified in the [notebook](notebook/project_notebook.pdf); the [clock study](NEXT_EXPERIMENT.md) is optional historical work**. The sweeps below are available capabilities, not a recommendation to run them now.
 
 ## Environment and inputs

@@ -6,14 +6,15 @@ This project starts from [SamsungSAILMontreal/TinyRecursiveModels](https://githu
 
 The working hypothesis is that useful internal computation and harmful future decision changes should be distinguished before imposing contraction on the whole latent state. This is a hypothesis to test, not a demonstrated improvement or a claim of publication novelty.
 
-**Current direction (20 November 2026, notebook v3.1).** The model learns residuals without hardcoded puzzle rules. Local calibration teaches geometry near answer embeddings. A signed score identifies incorrect candidates, and task loss trains recurrent corrections. The [CRAM checkpoint audit](docs/CRAM_REVIEW.md) motivates a matched-cost test of recovery from genuine errors against score-only search and cheap learned correctors. Only the mixing/VJP prototype of the proposed architecture is implemented.
+**Implementation branch · 24 November 2026.** The model learns residuals without hardcoded puzzle rules. Local calibration teaches geometry near answer embeddings. A signed score identifies incorrect candidates, and task loss trains recurrent corrections. The [CRAM checkpoint audit](docs/CRAM_REVIEW.md) motivates a matched-cost test of recovery from genuine errors against score-only search and cheap learned correctors. The training, paired evaluation and reporting pipeline is implemented. Start with the [Isambard training runbook](docs/RESIDUAL_TRAINING.md).
 
 ## Start here
 
-**Read the [cleaned project guide (PDF)](docs/notebook/project_notebook.pdf) first.** Sections 2–3 explain the architecture and proposed learning recipe; Section 5 gives the decisive study. The attracting-answer-set alternative remains in Appendix B. The [previous 60-page notebook](docs/notebook/archive/project_notebook_v2_1.pdf) preserves the complete historical record. The [self-contained LaTeX source](docs/notebook/project_notebook.tex) works with XeLaTeX; [build instructions](docs/notebook/README.md) explain maintenance.
+**The [November 20 project guide (PDF)](docs/notebook/project_notebook.pdf) records the pre-implementation design.** The [training runbook](docs/RESIDUAL_TRAINING.md) gives current software status. Sections 2–3 explain the architecture and proposed learning recipe; Section 5 gives the decisive study. The attracting-answer-set alternative remains in Appendix B. The [previous 60-page notebook](docs/notebook/archive/project_notebook_v2_1.pdf) preserves the complete historical record. The [self-contained LaTeX source](docs/notebook/project_notebook.tex) works with XeLaTeX; [build instructions](docs/notebook/README.md) explain maintenance.
 
 | File | Purpose |
 | --- | --- |
+| [Residual training](docs/RESIDUAL_TRAINING.md) | Hardware acceptance, development pilot, training matrix, checkpoint recovery and result tables |
 | [AGENTS.md](AGENTS.md) | Context, commands, and scientific constraints for Codex |
 | [Project](docs/PROJECT.md) | Research question, mathematics, and novelty boundaries |
 | [Experiments](docs/EXPERIMENTS.md) | Runnable commands, metrics, and interpretation |
@@ -45,7 +46,7 @@ python -m experiments.decision_stability.report runs/smoke
 
 The smoke test uses **random weights and two synthetic puzzles**. Its accuracy and perturbation effects are not research results. Output directories must be new. For trained weights, use the [checkpoint/data runbook](docs/EXPERIMENTS.md). No checkpoint or benchmark data is bundled, and no full training run has been performed for this project.
 
-## Implemented experiments and operator prototype
+## Historical experiments and the residual operator
 
 1. Extend a frozen TRM at a fixed recursion phase, logging retention, recovery, rule validity, margins, Q output, and latent changes.
 2. At predetermined times, fork the same state and perturb only `z_L`. Assert identical immediate logits; compare clean, random ±, and optional future-margin gradient ± continuations.
@@ -58,7 +59,7 @@ For the optional historical clock study, reuse pilot inputs, run `.venv/bin/pyth
 
 The separate `experiments/residual_reasoning/operators.py` prototype implements bounded low-rank residual mixing and its differentiable VJP. `tests/residual_reasoning/test_operators.py` checks exact counterexamples, metric bounds and training derivatives. These are mathematical/software checks, not a trained-model experiment.
 
-The additions are in `experiments/decision_stability/`, with tests in `tests/decision_stability/`. The upstream `models/`, `pretrain.py`, `dataset/`, and `config/` are unchanged. One macro-step uses `H_cycles*(L_cycles+1)*L_layers` block evaluations: **42** at the original Sudoku settings. Probe and branch costs are logged separately.
+The historical diagnostics live in `experiments/decision_stability/`. The new trainer lives in `experiments/residual_reasoning/` and has its own configs under `config/residual/`. One macro-step uses `H_cycles*(L_cycles+1)*L_layers` block evaluations: **42** at the original Sudoku settings. Probe and branch costs are logged separately.
 
 ## Upstream and licence
 

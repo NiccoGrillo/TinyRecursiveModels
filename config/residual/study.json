@@ -1,0 +1,9 @@
+{
+  "architecture": {"latent": 12, "width": 64, "heads": 4, "layers": 2, "rank": 2, "alpha": 0.5, "m": 1.0, "b": 2.0, "damping": 0.1, "temperature": 0.3, "max_length": 256, "interface_seed": 812},
+  "training": {"steps": 5000, "batch": 64, "loops": 4, "lr": 0.0003, "weight_decay": 0.01, "clip": 1.0, "calibration": 1.0, "negative": 1.0, "margin": 1.0, "radius": 0.25, "negative_loss": "signed", "edits": "swap", "save_every": 250, "log_every": 25},
+  "tasks": ["sudoku", "scan"], "seeds": [11, 23, 37], "references": ["identity", "direct"],
+  "shared": ["identity", "direct", "fixed", "random", "fixed_learned", "stateless", "recurrent", "diagonal", "state_side", "gated", "residual_map", "snr", "adam_energy"],
+  "joint": ["recurrent", "stateless", "diagonal", "state_side", "gated", "residual_map", "fixed", "random", "snr", "adam_energy", "free_energy", "unrestricted", "unrestricted_free"],
+  "ablations": {"no_calibration": {"calibration": 0.0}, "energy_margin": {"negative_loss": "energy"}, "random_edits": {"edits": "random"}, "no_auxiliary": {"calibration": 0.0, "negative": 0.0}},
+  "evaluation": {"forks": [0, 2, 4], "horizons": [0, 1, 2, 4, 8, 16], "batch": 16, "patience": 3, "time_reference_steps": 4, "timing_batches": 5, "max_cost_steps": 128, "uphill": 0.0, "restart_every": 16, "diagnostic_examples": 64}
+}

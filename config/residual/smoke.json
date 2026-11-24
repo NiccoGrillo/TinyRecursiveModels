@@ -1,0 +1,9 @@
+{
+  "architecture": {"latent": 8, "width": 12, "heads": 2, "layers": 1, "rank": 2, "max_length": 32},
+  "training": {"steps": 2, "batch": 8, "loops": 2, "save_every": 1, "log_every": 1},
+  "tasks": ["scan"], "seeds": [11], "references": ["identity", "direct"],
+  "shared": ["identity", "direct", "recurrent", "gated", "random", "snr"],
+  "joint": ["recurrent", "free_energy", "unrestricted_free"],
+  "ablations": {"energy_margin": {"negative_loss": "energy"}},
+  "evaluation": {"forks": [0, 1], "horizons": [0, 1, 2, 3], "batch": 4, "patience": 2, "time_reference_steps": 2, "timing_batches": 2, "max_cost_steps": 6, "uphill": 0.0, "restart_every": 3, "diagnostic_examples": 4}
+}

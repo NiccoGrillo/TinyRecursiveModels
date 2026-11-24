@@ -10,15 +10,11 @@ The concrete learning candidate combines local calibration near fixed generic an
 
 The decisive rivals include direct `q-g` correction, an invalidity-gated learned proposal `q-sH`, and a direct learned residual map `q-Gc`, alongside random/stateless mixing and established solvers. First compare controllers on a shared frozen learned field, then jointly trained systems whose competitors can adapt their own fields. Hardcoded residuals are optional controls. The attracting semantic-manifold branch remains separate from this anchor–workspace construction.
 
-Read [the cleaned notebook](notebook/project_notebook.pdf), especially Sections 2–3 (architecture and learning) and Section 5 (study). [Version 2.1](notebook/archive/project_notebook_v2_1.pdf) preserves the full previous record. Only the mixing/VJP operator exists; the new residual heads, losses, controller and full benchmark are **unimplemented and untrained**. No new empirical gain or publication endorsement is claimed.
+Read [the cleaned notebook](notebook/project_notebook.pdf), especially Sections 2–3 (architecture and learning) and Section 5 (study). [Version 2.1](notebook/archive/project_notebook_v2_1.pdf) preserves the full previous record. The [training runbook](RESIDUAL_TRAINING.md) tracks the implemented architecture and its pending GPU measurements. No new empirical gain or publication endorsement is claimed.
 
-## Next substantial implementation
+## Implemented on the training branch
 
-Implement the shared output codebook/decoder, learned `g` and signed normalized score, local perturbation calibration, known-negative sampling, and task-through-unroll training. The source of correct/incorrect labels must be explicit; alternative valid answers must not be mislabeled. Ground-truth answers are training-only inputs to losses and anchor construction.
-
-Build the direct correction, invalidity-gated proposal and direct residual-map rivals alongside the mixing controller. Freeze task families, splits, seeds, training budgets, local radii, score scale, loop horizons and cost accounting before the substantial run. Include a non-puzzle structured-output task before making broad generality claims; exact datasets and budgets are not yet fixed. E4/E5 remain optional historical work.
-
-The study has a frozen-learned-field condition and a joint-training condition. Diagnose candidate/input dependence, Jacobian behavior, recurrence bypass, recovery and answer retention within those runs. A stronger field or easier stopping rule must not be mistaken for a better controller. Drop the derivative-based architecture if a cheaper gated corrector matches it at equal cost.
+Commission the branch on one GH200 and then check the intended distributed topology. The development pilot covers verified-unique Sudoku and modular prefix sums. Read its per-update cost, memory, training curves, wrong-start counts and correct-start retention before choosing a training budget for the full study. The full profile includes two frozen fields, independently trained alternatives, extra-loop and length tests, and the Section 5 mechanism probes. E4/E5 remain optional historical work.
 
 ## Historical roadmap — superseded as current priority
 

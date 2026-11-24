@@ -1,5 +1,9 @@
 # Status
 
+## 24 November 2026 · Training branch implementation
+
+Implemented notebook Sections 2, 3 and 5 in `experiments/residual_reasoning/`. CPU verification covers the full higher-order training path, frozen-field transfer, shared-state repair, all solver families, Sudoku fixtures, exact interrupted-run replay and reports over a miniature campaign. Codex setup and single-node Slurm/Apptainer launchers are in the [runbook](RESIDUAL_TRAINING.md). The repository suite passed 72 checks locally, including 18 model records and 66 split-level evaluations in the complete fixture campaign. The Slurm submission dependencies were exercised with a local scheduler substitute. GH200 execution, NCCL, production data preparation, pilot timing and scientific outcomes remain pending. The November 20 notebook records the earlier design snapshot.
+
 ## 20 November 2026 · CRAM checkpoint audit and notebook v3.1
 
 The experiment table and decision rules in Section 5 now include the score-only search comparison directly. They specify how to choose the repair cohort, measure retention, and interpret a tie at equal cost. This is an editorial clarification of the proposed study.
