@@ -1,6 +1,6 @@
 # Living research guide
 
-Read [project_notebook.pdf](project_notebook.pdf). **Version 3.1, 20 November 2026**, keeps the rule-free architecture and updates Section 5 with the CRAM checkpoint certificate, a score-only search comparison, and a natural-error repair endpoint. The [full research note](../CRAM_REVIEW.md) includes the proof and reproduction script.
+Read [project_notebook.pdf](project_notebook.pdf). **Version 3.1** records the 20 November 2026 design and the 25 November implementation and hardware acceptance update. Section 5 presents the CRAM checkpoint certificate, a score-only search comparison, and a natural-error repair endpoint. The [full research note](../CRAM_REVIEW.md) includes the proof and reproduction script.
 
 - Sections 1–2: objective, notation, architecture and one update.
 - Section 3: local calibration, signed learned invalidity, and task-through-unroll training. This is a proposed recipe, not a solved learning guarantee.
@@ -20,4 +20,4 @@ bash scripts/build_notebook.sh
 
 A normal TeX Live installation needs the packages in the preamble and Latin Modern fonts. Intermediates go to ignored `runs/notebook-build/`. Keep source and PDF together in commits.
 
-For future updates, revise the core explanation rather than prepend a long research-session transcript. Keep observations, proofs, implementation checks and proposals distinct. Update `docs/STATUS.md`, retain experiment IDs and frozen protocols, resolve references/overflow warnings, and visually inspect the rebuilt PDF. Only the mixing/VJP operator is implemented; the complete v3.0 architecture and training recipe are untrained.
+For future updates, revise the core explanation rather than prepend a long research-session transcript. Keep observations, proofs, implementation checks and proposals distinct. Update `docs/STATUS.md`, retain experiment IDs and frozen protocols, resolve references/overflow warnings, and visually inspect the rebuilt PDF.

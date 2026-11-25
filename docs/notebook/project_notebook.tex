@@ -3,12 +3,12 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[margin=23mm,headheight=15pt]{geometry}
 \usepackage{fontspec}
-\setmainfont{Latin Modern Roman}
-\setsansfont{Latin Modern Sans}
-\setmonofont{Latin Modern Mono}[Scale=0.87]
+\setmainfont{lmroman10-regular.otf}[BoldFont=lmroman10-bold.otf,ItalicFont=lmroman10-italic.otf,BoldItalicFont=lmroman10-bolditalic.otf]
+\setsansfont{lmsans10-regular.otf}[BoldFont=lmsans10-bold.otf,ItalicFont=lmsans10-oblique.otf,BoldItalicFont=lmsans10-boldoblique.otf]
+\setmonofont{lmmono10-regular.otf}[Scale=0.87]
 \usepackage{amsmath,amssymb}
 \usepackage{unicode-math}
-\setmathfont{Latin Modern Math}
+\setmathfont{latinmodern-math.otf}
 \usepackage{xcolor,booktabs,tabularx,longtable,array,enumitem,fancyhdr}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning}
@@ -37,7 +37,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\sffamily\small\color{muted}TRM \textbar\ Living project guide}
-\fancyhead[R]{\sffamily\small\color{muted}20 November 2026}
+\fancyhead[R]{\sffamily\small\color{muted}25 November 2026}
 \fancyfoot[L]{\sffamily\footnotesize Version 3.1 \textbar\ Evidence and hypotheses kept separate}
 \fancyfoot[R]{\sffamily\small\thepage}
 \renewcommand{\headrulewidth}{0.3pt}
@@ -50,7 +50,8 @@
 \vspace{7mm}
 {\Large Learning residuals and coordinating their influence on recurrent reasoning\par}
 \vspace{8mm}
-\textbf{Version 3.1 --- 20 November 2026.}\\
+\textbf{Version 3.1 --- design dated 20 November 2026.}\\
+Implementation status updated 25 November 2026.\\
 Repository: \href{https://github.com/NiccoGrillo/TinyRecursiveModels}{NiccoGrillo/TinyRecursiveModels}.\\
 Previous guide \code{ff7c125}. Historical pilot report \code{98689fb}.
 
@@ -65,14 +66,14 @@ Keep the rule-free residual model. A checkpoint audit of CRAM gives an example w
 
 \vfill
 \status{EVIDENCE STATUS}
-Only the residual-mixing operator has been implemented and checked. No complete proposed architecture has been trained. The critic supports a substantial comparison, not a claim of publication-ready novelty. The 60-page version 2.1 is preserved separately as an archive; this guide explains the current decision without replaying every historical discussion.
+The residual reasoner and comparison pipeline are implemented. CPU tests and the single-GH200 acceptance passed on synthetic inputs. The development pilot will measure the cost of training and evaluating the learned reasoner on Sudoku and modular prefix sums. The 60-page version 2.1 remains available in the archive.
 
 \newtopic
 \section*{Reading map}
 \addcontentsline{toc}{section}{Reading map}
 Read Sections~\ref{sec:question}--\ref{sec:learning} first: they explain the goal, one recurrent step, and the proposed training recipe. Section~\ref{sec:claims} separates mathematical properties from hypotheses. Section~\ref{sec:study} gives the substantial experiment. The evidence and literature summaries follow. Appendix~\ref{app:proofs} contains proofs; Appendix~\ref{app:sets} explains the attracting-answer-set alternative from first principles.
 
-\textbf{How to interpret statements.} ``Observed'' refers to the previous trained-checkpoint pilot. ``Derived'' means mathematical consequences under stated assumptions. ``Implemented'' means code exists and has tests. ``Proposed'' means untrained or unbuilt. None of these words is interchangeable with ``improves reasoning.''
+\textbf{How to interpret statements.} The historical trained-checkpoint pilot provides the observed task outcomes. Implementation checks use fixture data to verify the pipeline. Mathematical deductions depend on the stated assumptions. The comparison in Section~\ref{sec:study} sets out the proposed research test.
 
 \begingroup\small\setlength{\parskip}{0pt}
 \makeatletter\renewcommand{\l@section}[2]{\@dottedtocline{1}{0em}{2em}{#1}{#2}}\makeatother
@@ -353,12 +354,12 @@ An eight-puzzle perturbation study changed only working state, preserving immedi
 Item & Status\\\midrule
 TRM continuation/perturbation instrumentation & Implemented; historical pilot reports are committed.\\
 Bounded residual mixing and VJP & Implemented in \code{experiments/residual_reasoning/operators.py}. Eight focused analytic/autograd tests passed in the previous session.\\
-Learned $[g;s]$ field, local calibration and signed-margin training & Proposed here; not implemented or trained.\\
-Full recurrent controller and matched-compute benchmark & Not implemented or executed.\\
+Learned $[g;s]$ field, local calibration and signed-margin training & Implemented and exercised on CPU and GPU fixtures.\\
+Recurrent controller and comparison pipeline & Implemented. The development pilot will be the first evaluation on the prepared task datasets.\\
 Attracting semantic manifold & A theoretical alternative, not a measured learned object.\\\bottomrule
 \end{tabularx}
 
-The current edit changes the research specification and document organization. It does not add training results or reinterpret the analytic unit tests as benchmark evidence. Raw historical pilot records are not present in this documentation workspace; reported values are transcribed from committed reports, not freshly reanalyzed.
+\textbf{25 November 2026.} Revision \code{74a08dc} passed hardware acceptance on one NVIDIA GH200. One synthetic FP32 Sudoku-shaped update with 64 examples and four loops took 1.006\,s and peaked at 0.977\,GiB of PyTorch-allocated GPU memory. The smoke campaign completed 18 model records and 66 split-level evaluations. The development pilot will measure actual training and evaluation costs on the two task datasets. See the \href{https://github.com/NiccoGrillo/TinyRecursiveModels/blob/74a08dc8e1bdf9dd4c10531944c7e8537c11fa38/docs/RESIDUAL_TRAINING.md}{training runbook}.
 
 \subsection{What the architecture and CRAM critiques changed}
 \begin{tabularx}{\linewidth}{@{}P{49mm}Y@{}}\toprule

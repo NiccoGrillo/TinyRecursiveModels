@@ -1,5 +1,13 @@
 # Status
 
+## 25 November 2026 · Single-GH200 acceptance
+
+The Isambard-AI acceptance passed at `74a08dc8e1bdf9dd4c10531944c7e8537c11fa38`. Image preparation job `8851688` completed in 7m 05s. Acceptance job `8851773` completed in 48s with exit code `0:0`. Its reports cover 18 model records and 66 split-level evaluations with zero missing records.
+
+The synthetic FP32 recurrent update used a batch of 64, 81 Sudoku positions and four supervised loops on an NVIDIA GH200 120GB. It took 1.006 s and reached 1,048,961,024 bytes (0.977 GiB) of peak PyTorch-allocated GPU memory. The image SHA-256 was `b5524840a75f6d6dba8110f8e2b48389bb9baf841a0bd3147cb7904d12832b4a`.
+
+The acceptance used synthetic inputs and establishes hardware and workflow readiness. Multi-GPU operation remains unchecked. The pinned Sudoku subset and modular prefix-sum data are prepared and staged on Isambard. Checks passed for split sizes, exact input-ID disjointness and transferred file hashes. The one-seed, dev-only development pilot plan sealed locally against these data. Its measured training and evaluation costs will inform the multi-seed study budget.
+
 ## 24 November 2026 · Training branch implementation
 
 Implemented notebook Sections 2, 3 and 5 in `experiments/residual_reasoning/`. CPU verification covers the full higher-order training path, frozen-field transfer, shared-state repair, all solver families, Sudoku fixtures, exact interrupted-run replay and reports over a miniature campaign. Codex setup and single-node Slurm/Apptainer launchers are in the [runbook](RESIDUAL_TRAINING.md). The repository suite passed 72 checks locally, including 18 model records and 66 split-level evaluations in the complete fixture campaign. The Slurm submission dependencies were exercised with a local scheduler substitute. GH200 execution, NCCL, production data preparation, pilot timing and scientific outcomes remain pending. The November 20 notebook records the earlier design snapshot.
