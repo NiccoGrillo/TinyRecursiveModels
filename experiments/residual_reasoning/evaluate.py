@@ -263,7 +263,7 @@ def evaluate_arm(
                     for start in range(0, len(ds.ids), cfg["batch"]):
                         stop = min(start + cfg["batch"], len(ds.ids))
                         idx = slice(start, stop)
-                        x, y, _ = ds.batch(idx, device)
+                        x, y, editable = ds.batch(idx, device)
 
                         @torch.no_grad()
                         def initialize():
@@ -286,6 +286,7 @@ def evaluate_arm(
                             q,
                             w,
                             y,
+                            editable,
                             method,
                             f,
                             start,
@@ -300,7 +301,23 @@ def evaluate_arm(
 
 
 def _batch(
-    fp, dp, ids, m, xh, q, w, y, method, fork, start, cfg, budget, device, edits, setup
+    fp,
+    dp,
+    ids,
+    m,
+    xh,
+    q,
+    w,
+    y,
+    editable,
+    method,
+    fork,
+    start,
+    cfg,
+    budget,
+    device,
+    edits,
+    setup,
 ):
     hset = sorted(set(cfg["horizons"]))
     if min(hset) != 0 or cfg["max_cost_steps"] < max(hset):
@@ -340,8 +357,17 @@ def _batch(
                 device,
                 lambda: Search(m, xh, q, edits, cfg["uphill"], cfg["restart_every"]),
             )
+    outcomes, token_counts = [], []
+
+    def score(prediction, valid):
+        correct = prediction.eq(y) & valid[:, None]
+        outcomes.append(correct.all(1))
+        token_counts.append(
+            torch.stack((correct.sum(1), (correct & editable).sum(1)), dim=1)
+        )
+
     finite = q.isfinite().flatten(1).all(1)
-    outcomes = [initial.eq(y).all(1) & finite]
+    score(initial, finite)
     failure = torch.where(finite, -1, 0)
     times = [seconds]
     prev = initial
@@ -357,7 +383,7 @@ def _batch(
             else q.isfinite().flatten(1).all(1) & w.isfinite().flatten(1).all(1)
         )
         failure = torch.where((failure < 0) & ~finite, t, failure)
-        outcomes.append(pred.eq(y).all(1) & finite)
+        score(pred, finite)
         same = pred.eq(prev).all(1)
         streak = torch.where(same, streak + 1, 0)
         patient = torch.where((patient < 0) & (streak >= cfg["patience"]), t, patient)
@@ -388,6 +414,8 @@ def _batch(
         if t >= max(hset) and seconds > budget:
             break
     ok = torch.stack(outcomes, dim=1).cpu().tolist()
+    counts = torch.stack(token_counts, dim=1).cpu().tolist()
+    editable_totals = editable.sum(1).cpu().tolist()
     patient = patient.cpu().tolist()
     failure = failure.cpu().tolist()
     affordable = [i for i, v in enumerate(times) if v <= budget]
@@ -402,7 +430,17 @@ def _batch(
             observed = times[t]
             if name == "wall" and not affordable:
                 cost["field"], observed = 0, 0.0
-            rows[name] = dict(t=t, ok=ok[i][t], seconds=observed, **cost)
+            tokens_correct, editable_tokens_correct = counts[i][t]
+            rows[name] = dict(
+                t=t,
+                ok=ok[i][t],
+                seconds=observed,
+                tokens_correct=tokens_correct,
+                tokens_total=y.shape[1],
+                editable_tokens_correct=editable_tokens_correct,
+                editable_tokens_total=editable_totals[i],
+                **cost,
+            )
         obj = dict(
             id=str(key),
             fork=fork,

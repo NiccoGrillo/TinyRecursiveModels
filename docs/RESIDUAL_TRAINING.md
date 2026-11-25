@@ -122,9 +122,9 @@ Start with **`reports/README.md`** and **`reports/coverage.json`**. The overview
 | `study.json` | Effective config, source identity, dataset fingerprints and stage/index mapping |
 | `models/<task>/seed-<n>/<condition>/…/` | Model/optimizer checkpoint, manifest, training-loss JSONL and completion record with checksum, elapsed time and examples processed |
 | `banks/`, `prices/` | Shared continuous candidates keyed by example ID and fork, and development-only reference timings for each length |
-| `evaluations/…/<split>/examples.jsonl` | One record per original input and fork. Correctness trace, endpoint under each policy, elapsed batch time, operation counts, cap hits and numerical failures |
+| `evaluations/…/<split>/examples.jsonl` | One record per original input and fork. Correctness trace, exact and token counts at each policy endpoint, elapsed batch time, operation counts, cap hits and numerical failures |
 | `evaluations/…/<split>/diagnostics.jsonl` | Prespecified sample of residual and derivative probes, anchor calibration, input/candidate swaps and matched memory interventions |
-| `reports/metrics.csv` | Per-seed solve/repair/retention, raw numerators and denominators, timing, cap and operation counts at every requested horizon and stopping policy |
+| `reports/metrics.csv` | Per-seed solve/repair/retention, accuracy over all tokens and separately over editable tokens, raw counts, timing, cap and operation counts at every requested horizon and stopping policy. Editable tokens are the blank Sudoku cells or all prefix-sum positions. Older evaluations leave the token columns blank. |
 | `reports/paired.csv` | Joined-by-input wall-budget differences, recurrent mixer minus rival. Helped/harmed counts and a pointwise paired bootstrap interval within each seed and fork |
 | `reports/training.csv`, `reports/diagnostics.csv`, `reports/interventions.csv` | Parameter counts and training costs, diagnostic means, and matched continuation results including the dev-defined high-residual/low-gradient cohort |
 

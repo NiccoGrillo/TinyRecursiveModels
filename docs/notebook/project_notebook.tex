@@ -66,7 +66,7 @@ Keep the rule-free residual model. A checkpoint audit of CRAM gives an example w
 
 \vfill
 \status{EVIDENCE STATUS}
-The residual reasoner and comparison pipeline are implemented. CPU tests and the single-GH200 acceptance passed on synthetic inputs. The development pilot will measure the cost of training and evaluating the learned reasoner on Sudoku and modular prefix sums. The 60-page version 2.1 remains available in the archive.
+The residual reasoner and comparison pipeline passed CPU tests and single-GH200 acceptance. The first development pilot completed on Sudoku and modular prefix sums. Every method had zero exact solves, so the pilot measured compute costs and revealed a need for a stronger starting solver. The 60-page version 2.1 remains available in the archive.
 
 \newtopic
 \section*{Reading map}
@@ -355,11 +355,15 @@ Item & Status\\\midrule
 TRM continuation/perturbation instrumentation & Implemented; historical pilot reports are committed.\\
 Bounded residual mixing and VJP & Implemented in \code{experiments/residual_reasoning/operators.py}. Eight focused analytic/autograd tests passed in the previous session.\\
 Learned $[g;s]$ field, local calibration and signed-margin training & Implemented and exercised on CPU and GPU fixtures.\\
-Recurrent controller and comparison pipeline & Implemented. The development pilot will be the first evaluation on the prepared task datasets.\\
+Recurrent controller and comparison pipeline & Implemented. A single-seed pilot on both tasks completed with zero exact solves.\\
 Attracting semantic manifold & A theoretical alternative, not a measured learned object.\\\bottomrule
 \end{tabularx}
 
-\textbf{25 November 2026.} Revision \code{74a08dc} passed hardware acceptance on one NVIDIA GH200. One synthetic FP32 Sudoku-shaped update with 64 examples and four loops took 1.006\,s and peaked at 0.977\,GiB of PyTorch-allocated GPU memory. The smoke campaign completed 18 model records and 66 split-level evaluations. The development pilot will measure actual training and evaluation costs on the two task datasets. See the \href{https://github.com/NiccoGrillo/TinyRecursiveModels/blob/74a08dc8e1bdf9dd4c10531944c7e8537c11fa38/docs/RESIDUAL_TRAINING.md}{training runbook}.
+\textbf{Hardware acceptance, 25 November 2026.} Revision \code{74a08dc} passed on one NVIDIA GH200. A synthetic FP32 Sudoku-shaped update with 64 examples and four loops took 1.006\,s and peaked at 0.977\,GiB of PyTorch-allocated GPU memory. The smoke campaign completed 18 model records and 66 split-level evaluations.
+
+\textbf{Development pilot, 25 November 2026.} The 250-update, one-seed run completed all 20 development evaluations. Every arm had zero exact solves on its 512 examples through depth 16 and under the common time budget. No candidate was initially correct, so the pilot gave no retention estimate. Local replay of the jointly trained recurrent model at depth four found 13.71\% blank-cell accuracy on Sudoku and 18.59\% token accuracy on prefix sums. Simple task baselines reached 11.09\% and 18.13\%, respectively. See the \href{https://github.com/NiccoGrillo/TinyRecursiveModels/blob/74a08dc8e1bdf9dd4c10531944c7e8537c11fa38/docs/RESIDUAL_TRAINING.md}{training runbook} for the pilot protocol.
+
+\textbf{Exploratory length check.} Separate local runs of the ordinary-descent reference with 1,024 updates solved 175 of 512 dev sequences at length 4, and zero at lengths 8 and 16. Each run trained and evaluated at its own length. The next test compares a short-to-long curriculum with direct length-16 training at matched update counts. Per-position accuracy tracks progress while exact solves are scarce.
 
 \subsection{What the architecture and CRAM critiques changed}
 \begin{tabularx}{\linewidth}{@{}P{49mm}Y@{}}\toprule

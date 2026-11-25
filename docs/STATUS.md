@@ -1,5 +1,15 @@
 # Status
 
+## 25 November 2026 · Development pilot
+
+Isambard run `pilot-74a08dc-ZCDQLY` used revision `74a08dc8e1bdf9dd4c10531944c7e8537c11fa38`, seed 11, and the acceptance image. Final report job `8853665` finished 6m 56s after the first reference jobs started. The sealed run produced 16 model records and 20 development evaluations with complete coverage. The recurrent joint checkpoints were `82528e1e6c90ba32e837b2311c3ff44e1ef4f388ff3bb43eccf092e222b33642` (Sudoku) and `0f9753483e8f038a9909909ff5083bfb73cf94afafdea95e6168e01287ea924f` (prefix sums). All checkpoint hashes are in the archived `reports/training.csv`.
+
+Every arm had zero exact solves on its 512-example dev cohort, both under the common wall budget and at every recorded depth through 16. The 24,576 input-by-arm-and-fork records contained zero exact hits, nonfinite trajectories, or wall-cap hits. The wall-budget recurrent mixer averaged about two steps at fork 4, compared with four for ordinary descent and about eight for direct correction. The correct-start cohorts were empty. Paired comparisons and memory interventions also had zero exact repair events, so this run cannot distinguish their effectiveness. Joint recurrent training used 32.0 s and 0.979 GiB peak PyTorch allocation for Sudoku and 26.1 s and 0.195 GiB for prefix sums, each across 250 updates.
+
+Replaying the sealed checkpoints locally on the original dev inputs at depth four showed 13.71% accuracy on blank Sudoku cells for the jointly trained recurrent model, compared with 11.09% for predicting the most common training blank digit while copying clues. For prefix sums the corresponding accuracies were 18.59% and 18.13% for copying the first token and guessing zero elsewhere. Token metrics are now recorded at every evaluation policy endpoint, with a separate editable-token denominator. Rebuilding the archived report preserved all 384 original metric rows and the paired results.
+
+A local CPU follow-up trained only the ordinary-descent reference from scratch on modular prefix sums at lengths 4, 8 and 16. Each run used the pilot architecture and objective, 2,048 training examples, 512 dev examples, data seed 2809, training seed 11, and 1,024 updates at batch 64. After four reasoning steps the exact counts were 175/512, 0/512 and 0/512, respectively. Token accuracies were 80.91%, 38.65% and 21.41%. The length-8 run was added after the length-4 result. These are separate fixed-length runs and provide no length-transfer estimate. The next bounded test is to compare a short-to-long curriculum against direct length-16 training at a matched update budget and measure per-position accuracy and exact solves before expanding the controller comparison.
+
 ## 25 November 2026 · Single-GH200 acceptance
 
 The Isambard-AI acceptance passed at `74a08dc8e1bdf9dd4c10531944c7e8537c11fa38`. Image preparation job `8851688` completed in 7m 05s. Acceptance job `8851773` completed in 48s with exit code `0:0`. Its reports cover 18 model records and 66 split-level evaluations with zero missing records.

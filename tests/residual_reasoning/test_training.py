@@ -10,9 +10,10 @@ import torch
 from experiments.residual_reasoning import train
 from experiments.residual_reasoning.common import read
 from experiments.residual_reasoning.data import Dataset, prepare, unique_sudoku
+from experiments.residual_reasoning.evaluate import evaluate_arm
 from experiments.residual_reasoning.model import Architecture, METHODS, Reasoner
 from experiments.residual_reasoning.objective import Objective, Training, paired_edit
-from experiments.residual_reasoning.report import paired_rows
+from experiments.residual_reasoning.report import paired_rows, summarize
 from experiments.residual_reasoning.study import jobs
 
 CFG = read(Path(__file__).resolve().parents[2] / "config/residual/smoke.json")
@@ -219,6 +220,21 @@ def test_sudoku_training_entrypoint(tmp_path):
         device="cpu",
     )
     assert read(tmp_path / "model" / "complete.json")["step"] == 2
+    output = tmp_path / "evaluation"
+    evaluate_arm(
+        output,
+        tmp_path / "model" / "checkpoint.pt",
+        Dataset(data, "dev"),
+        cfg["evaluation"],
+        torch.device("cpu"),
+        {"seconds": 1.0},
+    )
+    metrics, _ = summarize(output, {}, [0])
+    for row in metrics:
+        assert row["tokens_total"] == 4 * 81
+        assert row["editable_tokens_total"] == 4
+        assert row["editable_tokens_correct"] <= row["tokens_correct"]
+        assert row["editable_token_accuracy"] == row["editable_tokens_correct"] / 4
 
 
 def test_wall_budget_saves_resumable_final_state(tmp_path):
@@ -269,4 +285,15 @@ def test_miniature_campaign(tmp_path):
         ]
 
     assert base("search2") == base("recurrent")
+    with (root / "reports" / "metrics.csv").open(newline="") as metrics:
+        rows = list(csv.DictReader(metrics))
+    assert rows
+    for row in rows:
+        length = 10 if row["split"] == "long" else 5
+        assert int(row["tokens_total"]) == int(row["n"]) * length
+        assert row["editable_tokens_correct"] == row["tokens_correct"]
+        assert row["editable_tokens_total"] == row["tokens_total"]
+        assert float(row["token_accuracy"]) == int(row["tokens_correct"]) / int(
+            row["tokens_total"]
+        )
     assert (root / "reports" / "paired.csv").stat().st_size > 100

@@ -71,6 +71,15 @@ def summarize(folder, label, expected_forks):
                 cost_cap_fraction=float(np.mean([v["wall_cap_hit"] for v in data])),
                 patience_hit_fraction=float(np.mean([v["patience_hit"] for v in data])),
             )
+            for prefix in ("", "editable_"):
+                correct_key = prefix + "tokens_correct"
+                total_key = prefix + "tokens_total"
+                available = all(correct_key in v and total_key in v for v in rows)
+                row[correct_key] = (
+                    sum(v[correct_key] for v in rows) if available else None
+                )
+                row[total_key] = sum(v[total_key] for v in rows) if available else None
+                row[prefix + "token_accuracy"] = ratio(row[correct_key], row[total_key])
             for k in (
                 "seconds",
                 "t",
