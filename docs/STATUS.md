@@ -1,5 +1,19 @@
 # Status
 
+## 26 November 2026 · Matched-budget Sudoku result
+
+Native TRM (`8882873`) and the jointly trained residual reasoner (`8882874`) completed run `sudoku-matched-7Lr4Oe` with exit code `0:0`. The trainer records were both about 6,600 seconds. TRM took 17,351 optimizer steps and saw 13,325,568 sample presentations (40.01 GiB peak allocated). The residual model took 65,556 steps and saw 4,195,584 presentations (0.98 GiB peak allocated). The comparison holds the available training time and available training boards fixed. Model size, precision, batch size, objectives and realized exposure differ.
+
+| System | Exact at 30 ms | Exact at 100 ms | Exact at 750 ms | Normal readout |
+|---|---:|---:|---:|---:|
+| Native TRM | 6/128 | 48/128 | 78/128 | 78/128 at its native stop |
+| Joint residual reasoner | 1/128 | 0/128 | 0/128 | 1/128 at depth four |
+| Released FPRM | 14/128 | 67/128 | 96/128 | 79/128 reached native stop within the timing cap, all correct |
+
+All three sets of predictions were verified against the same ordered held-out IDs. Timings are synchronized eager batch-one measurements. The budget curves carry forward the last prediction when a run has already ended. TRM's median time to its native stop was 379.7 ms. The residual model's median time to its depth-four readout was 22.5 ms. The released FPRM curve has its own training provenance. At the tested training budget, the residual reasoner remains near the exact-solve floor while native TRM learns to solve many boards. Investigate candidate initialization and the learned field before expanding the controller matrix. The system comparison leaves their individual contributions unresolved.
+
+Final checkpoint SHA-256 values were `533999676a1d44bdb84205461b55ecf1719f238cad2c2af699de78128e3dbf7f` for TRM and `b1dbdbb7183e303ba2f17e81ac03eeb5cd827d8560bbecf890f808721f968181` for the residual model.
+
 ## 26 November 2026 · Held-out controller comparison and Sudoku benchmark
 
 Isambard run `length4-mixer-74a08dc-mmORam` (job `8882596`) froze the ordinary-descent curriculum continuation and compared controllers from the same depth-four states. The runtime was `74a08dc`. The parent checkpoint SHA-256 was `c54e771fe8c8d36c0583f1c1750bc18368f0a6ff728c2f1312ffe0bf012a0f6d`. The recurrent and stateless checkpoints were `23cc64e5c5970640204a5fee0f1e60c9fe51226ef2bcf2ad397d48543fd45674` and `967d744e1f5bedc5d6a442bc38cba857440786929036193a1b178675610678f4`. The budget was 14.62 ms per batch of 16, calibrated as four warmed reference steps on development inputs. The 512 held-out sequences had 430 correct and 82 wrong at the fork.
