@@ -115,6 +115,8 @@ The profile uses a fixed step of 0.5 outside the full-step direct arm. The mixer
 
 ## Reading a result
 
+For the prefix-sum learning diagnostic, `scripts/run_prefix_curriculum.py` compares direct length-16 training with equal phases at lengths 4, 8 and 16. It uses the pilot architecture and objective and stores dev exact outcomes by input and token counts by position at every phase boundary. The continuation runner, `scripts/run_prefix_continuation.py`, reads the sealed prior run and restores both weights and AdamW state. Its `direct-4`, `curriculum-4` and `curriculum-8` arms all continue on the same length-16 training set. The last two start from the same checkpoint and vary the supervised unroll depth. Both scripts take a fresh output root, a prepared prefix-sum path via `--scan` and `--device cpu` or `--device cuda`. From the checkout, invoke them with `PYTHONPATH="$PWD" python scripts/run_prefix_curriculum.py --help` or `PYTHONPATH="$PWD" python scripts/run_prefix_continuation.py --help`.
+
 Start with **`reports/README.md`** and **`reports/coverage.json`**. The overview groups seeds by task, split, condition and reference. On a shared frozen field, the primary endpoint is repair among examples wrong at the same reference fork, under the common time budget. Check retention among initially correct examples and ordinary-start solve rate alongside it. An empty denominator is blank in CSV and a dash in Markdown.
 
 | File under the campaign root | Contents |

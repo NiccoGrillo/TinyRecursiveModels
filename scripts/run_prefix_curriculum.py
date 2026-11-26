@@ -12,7 +12,7 @@ from experiments.residual_reasoning.common import atomic, digest, exclusive, rea
 from experiments.residual_reasoning.data import Dataset, prepare
 from experiments.residual_reasoning.model import Architecture, Reasoner
 from experiments.residual_reasoning.objective import Objective, Training
-from experiments.residual_reasoning.train import hardware, runtime, sync
+from experiments.residual_reasoning.train import checkpoint, hardware, runtime, sync
 
 DEPTHS = (0, 1, 2, 4, 8, 16)
 LENGTHS = (4, 8, 16)
@@ -50,20 +50,26 @@ def evaluate(model, data, device):
     )
 
 
-def fit(arm, schedule, root, arch, cfg, train, dev, steps_per_stage, device):
+def fit(arm, schedule, root, arch, cfg, train, dev, steps_per_stage, device, *, initial_checkpoint=None):
     torch.manual_seed(SEED)
     model = Reasoner(arch, 8, 8, "identity").to(device)
     optimizer = torch.optim.AdamW(
         model.parameters(), lr=cfg.lr, weight_decay=cfg.weight_decay
     )
+    initial_step = 0
+    if initial_checkpoint is not None:
+        initial = checkpoint(initial_checkpoint)
+        model.load_state_dict(initial["model"])
+        optimizer.load_state_dict(initial["optimizer"])
+        initial_step = initial["step"]
     objective = Objective(model, cfg, False)
     folder = root / arm
     folder.mkdir()
     milestones = []
     for stage, length in enumerate(schedule, 1):
         data = train[length]
-        first_step = (stage - 1) * steps_per_stage + 1
-        last_step = stage * steps_per_stage
+        first_step = initial_step + (stage - 1) * steps_per_stage + 1
+        last_step = initial_step + stage * steps_per_stage
         model.train()
         sync(device)
         if device.type == "cuda":
