@@ -1,6 +1,6 @@
 # Research roadmap
 
-The current bounded experiment compares learned continuation against native TRM continuation on shared Sudoku fork states. The [frozen-refinement protocol](TRM_REFINEMENT.md) fixes the development gate, inference budget and held-out decision rules.
+The [frozen-refinement study](TRM_REFINEMENT.md) is closed after failing its development gate. On the same 256 development boards, native TRM lost no exact answers through macro depth 16, and the 94 final misses were never solved. An early two-path split produced one solution outside the native trajectories, but covered 20 fewer boards overall than serial at equal native work. A follow-up should allocate branch work only through a label-free trigger and compare against spending the same work on serial continuation. See [the trace audit and branch probe](STATUS.md#26-november-2026--native-trm-retention-and-candidate-search). The 896 held-out inputs remain sealed.
 
 The 20 November [CRAM assessment](CRAM_REVIEW.md) revises the substantial study in notebook v3.1. Include score-only single- and two-token search on the same field, pair natural error recovery across controllers, and assess ordinary-start solve rate and retention. Workspace recomputation is conditional on a persistent-controller advantage. The underlying rule-free model below is still the candidate.
 
