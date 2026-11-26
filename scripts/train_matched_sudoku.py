@@ -73,7 +73,7 @@ def train_residual(args, start):
     config["training"].update(steps=1_000_000, save_every=1000, log_every=100,
                               max_seconds=max(1.0, args.seconds - (time.monotonic() - start)))
     write(args.root / "residual_config.json", config)
-    run(cfg=config, method="recurrent", seed=11, data_path=args.data / "residual",
+    run(cfg=config, method=args.residual_method, seed=11, data_path=args.data / "residual",
         out=args.root / "model", device="cuda", resume=True)
     summary = read(args.root / "model" / "complete.json")
     summary.update(training_seconds=summary["elapsed_s"], elapsed_s=time.monotonic() - start)
@@ -83,15 +83,20 @@ def train_residual(args, start):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--arm", choices=("trm", "residual"), required=True)
+    parser.add_argument("--residual-method", choices=("recurrent", "unrestricted"),
+                        default="recurrent")
     for name in ("root", "data", "native-config", "residual-config"):
         parser.add_argument("--" + name, type=Path, required=True)
     parser.add_argument("--seconds", type=float, required=True)
     args = parser.parse_args()
     if args.seconds <= 0 or torch.cuda.device_count() != 1:
         parser.error("Expected a positive budget and a single visible GPU")
+    if args.arm == "trm" and args.residual_method != "recurrent":
+        parser.error("--residual-method only applies to the residual-family trainer")
     args.root.mkdir(parents=True)
     write(args.root / "manifest.json", dict(
         arm=args.arm, source=source(), budget_s=args.seconds,
+        method=args.residual_method if args.arm == "residual" else "native",
         cohort_sha256=digest(args.data / "cohort.json"), device=torch.cuda.get_device_name(),
         torch=str(torch.__version__), script=digest(Path(__file__)), seed=11,
     ))

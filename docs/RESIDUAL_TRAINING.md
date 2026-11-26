@@ -121,6 +121,8 @@ The held-out length-four comparison uses `scripts/run_length4_controller.py`. It
 
 The matched Sudoku benchmark uses `scripts/prepare_matched_sudoku.py`, `scripts/train_matched_sudoku.py`, and `scripts/evaluate_matched_sudoku.py`. Run the preparer with `PYTHONPATH="$PWD/dataset:$PWD"` so it can import the upstream augmentation function. It writes native and residual encodings from the same augmented arrays, with native `test` reserved for development and native `heldout` for final assessment. The trainer uses the pinned native TRM recipe and optimizer for the TRM arm and the existing joint residual trainer for the residual arm. Both final checkpoints are assessed on the same ordered held-out input IDs with cumulative synchronized inference time and exact board correctness.
 
+The matched direct-update control uses `--arm residual --residual-method unrestricted`. This retains the fixed decoder and the same training-time limit, batch, supervised depths and data as the jointly trained recurrent residual model. It learns the update directly and uses the task loss without field-specific calibration or invalidity supervision. `scripts/compare_matched_sudoku.py` verifies held-out cohort identity and reports exact solves and paired differences at each shared time budget.
+
 Start with **`reports/README.md`** and **`reports/coverage.json`**. The overview groups seeds by task, split, condition and reference. On a shared frozen field, the primary endpoint is repair among examples wrong at the same reference fork, under the common time budget. Check retention among initially correct examples and ordinary-start solve rate alongside it. An empty denominator is blank in CSV and a dash in Markdown.
 
 | File under the campaign root | Contents |

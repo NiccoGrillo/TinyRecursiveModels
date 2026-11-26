@@ -1,5 +1,11 @@
 # Status
 
+## 26 November 2026 · Direct-update Sudoku comparison launched
+
+Run `sudoku-direct-z4CC5v` compares the existing `unrestricted` arm to the matched-budget joint residual checkpoint. It uses the same 33,000 augmented Sudoku training rows, seed 11, batch size 64, four supervised steps, 6,600-second training budget, GH200 model and ordered 128-board held-out cohort. The direct arm keeps the small model configuration and fixed codebook decoder. It predicts candidate corrections directly and has no learned residual field or field-specific auxiliary losses. This tests the two update recipes as complete systems. The difference includes their field supervision and parameter counts.
+
+Preflight `8889408` checks training, checkpointing and scoring on development boards. Training job `8889409` depends on preflight and writes `full/comparison.json` with the direct, recurrent, TRM and FPRM outcomes at the same inference budgets. The reporter verifies dataset hashes, input ordering and GPU model before making paired comparisons. Realized optimizer steps and examples are recorded separately from the matched time budget.
+
 ## 26 November 2026 · Residual Sudoku checkpoint audit
 
 The saved matched-budget residual checkpoint (`b1dbdbb7183e303ba2f17e81ac03eeb5cd827d8560bbecf890f808721f968181`) scored all 128 known held-out solution codewords correctly through the matched evaluator's shared encoding and scoring functions. Decoded digits matched the revision-pinned original Sudoku CSV. Native target IDs round-tripped to the same residual labels. A local CPU replay reproduced every held-out GPU exact-correctness trace by input ID and reasoning depth. No additional training was used.
