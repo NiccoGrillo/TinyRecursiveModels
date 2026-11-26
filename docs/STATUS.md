@@ -1,5 +1,13 @@
 # Status
 
+## 25 November 2026 · Matched-update prefix-sum curriculum
+
+Isambard job `8857953` completed in 8m 33s at revision `74a08dc8e1bdf9dd4c10531944c7e8537c11fa38`. On one GH200, the ordinary-descent reference trained for 3,072 updates either entirely at length 16 or in three equal phases at lengths 4, 8 and 16. Both arms used seed 11, batch 64, four supervised reasoning loops, the pilot objective and the same 512 length-16 development examples. The curriculum retained its weights and AdamW state between phases. The match is in updates. Sequence length changes the number of training tokens per update.
+
+At four reasoning steps, length-16 dev token accuracy was 27.40% for direct training and 35.35% for the curriculum. Position four improved from 103/512 to 410/512 correct. Both arms had zero exact length-16 solves at all recorded depths. At depth 16, token accuracy fell to 23.86% and 24.60% respectively. Training took 223.39 s and 220.66 s, with peak PyTorch allocation of 0.165 and 0.167 GiB. This is one-seed development evidence of improved partial predictions with the chosen schedule. Extra inference steps degraded token accuracy after the four training loops.
+
+The [diagnostic runner](../scripts/run_prefix_curriculum.py) used SHA-256 `b2d42efd87ba37620a915196d9015d3c8594e48a5c9c7e11614cb9b47b203d81`. Its direct arm reproduced the pinned trainer's weights and optimizer state bitwise in a three-update CPU check. Final checkpoint SHA-256 values were `f037a8d6a51ed071ccf5ddadf4f162c2e3563ce9e999a61a73c8d34e3f7e14bc` for direct training and `3788263e160d38e603e8728e30b802cf3f9ae7fda852c6b16bf8232e90f9b446` for the curriculum. The next bounded comparison should test additional length-16 training and vary the supervised unroll depth separately. The multi-seed controller comparison is still pending.
+
 ## 25 November 2026 · Development pilot
 
 Isambard run `pilot-74a08dc-ZCDQLY` used revision `74a08dc8e1bdf9dd4c10531944c7e8537c11fa38`, seed 11, and the acceptance image. Final report job `8853665` finished 6m 56s after the first reference jobs started. The sealed run produced 16 model records and 20 development evaluations with complete coverage. The recurrent joint checkpoints were `82528e1e6c90ba32e837b2311c3ff44e1ef4f388ff3bb43eccf092e222b33642` (Sudoku) and `0f9753483e8f038a9909909ff5083bfb73cf94afafdea95e6168e01287ea924f` (prefix sums). All checkpoint hashes are in the archived `reports/training.csv`.
