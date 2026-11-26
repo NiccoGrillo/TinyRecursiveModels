@@ -2,7 +2,7 @@
 
 ## 26 November 2026 · Native TRM refinement calibration
 
-The next bounded comparison starts from genuine Sudoku candidates of the trained native TRM. The [protocol](TRM_REFINEMENT.md) fixes how to choose an informative fork from development data, compare same-budget continuation policies and reserve the 896 untouched test boards. Isambard calibration job `8893794` uses only 256 development puzzles and records full selected carry and logits if the gate passes. The direct, stateless and recurrent refiner fixtures preserve the native fork logits and receive finite training gradients. The development fit is a separate check before the held-out comparison.
+The next bounded comparison starts from genuine Sudoku candidates of the trained native TRM. The [protocol](TRM_REFINEMENT.md) fixes how to choose an informative fork from development data, compare same-budget continuation policies and reserve the 896 untouched test boards. Isambard calibration job `8893794` uses only 256 development puzzles and records full selected carry and logits if the gate passes. Development job `8893949` depends on calibration and runs only if that report selects a fork. The direct, stateless and recurrent refiner fixtures preserve the native fork logits and receive finite training gradients. The CPU repository suite passed 75 tests.
 
 ## 26 November 2026 · Sample-matched direct-update Sudoku result
 

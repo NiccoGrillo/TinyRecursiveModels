@@ -18,7 +18,7 @@ Remeasure native continuation in the same allocation and rotate arm order across
 
 Use the remaining 896 prepared test inputs after excluding the 128 already examined. Verify their IDs against the cohort manifest and training/dev disjointness. Lock the fork, budget, checkpoints and decision rule before opening them. At the primary budget report exact solves, repairs out of wrong starts, losses out of correct starts, and example-paired helped and harmed counts against native continuation, stopping and the direct refiner. Report paired uncertainty over original input IDs. Any secondary latency budgets are descriptive.
 
-- A gain is actionable if it is at least two percentage points in exact solves, its paired uncertainty excludes zero, and the retention difference is compatible with the prespecified one-point tolerance.
+- A gain is actionable if it is at least two percentage points in exact solves, the lower end of its paired 95% interval exceeds zero, and the lower end of the paired retention interval is at least minus one percentage point.
 - If a direct refiner clears the native and stop thresholds and mixing's upper bound over direct is below two points, pursue direct learned refinement. If the interval still permits a meaningful mixer advantage, report that comparison as inconclusive.
 - If neither learned recipe offers a meaningful gain over native continuation and the intervals exclude it, deprioritize this repair recipe. Wide intervals call for an uncertainty statement.
 - An improvement from recurrent mixing over native continuation and direct refinement supports the update recipe on this fork. A memory claim also requires a gain over stateless mixing with comparable retention.
