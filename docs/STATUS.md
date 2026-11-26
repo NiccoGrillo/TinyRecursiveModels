@@ -1,5 +1,21 @@
 # Status
 
+## 26 November 2026 · Native TRM refinement development result
+
+Isambard calibration `8893794` and development run `8893949` completed with exit code `0:0` in 2m 08s and 3m 23s. Run `trm-refinement-K8SH3r` used the native TRM checkpoint `533999676a1d44bdb84205461b55ecf1719f238cad2c2af699de78128e3dbf7f` and the refiner code at `43ee675`. Calibration selected depth two with 60 correct and 196 wrong starts on 256 dev boards. The median time for four more native steps was 101.21 ms. Calibration measured 75 repairs and no losses within that budget. The later interleaved timing run remeasured native continuation and observed 87 repairs and no losses.
+
+| Policy | Repairs | Losses | Final exact | Median continuation steps |
+|---|---:|---:|---:|---:|
+| Stop at depth two | 0 | 0 | 60/256 | 0 |
+| Native TRM continuation | 87 | 0 | 147/256 | 5 |
+| Direct refiner | 0 | 60 | 0/256 | 57 |
+| Stateless refiner | 0 | 60 | 0/256 | 19 |
+| Recurrent refiner | 0 | 60 | 0/256 | 19 |
+
+No evaluation endpoint hit its step cap or returned nonfinite logits. All three learned arms failed the promotion gate. The 896 held-out boards remain unopened. A CPU replay from the checksum-verified development bank found 52, 50 and 53 exact solves for direct, stateless and recurrent refiners after four additional steps, respectively, versus 60 at the fork. Extra steps amplify the degradation, and the learned arms are already losing accuracy within their supervised horizon. This is a development result for the frozen-feature, task-loss-only refiner recipe.
+
+Refiner checkpoint SHA-256 values were `3125c0b2a6f79a676a9131490709bd2a36b0b47710e4f26f373fdb88629ac990` (direct), `33c53d5b96f33636ad7037b934f216ccad7b389ccfd374d1e45c0906bdada649` (stateless), and `b6a1fa4a2d21f9a6f1b5a3fc532e3a06edcaf11eb078591905feafce6451ef54` (recurrent).
+
 ## 26 November 2026 · Native TRM refinement calibration
 
 The next bounded comparison starts from genuine Sudoku candidates of the trained native TRM. The [protocol](TRM_REFINEMENT.md) fixes how to choose an informative fork from development data, compare same-budget continuation policies and reserve the 896 untouched test boards. Isambard calibration job `8893794` uses only 256 development puzzles and records full selected carry and logits if the gate passes. Development job `8893949` depends on calibration and runs only if that report selects a fork. The direct, stateless and recurrent refiner fixtures preserve the native fork logits and receive finite training gradients. The CPU repository suite passed 75 tests.

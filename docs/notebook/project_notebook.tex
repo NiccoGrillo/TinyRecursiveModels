@@ -371,11 +371,9 @@ On 512 held-out length-4 sequences, stopping at the shared depth-four fork solve
 
 On the same 128 held-out Sudoku boards, freshly trained native TRM solved 78 at its normal stopping point and the jointly trained residual reasoner solved one at depth four. Each trained for 110 minutes on the same original puzzles and augmentations. Released FPRM, with its own training history, solved 67 at 100\,ms and 96 at 750\,ms.
 
-An audit scored all 128 known solution codewords correctly and reproduced the exact GPU traces. At depth four the residual model preserved every given digit, yet the median board had 29 wrong blanks on held-out data and 27 on a training sample. Only one held-out board became correct at any recorded depth.
+An audit scored all 128 known solution codewords correctly and reproduced the exact GPU traces. The residual model preserved every given digit at depth four, with a median of 29 wrong blanks. At identical minibatch exposure the direct update trained in 27.2 minutes versus 110 for the residual update, and solved zero boards versus one. The two recipes use different auxiliary losses and parameter counts.
 
-At identical minibatch exposure, the direct learned update took 27.2 minutes to train, compared with 110 minutes for the residual update. At depth four it got 46.90\% of held-out blanks right and solved zero boards. The residual update got 49.66\% of blanks right and solved one board. These recipes differ in their auxiliary losses and parameter counts, and both remain far from the native TRM solve rate.
-
-The next comparison starts both learned refiners at the prediction of the trained native TRM. Native continuation starts from the same full carry. Development boards choose a fork and continuation budget. The learned feature projection counts against that budget, and the untouched test cohort is reserved until the protocol and checkpoints are fixed.
+In the frozen-TRM development comparison, the depth-two fork solved 60 of 256 boards. With 101\,ms more computation, native continuation repaired 87 and lost none. All three learned refiners lost all 60 correct starts by the budget endpoint. After four additional steps, they already solved fewer boards than stopping at the fork. The recipe failed the development gate, and the test cohort remains unopened.
 
 \subsection{What the architecture and CRAM critiques changed}
 \begin{tabularx}{\linewidth}{@{}P{49mm}Y@{}}\toprule
