@@ -1,5 +1,7 @@
 # Research roadmap
 
+The current bounded experiment compares learned continuation against native TRM continuation on shared Sudoku fork states. The [frozen-refinement protocol](TRM_REFINEMENT.md) fixes the development gate, inference budget and held-out decision rules.
+
 The 20 November [CRAM assessment](CRAM_REVIEW.md) revises the substantial study in notebook v3.1. Include score-only single- and two-token search on the same field, pair natural error recovery across controllers, and assess ordinary-start solve rate and retention. Workspace recomputation is conditional on a persistent-controller advantage. The underlying rule-free model below is still the candidate.
 
 ## Current direction — 16 November 2026, notebook v3.0

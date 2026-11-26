@@ -375,6 +375,8 @@ An audit scored all 128 known solution codewords correctly and reproduced the ex
 
 At identical minibatch exposure, the direct learned update took 27.2 minutes to train, compared with 110 minutes for the residual update. At depth four it got 46.90\% of held-out blanks right and solved zero boards. The residual update got 49.66\% of blanks right and solved one board. These recipes differ in their auxiliary losses and parameter counts, and both remain far from the native TRM solve rate.
 
+The next comparison starts both learned refiners at the prediction of the trained native TRM. Native continuation starts from the same full carry. Development boards choose a fork and continuation budget. The learned feature projection counts against that budget, and the untouched test cohort is reserved until the protocol and checkpoints are fixed.
+
 \subsection{What the architecture and CRAM critiques changed}
 \begin{tabularx}{\linewidth}{@{}P{49mm}Y@{}}\toprule
 Objection & Decision\\\midrule

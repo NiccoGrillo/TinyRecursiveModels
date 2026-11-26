@@ -1,5 +1,9 @@
 # Status
 
+## 26 November 2026 · Native TRM refinement calibration
+
+The next bounded comparison starts from genuine Sudoku candidates of the trained native TRM. The [protocol](TRM_REFINEMENT.md) fixes how to choose an informative fork from development data, compare same-budget continuation policies and reserve the 896 untouched test boards. Isambard calibration job `8893794` uses only 256 development puzzles and records full selected carry and logits if the gate passes. The direct, stateless and recurrent refiner fixtures preserve the native fork logits and receive finite training gradients. The development fit is a separate check before the held-out comparison.
+
 ## 26 November 2026 · Sample-matched direct-update Sudoku result
 
 Isambard job `8889450` finished successfully at 16:37 UK time. The direct-update and recurrent arms each completed 65,556 updates and 4,195,584 example presentations using the same step-seeded minibatch stream. The input arrays, dataset identity, seed, architecture configuration and held-out IDs matched. The direct-update arm took 1,630.00 training seconds compared with 6,600.02 seconds for recurrent mixing, a 4.05-fold speedup at equal training exposure. The final direct checkpoint SHA-256 was `34ff7f755ad577a2c679350fee8ebe012382b69e2587277cbe7eb6ee7efea7a8`.
