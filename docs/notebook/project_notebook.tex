@@ -51,7 +51,7 @@
 {\Large Learning residuals and coordinating their influence on recurrent reasoning\par}
 \vspace{8mm}
 \textbf{Version 3.1 --- design dated 20 November 2026.}\\
-Implementation status updated 26 November 2026.\\
+Implementation status updated 26 November 2026, including the frozen refiner checkpoint replay.\\
 Repository: \href{https://github.com/NiccoGrillo/TinyRecursiveModels}{NiccoGrillo/TinyRecursiveModels}.\\
 Previous guide \code{ff7c125}. Historical pilot report \code{98689fb}.
 
@@ -373,7 +373,7 @@ On the same 128 held-out Sudoku boards, freshly trained native TRM solved 78 at 
 
 An audit scored all 128 known solution codewords correctly and reproduced the exact GPU traces. The residual model preserved every given digit at depth four, with a median of 29 wrong blanks. At identical minibatch exposure the direct update trained in 27.2 minutes versus 110 for the residual update, and solved zero boards versus one. The two recipes use different auxiliary losses and parameter counts.
 
-In the frozen-TRM development comparison, the depth-two fork solved 60 of 256 boards. With 101\,ms more computation, native continuation repaired 87 and lost none. All three learned refiners lost all 60 correct starts by the budget endpoint. After four additional steps, they already solved fewer boards than stopping at the fork. The recipe failed the development gate, and the test cohort remains unopened.
+In the frozen-TRM comparison, the fork solved 60 of 256 development boards. With 101\,ms more computation, native continuation repaired 87 and lost none. All three learned refiners lost all 60. On a GH200 replay with zero gain, each recovered the same 60 solved board IDs. With learned gains restored, four steps repaired zero boards and broke 8, 10 and 7 on development and 34, 42 and 37 of 291 correct training starts (direct, stateless and recurrent). Cell cross-entropy fell on both splits. The objective improved alongside exact solve degradation on the training inputs. The recipe failed the development gate. The test cohort remains unopened.
 
 \subsection{What the architecture and CRAM critiques changed}
 \begin{tabularx}{\linewidth}{@{}P{49mm}Y@{}}\toprule

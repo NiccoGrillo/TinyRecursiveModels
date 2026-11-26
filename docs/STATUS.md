@@ -1,5 +1,26 @@
 # Status
 
+## 26 November 2026 · Frozen refiner checkpoint replay
+
+Isambard GH200 job `8898982` completed in 1m 44s with exit `0:0`. The [replay script](../scripts/replay_trm_refinement.py) verified the frozen checkpoints and development bank against the original manifests. It regenerated the native depth-two states for the same 1,000 original training inputs, in the original batch grouping. It used the 256 saved development states and ran no optimizer. The audit report is `trm-refinement-K8SH3r/refiner-replay/replay.json`, SHA-256 `c132b872c085ea9718a175eac2bab4f3a829ecf6a45323f572c1bb26a82a2ec4`. The 896 held-out boards remain unopened.
+
+With the gain set to zero, all three refiners returned the same 60 correct development board IDs as stopping at the fork in the original 101.21 ms production evaluator. Every board received at least one update. No prediction was nonfinite. The direct control reached the 64-step cap on 212 boards, with its answer unchanged. Neither residual control reached the cap.
+
+With learned gains restored, the native fork started at 291/1,000 exact on training and 60/256 on development. Each entry below gives all-cell mean cross-entropy and the counts of repairs/breaks relative to that split's fork. Baseline cross-entropy was 3.727 on training and 4.757 on development.
+
+| Split | Extra steps | Direct (loss, repairs/breaks) | Stateless (loss, repairs/breaks) | Recurrent (loss, repairs/breaks) |
+|---|---:|---:|---:|---:|
+| Train | 1 | 2.627, 2/0 | 0.771, 0/41 | 0.651, 0/32 |
+| Train | 2 | 1.732, 1/0 | 0.692, 0/40 | 0.620, 0/29 |
+| Train | 3 | 1.094, 1/9 | 0.668, 0/39 | 0.610, 0/28 |
+| Train | 4 | 1.142, 0/34 | 0.670, 0/42 | 0.612, 0/37 |
+| Dev | 1 | 3.442, 0/0 | 1.048, 0/11 | 0.896, 0/7 |
+| Dev | 2 | 2.354, 0/1 | 0.951, 0/8 | 0.853, 0/6 |
+| Dev | 3 | 1.549, 0/4 | 0.913, 0/8 | 0.835, 0/6 |
+| Dev | 4 | 1.479, 0/8 | 0.907, 0/10 | 0.830, 0/7 |
+
+Blank-cell cross-entropy also fell for all arms on both splits. The four-step endpoint lost exact solutions even on the examples used to fit the refiners. The direct refiner's two first-step training repairs were transient. The original cell-level objective can improve while exact repair and retention deteriorate. This replay leaves open whether different supervision or optimization would help. The recipe stays paused and the development gate remains closed. The CPU suite passed 75 tests, and a separate CPU replay matched the GH200 development repair/break counts and the zero-gain solved IDs.
+
 ## 26 November 2026 · Native TRM refinement development result
 
 Isambard calibration `8893794` and development run `8893949` completed with exit code `0:0` in 2m 08s and 3m 23s. Run `trm-refinement-K8SH3r` used the native TRM checkpoint `533999676a1d44bdb84205461b55ecf1719f238cad2c2af699de78128e3dbf7f` and the refiner code at `43ee675`. Calibration selected depth two with 60 correct and 196 wrong starts on 256 dev boards. The median time for four more native steps was 101.21 ms. Calibration measured 75 repairs and no losses within that budget. The later interleaved timing run remeasured native continuation and observed 87 repairs and no losses.
