@@ -371,7 +371,9 @@ On 512 held-out length-4 sequences, stopping at the shared depth-four fork solve
 
 On the same 128 held-out Sudoku boards, freshly trained native TRM solved 78 at its normal stopping point and the jointly trained residual reasoner solved one at depth four. Each trained for 110 minutes on the same original puzzles and augmentations. Released FPRM, with its own training history, solved 67 at 100\,ms and 96 at 750\,ms.
 
-An audit scored all 128 known solution codewords correctly and reproduced the exact GPU traces. At depth four the residual model preserved every given digit, yet the median board had 29 wrong blanks on held-out data and 27 on a training sample. Only one held-out board became correct at any recorded depth. The next comparison tests whether the same small backbone learns stronger candidates with a direct learned update.
+An audit scored all 128 known solution codewords correctly and reproduced the exact GPU traces. At depth four the residual model preserved every given digit, yet the median board had 29 wrong blanks on held-out data and 27 on a training sample. Only one held-out board became correct at any recorded depth.
+
+At identical minibatch exposure, the direct learned update took 27.2 minutes to train, compared with 110 minutes for the residual update. At depth four it got 46.90\% of held-out blanks right and solved zero boards. The residual update got 49.66\% of blanks right and solved one board. These recipes differ in their auxiliary losses and parameter counts, and both remain far from the native TRM solve rate.
 
 \subsection{What the architecture and CRAM critiques changed}
 \begin{tabularx}{\linewidth}{@{}P{49mm}Y@{}}\toprule

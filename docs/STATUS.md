@@ -1,5 +1,16 @@
 # Status
 
+## 26 November 2026 · Sample-matched direct-update Sudoku result
+
+Isambard job `8889450` finished successfully at 16:37 UK time. The direct-update and recurrent arms each completed 65,556 updates and 4,195,584 example presentations using the same step-seeded minibatch stream. The input arrays, dataset identity, seed, architecture configuration and held-out IDs matched. The direct-update arm took 1,630.00 training seconds compared with 6,600.02 seconds for recurrent mixing, a 4.05-fold speedup at equal training exposure. The final direct checkpoint SHA-256 was `34ff7f755ad577a2c679350fee8ebe012382b69e2587277cbe7eb6ee7efea7a8`.
+
+| Arm | Training blank accuracy at depth four | Held-out blank accuracy at depth four | Held-out median wrong blanks | Held-out exact at depth four | Median depth-four latency |
+|---|---:|---:|---:|---:|---:|
+| Direct learned update | 49.35% | 46.90% | 30 | 0/128 | 7.82 ms |
+| Recurrent residual update | 53.25% | 49.66% | 29 | 1/128 | 22.52 ms |
+
+The CPU audit reproduced the direct arm's GPU exact traces. Neither arm solved any held-out board at the 100 ms or 750 ms endpoint. The direct arm corrected fewer blank cells at equal exposure and cost less to train and run. Both arms were far from solving full boards, including on the training sample. This one-seed comparison contrasts the current recipes, which also differ in field-specific supervision and parameter count.
+
 ## 26 November 2026 · Direct-update Sudoku comparison launched
 
 Run `sudoku-direct-z4CC5v` compares the existing `unrestricted` arm to the matched-budget joint residual checkpoint. Both arms use the same byte-identical 33,000 augmented training rows, seed 11, batch size 64, four supervised steps, GH200 model and ordered 128-board held-out cohort. The step-seeded sampler presents the same minibatches in the same order. The direct arm must finish exactly 65,556 updates, matching all 4,195,584 sample presentations of the recurrent arm. The 6,600-second safety cap still applies. If it stops short, the job does not report an exposure-matched evaluation. The direct arm keeps the small model configuration and fixed codebook decoder. It predicts candidate corrections directly and has no learned residual field or field-specific auxiliary losses. The comparison includes those differences and the difference in parameter counts.
