@@ -20,6 +20,7 @@ When asked to interpret a campaign, open `reports/coverage.json`, `study.json`, 
 - Prefer additive adapters; document and test any necessary upstream edit. Preserve MIT attribution.
 - Supported backend: original `trm.py`, MLP and attention variants. Other TRM variants, FPRM, and InfiLoop require explicit adapters.
 - Keep data, weights, outputs, credentials, and full paper downloads out of Git.
+- After verifying completed changes, push the project branch to its configured upstream and check the remote tip. Report any push failure.
 - Use the agreed compute budget. Long or paid training is not needed to validate a routine edit.
 
 ```bash

@@ -15,6 +15,26 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def read_boards(root, split, family, selection, device):
+    manifest = json.loads((root / "dataset.json").read_text())
+    path = root / f"{split}.npz"
+    data_sha = sha(path)
+    if data_sha != manifest["splits"][split]["sha256"]:
+        raise ValueError("Sudoku split checksum mismatch")
+    shift = int(family != "residual")
+    with np.load(path, allow_pickle=False) as data:
+        x = torch.from_numpy(data["x"][selection]).to(device, dtype=torch.long) + shift
+        y = torch.from_numpy(data["y"][selection]).to(device, dtype=torch.long) + 2 * shift
+        ids = data["ids"][selection].tolist()
+    if not ids or min(x.shape[1], y.shape[1]) != 81:
+        raise ValueError("Expected original Sudoku givens and full-board labels")
+    return x, y, ids, data_sha
+
+
+def score_residual(model, answer, label):
+    return model.decode(answer).argmax(-1).eq(label)
+
+
 def model_from_checkpoint(args, device):
     if args.family == "residual":
         from experiments.residual_reasoning.train import from_checkpoint
@@ -75,7 +95,7 @@ def evaluate_residual(model, inputs, label, device, max_seconds):
         if depth:
             answer, workspace = model.step(encoded, answer, workspace, train=False)
         with torch.no_grad():
-            correct = model.decode(answer).argmax(-1).eq(label).all()
+            correct = score_residual(model, answer, label).all()
         torch.cuda.synchronize(device)
         times.append(time.perf_counter() - start)
         outcomes.append(bool(correct))
@@ -99,17 +119,7 @@ def main():
     device = torch.device(args.device)
     torch.backends.cuda.matmul.allow_tf32 = False
     torch.backends.cudnn.allow_tf32 = False
-    manifest = json.loads((args.data / "dataset.json").read_text())
-    path = args.data / f"{args.split}.npz"
-    if sha(path) != manifest["splits"][args.split]["sha256"]:
-        raise ValueError("Sudoku split checksum mismatch")
-    shift = args.family != "residual"
-    with np.load(path, allow_pickle=False) as data:
-        x = torch.from_numpy(data["x"][:args.limit]).to(device, dtype=torch.long) + int(shift)
-        y = torch.from_numpy(data["y"][:args.limit]).to(device, dtype=torch.long) + 2 * int(shift)
-        ids = data["ids"][:args.limit].tolist()
-    if not ids or min(x.shape[1], y.shape[1]) != 81:
-        raise ValueError("Expected original Sudoku givens and full-board labels")
+    x, y, ids, data_sha = read_boards(args.data, args.split, args.family, slice(args.limit), device)
     torch.manual_seed(11)
     model, cfg = model_from_checkpoint(args, device)
     def predict(inputs, labels, cap):
@@ -124,7 +134,7 @@ def main():
     for i, key in enumerate(ids):
         torch.manual_seed(11 + i)
         rows.append(dict(id=key, **predict(x[i], y[i], args.max_seconds)))
-    payload = dict(family=args.family, source=args.source_rev, config=cfg, data_sha256=sha(path), split=args.split,
+    payload = dict(family=args.family, source=args.source_rev, config=cfg, data_sha256=data_sha, split=args.split,
                    checkpoint_sha256=sha(args.weights), timing_cap_s=args.max_seconds,
                    device=torch.cuda.get_device_name() if device.type == "cuda" else "cpu",
                    torch=str(torch.__version__), rows=rows)

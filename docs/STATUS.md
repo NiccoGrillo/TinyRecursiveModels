@@ -1,5 +1,22 @@
 # Status
 
+## 26 November 2026 · Residual Sudoku checkpoint audit
+
+The saved matched-budget residual checkpoint (`b1dbdbb7183e303ba2f17e81ac03eeb5cd827d8560bbecf890f808721f968181`) scored all 128 known held-out solution codewords correctly through the matched evaluator's shared encoding and scoring functions. Decoded digits matched the revision-pinned original Sudoku CSV. Native target IDs round-tripped to the same residual labels. A local CPU replay reproduced every held-out GPU exact-correctness trace by input ID and reasoning depth. No additional training was used.
+
+| Cohort | Readout | Clues correct | Blanks correct | Median wrong blanks | Exact boards |
+|---|---|---:|---:|---:|---:|
+| 128 original training boards | Initialization | 100% | 27.54% | 40 | 0 |
+| Training | Depth 1 | 100% | 47.58% | 29 | 0 |
+| Training | Depth 4 | 100% | 53.25% | 27 | 3 |
+| 128 held-out boards | Initialization | 100% | 26.46% | 41 | 0 |
+| Held-out | Depth 1 | 100% | 45.49% | 30 | 0 |
+| Held-out | Depth 4 | 100% | 49.66% | 29 | 1 |
+| Held-out | At 100 ms | 92.05% | 36.97% | 36 | 0 |
+| Held-out | At 750 ms | 92.05% | 37.07% | 36 | 0 |
+
+The timed rows use the last completed depth from the original GPU timing trace for each board. At depth four, the held-out interquartile range was 25–32 wrong blanks and only the solved board had at most one wrong blank. Exactly one board became correct anywhere in the logged rollout. Early corrections improve token accuracy, but the training and held-out error distributions show that the model rarely builds a nearly solved board. The next comparison should use a direct learned proposal with the same small backbone and training data to see how much of the gap persists without the residual-mediated update. The full system result also includes a 3.18-fold difference in realized sample presentations under the common time budget.
+
 ## 26 November 2026 · Matched-budget Sudoku result
 
 Native TRM (`8882873`) and the jointly trained residual reasoner (`8882874`) completed run `sudoku-matched-7Lr4Oe` with exit code `0:0`. The trainer records were both about 6,600 seconds. TRM took 17,351 optimizer steps and saw 13,325,568 sample presentations (40.01 GiB peak allocated). The residual model took 65,556 steps and saw 4,195,584 presentations (0.98 GiB peak allocated). The comparison holds the available training time and available training boards fixed. Model size, precision, batch size, objectives and realized exposure differ.

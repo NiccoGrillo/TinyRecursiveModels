@@ -369,7 +369,9 @@ Attracting semantic manifold & A theoretical alternative, not a measured learned
 \subsection{Held-out continuation and Sudoku capability}
 On 512 held-out length-4 sequences, stopping at the shared depth-four fork solved 430. At the common continuation budget the recurrent mixer repaired 12 and broke 10, finishing at 432. Stateless mixing repaired the same 12 and broke 12, finishing at 430. Ordinary descent repaired 10 and broke 19, finishing at 421. The paired uncertainty interval for the mixer's net gain over stopping spans zero.
 
-On the same 128 held-out Sudoku boards, freshly trained native TRM solved 78 at its normal stopping point and the jointly trained residual reasoner solved one at depth four. Each trained for 110 minutes on the same original puzzles and augmentations. Released FPRM, with its own training history, solved 67 by 100\,ms and 96 by 750\,ms. The Sudoku results motivate investigating how the residual model initializes and improves its candidates before expanding the controller comparison.
+On the same 128 held-out Sudoku boards, freshly trained native TRM solved 78 at its normal stopping point and the jointly trained residual reasoner solved one at depth four. Each trained for 110 minutes on the same original puzzles and augmentations. Released FPRM, with its own training history, solved 67 at 100\,ms and 96 at 750\,ms.
+
+An audit scored all 128 known solution codewords correctly and reproduced the exact GPU traces. At depth four the residual model preserved every given digit, yet the median board had 29 wrong blanks on held-out data and 27 on a training sample. Only one held-out board became correct at any recorded depth. The next comparison tests whether the same small backbone learns stronger candidates with a direct learned update.
 
 \subsection{What the architecture and CRAM critiques changed}
 \begin{tabularx}{\linewidth}{@{}P{49mm}Y@{}}\toprule
