@@ -1,5 +1,15 @@
 # Status
 
+## 26 November 2026 · Prefix-sum continuation and reasoning depth
+
+All three tasks in Isambard array `8870010` completed in 5m 19s from first start to final exit. At runtime revision `74a08dc8e1bdf9dd4c10531944c7e8537c11fa38`, each branch restored the weights, AdamW state and step counter at update 3,072, then took 1,024 more updates on the same length-16 training set. The two curriculum branches began at the same checkpoint and supervised either four or eight reasoning steps. The direct branch continued with four. Dataset fingerprints and dev input IDs matched the prior study. The continuation runner reproduced uninterrupted training bitwise in a short CPU check, and 72 repository tests passed.
+
+At inference depth four, length-16 token accuracy was 29.99% for direct training with four supervised steps, 39.77% for the curriculum with four, and 37.71% for the curriculum with eight. At inference depth eight the two curriculum branches reached 39.71% and 37.78%, respectively. All branches still solved 0/512 length-16 dev sequences at every recorded depth. The curriculum continuations took 75.36 s and 114.66 s in the training loop, respectively. The eight-step branch consumed about 52% more training time at the same update count.
+
+The four-step curriculum continuation created a usable short-task reference. On the identical 512 length-4 dev sequences, 451 were correct at depth four. Continuing to depth 16 retained 390/451 and repaired 11/61, for 401/512 exact at depth 16. At length eight, only 12/512 were initially correct at depth four. The next bounded comparison should freeze the length-4 reference at a depth-four fork and give the mixer and cheaper controls identical starts and a common measured continuation budget. Use the development observations to design the protocol, and preserve a separately evaluated held-out cohort for confirmation.
+
+Run `prefix-depth-74a08dc-2CB2yr` ended at checkpoint SHA-256 values `4f39b47e2ecf7623235ed42ada9ba78296efe291d54355266bee3ccc185bc33d` (direct, four), `c54e771fe8c8d36c0583f1c1750bc18368f0a6ff728c2f1312ffe0bf012a0f6d` (curriculum, four), and `df4ca798b49090a8898d863c28e9628c582816331d8899285d192ae3b297e7b0` (curriculum, eight).
+
 ## 25 November 2026 · Matched-update prefix-sum curriculum
 
 Isambard job `8857953` completed in 8m 33s at revision `74a08dc8e1bdf9dd4c10531944c7e8537c11fa38`. On one GH200, the ordinary-descent reference trained for 3,072 updates either entirely at length 16 or in three equal phases at lengths 4, 8 and 16. Both arms used seed 11, batch 64, four supervised reasoning loops, the pilot objective and the same 512 length-16 development examples. The curriculum retained its weights and AdamW state between phases. The match is in updates. Sequence length changes the number of training tokens per update.

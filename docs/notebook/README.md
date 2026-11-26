@@ -1,6 +1,6 @@
 # Living research guide
 
-Read [project_notebook.pdf](project_notebook.pdf). **Version 3.1** records the 20 November 2026 design and the 25 November implementation and hardware acceptance update. Section 5 presents the CRAM checkpoint certificate, a score-only search comparison, and a natural-error repair endpoint. The [full research note](../CRAM_REVIEW.md) includes the proof and reproduction script.
+Read [project_notebook.pdf](project_notebook.pdf). **Version 3.1** records the 20 November 2026 design, single-GH200 hardware acceptance and development evidence through 26 November. Section 5 presents the CRAM checkpoint certificate, a score-only search comparison, and a natural-error repair endpoint. The [full research note](../CRAM_REVIEW.md) includes the proof and reproduction script.
 
 - Sections 1–2: objective, notation, architecture and one update.
 - Section 3: local calibration, signed learned invalidity, and task-through-unroll training. This is a proposed recipe, not a solved learning guarantee.

@@ -37,7 +37,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\sffamily\small\color{muted}TRM \textbar\ Living project guide}
-\fancyhead[R]{\sffamily\small\color{muted}25 November 2026}
+\fancyhead[R]{\sffamily\small\color{muted}26 November 2026}
 \fancyfoot[L]{\sffamily\footnotesize Version 3.1 \textbar\ Evidence and hypotheses kept separate}
 \fancyfoot[R]{\sffamily\small\thepage}
 \renewcommand{\headrulewidth}{0.3pt}
@@ -51,7 +51,7 @@
 {\Large Learning residuals and coordinating their influence on recurrent reasoning\par}
 \vspace{8mm}
 \textbf{Version 3.1 --- design dated 20 November 2026.}\\
-Implementation status updated 25 November 2026.\\
+Implementation status updated 26 November 2026.\\
 Repository: \href{https://github.com/NiccoGrillo/TinyRecursiveModels}{NiccoGrillo/TinyRecursiveModels}.\\
 Previous guide \code{ff7c125}. Historical pilot report \code{98689fb}.
 
@@ -66,7 +66,7 @@ Keep the rule-free residual model. A checkpoint audit of CRAM gives an example w
 
 \vfill
 \status{EVIDENCE STATUS}
-The residual reasoner and comparison pipeline passed CPU tests and single-GH200 acceptance. The first development pilot completed on Sudoku and modular prefix sums. Every method had zero exact solves, so the pilot measured compute costs and revealed a need for a stronger starting solver. The 60-page version 2.1 remains available in the archive.
+The first development pilot completed on Sudoku and modular prefix sums with zero exact solves. A prefix-sum curriculum gave us a reference that solves many short sequences and sometimes loses correct answers during continued reasoning. Section~\ref{sec:evidence} reports the results and the next controller comparison. The 60-page version 2.1 remains available in the archive.
 
 \newtopic
 \section*{Reading map}
@@ -363,7 +363,7 @@ Attracting semantic manifold & A theoretical alternative, not a measured learned
 
 \textbf{Development pilot, 25 November 2026.} The 250-update, one-seed run completed all 20 development evaluations. Every arm had zero exact solves on its 512 examples through depth 16 and under the common time budget. No candidate was initially correct, so the pilot gave no retention estimate. Local replay of the jointly trained recurrent model at depth four found 13.71\% blank-cell accuracy on Sudoku and 18.59\% token accuracy on prefix sums. Simple task baselines reached 11.09\% and 18.13\%, respectively. See the \href{https://github.com/NiccoGrillo/TinyRecursiveModels/blob/74a08dc8e1bdf9dd4c10531944c7e8537c11fa38/docs/RESIDUAL_TRAINING.md}{training runbook} for the pilot protocol.
 
-\textbf{Prefix-sum follow-up.} In separate local 1,024-update runs, the reference solved 175 of 512 length-4 dev sequences and zero at lengths 8 and 16. A GPU follow-up then matched 3,072 updates for direct length-16 training and a 4--8--16 curriculum. At depth four the curriculum raised length-16 token accuracy from 27.40\% to 35.35\%, with zero exact solves in both arms. At depth 16 the curriculum fell to 24.60\%. These single-seed results motivate checking longer length-16 training and supervised unroll depth before the controller comparison.
+\textbf{Prefix-sum follow-up.} A 4--8--16 curriculum raised length-16 token accuracy from 27.40\% to 35.35\% at 3,072 matched updates. After 1,024 more updates at length 16, the four-step curriculum reached 39.77\%. Supervising eight steps reached 37.71\% at the same readout depth. Exact length-16 solves remained zero. On length-4 dev sequences, the four-step model started depth four with 451 of 512 correct. Depth 16 retained 390 of those and repaired 11 of the 61 wrong starts. These one-seed development cohorts motivate a matched-cost controller comparison on short sequences.
 
 \subsection{What the architecture and CRAM critiques changed}
 \begin{tabularx}{\linewidth}{@{}P{49mm}Y@{}}\toprule
