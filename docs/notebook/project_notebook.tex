@@ -365,6 +365,12 @@ Attracting semantic manifold & A theoretical alternative, not a measured learned
 
 \textbf{Prefix-sum follow-up.} A 4--8--16 curriculum raised length-16 token accuracy from 27.40\% to 35.35\% at 3,072 matched updates. After 1,024 more updates at length 16, the four-step curriculum reached 39.77\%. Supervising eight steps reached 37.71\% at the same readout depth. Exact length-16 solves remained zero. On length-4 dev sequences, the four-step model started depth four with 451 of 512 correct. Depth 16 retained 390 of those and repaired 11 of the 61 wrong starts. These one-seed development cohorts motivate a matched-cost controller comparison on short sequences.
 
+\newtopic
+\subsection{Held-out continuation and Sudoku capability}
+On 512 held-out length-4 sequences, stopping at the shared depth-four fork solved 430. At the common continuation budget the recurrent mixer repaired 12 and broke 10, finishing at 432. Stateless mixing repaired the same 12 and broke 12, finishing at 430. Ordinary descent repaired 10 and broke 19, finishing at 421. The paired uncertainty interval for the mixer's net gain over stopping spans zero.
+
+On a common 32-board Sudoku development cohort, released TRM and FPRM checkpoints each solved 25 boards within 750\,ms in a batch-one timing check. The matched training comparison gives freshly trained TRM and the jointly trained residual reasoner the same original puzzles, augmentations and GH200 time budget. On the 128 held-out boards reserved for that comparison, released FPRM solved 67 by 100\,ms and 96 by 750\,ms.
+
 \subsection{What the architecture and CRAM critiques changed}
 \begin{tabularx}{\linewidth}{@{}P{49mm}Y@{}}\toprule
 Objection & Decision\\\midrule

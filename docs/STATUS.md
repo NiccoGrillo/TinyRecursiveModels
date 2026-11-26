@@ -1,5 +1,28 @@
 # Status
 
+## 26 November 2026 · Held-out controller comparison and Sudoku benchmark
+
+Isambard run `length4-mixer-74a08dc-mmORam` (job `8882596`) froze the ordinary-descent curriculum continuation and compared controllers from the same depth-four states. The runtime was `74a08dc`. The parent checkpoint SHA-256 was `c54e771fe8c8d36c0583f1c1750bc18368f0a6ff728c2f1312ffe0bf012a0f6d`. The recurrent and stateless checkpoints were `23cc64e5c5970640204a5fee0f1e60c9fe51226ef2bcf2ad397d48543fd45674` and `967d744e1f5bedc5d6a442bc38cba857440786929036193a1b178675610678f4`. The budget was 14.62 ms per batch of 16, calibrated as four warmed reference steps on development inputs. The 512 held-out sequences had 430 correct and 82 wrong at the fork.
+
+| Arm | Repaired | Broke | Final exact |
+|---|---:|---:|---:|
+| Stop at four | 0 | 0 | 430/512 |
+| Ordinary descent | 10 | 19 | 421/512 |
+| Direct correction | 5 | 285 | 150/512 |
+| Gated correction | 20 | 93 | 357/512 |
+| Stateless mixing | 12 | 12 | 430/512 |
+| Recurrent mixing | 12 | 10 | 432/512 |
+| One-token score search | 5 | 323 | 112/512 |
+| Two-token score search | 0 | 178 | 252/512 |
+
+The recurrent mixer helped 11 and harmed zero relative to ordinary descent. It repaired the same 12 inputs as stateless mixing and retained two more correct starts. Relative to stopping, the net gain was 2/512 (+0.39 percentage points, pointwise paired bootstrap interval −1.37 to +2.15 points). The held-out result supports a comparison with ordinary descent on this field. The gain over stopping and the incremental value of memory are uncertain. Further work shifts to whole-system Sudoku capability.
+
+Isambard job `8882647` exercised the released TRM MLP and FPRM checkpoints on the same 32 Sudoku dev boards using synchronized eager batch-one inference. At 100 ms, TRM solved 19/32 and FPRM 20/32. At the 750 ms cap, both solved 25/32. TRM reached its native stop on all 32. FPRM reached its native stop on 20, so the 750 ms table reports its last affordable prediction for the remaining boards. This small checkpoint and timing check uses public weights with separate training provenance. The TRM weight SHA-256 was `20e9dc7ebf83b9b41a8b3f58f5fd94ee3a7eb0b0d245bdeeb14e2f1488d1daaf`. The FPRM weight SHA-256 was `6daec5f499d115beb14e23f3a9cf56d1166b99c1ccd36b185a19ea5dfec9a137` with upstream source `b291252387b2656d7a7bc2719d9317e6d812b283`.
+
+The matched training comparison uses 1,000 common original training puzzles and the same 32 seeded upstream Sudoku augmentations per puzzle, giving 33,000 training rows. Both input encodings round-trip to the same puzzle and label arrays. It uses 512 dev and 1,024 separate held-out boards, with the first 128 held-out boards fixed for the short run's timing curves. The approved maximum is two GH200-hours per model. The plan allocates 110 minutes of training and a 115-minute Slurm cap to each arm, plus a shared preflight capped at ten minutes. TRM retains its native objective, EMA and BF16 path. The residual reasoner uses joint recurrent-mixer training in FP32. This is a comparison of the two systems under an equal time budget.
+
+The matched run root is `sudoku-matched-7Lr4Oe` with cohort manifest SHA-256 `2ac636f1f6834cc7eedc5ef7ee2f296add953ee188fee085fd154ac1c96874ac`. Initial preflight `8882801` stopped after 55 seconds because the optimizer's CUDA build inherited an unwritable temporary path. Retry `8882839` compiled the same upstream optimizer in the container's `/tmp` and exposed a missing dataset-loader dependency. Preflight `8882872` added that dependency and passed training, checkpoint and evaluation checks for both arms. Native TRM `8882873` and recurrent residual `8882874` started at 09:49 UK time. External FPRM job `8882879` evaluated the identical 128 held-out input IDs. It solved 67/128 by 100 ms and 96/128 by 750 ms. It reached native termination on 79 boards within the cap.
+
 ## 26 November 2026 · Prefix-sum continuation and reasoning depth
 
 All three tasks in Isambard array `8870010` completed in 5m 19s from first start to final exit. At runtime revision `74a08dc8e1bdf9dd4c10531944c7e8537c11fa38`, each branch restored the weights, AdamW state and step counter at update 3,072, then took 1,024 more updates on the same length-16 training set. The two curriculum branches began at the same checkpoint and supervised either four or eight reasoning steps. The direct branch continued with four. Dataset fingerprints and dev input IDs matched the prior study. The continuation runner reproduced uninterrupted training bitwise in a short CPU check, and 72 repository tests passed.
