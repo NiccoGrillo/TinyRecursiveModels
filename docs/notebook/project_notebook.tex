@@ -51,7 +51,7 @@
 {\Large Learning residuals and coordinating their influence on recurrent reasoning\par}
 \vspace{8mm}
 \textbf{Version 3.1 --- design dated 20 November 2026.}\\
-Implementation status updated 27 November 2026, including the learned hypothesis pilot.\\
+Implementation status updated 27 November 2026, including the native mixing comparison.\\
 Repository: \href{https://github.com/NiccoGrillo/TinyRecursiveModels}{NiccoGrillo/TinyRecursiveModels}.\\
 Previous guide \code{ff7c125}. Historical pilot report \code{98689fb}.
 
@@ -62,7 +62,7 @@ Can a recurrent model learn when and how to revise its answer, while keeping use
 A neural network reads the input and current latent candidate and produces a vector of \emph{learned residuals}. Another network uses persistent memory to mix those residuals before they produce a correction to the candidate. The correction vanishes whenever all residuals vanish; memory can continue changing. The central learning problem is making those residuals meaningful and their derivatives useful. A residual zero is not automatically a correct answer.
 
 \section*{The current experimental decision}
-Native TRM kept every solved answer in the logged development trajectories. The current priority is to reach correct candidates that serial continuation misses. Learned edits reached one such answer while giving up one serial solve. The next control should measure what conditioning on distinct digits adds to a workspace edit. Section~\ref{sec:evidence} reports the evidence.
+Native TRM kept every solved answer in the logged development trajectories. The current priority is to reach correct candidates that serial continuation misses. The next comparison lets workspace steer each native answer proposal. Fine-tuned native TRM, scalar gating, and rank-one directional mixing share the same supervision stream and are scored at equal inference time. Section~\ref{sec:evidence} reports the evidence and planned comparison.
 
 \vfill
 \status{EVIDENCE STATUS}
@@ -373,7 +373,7 @@ On the same 128 held-out Sudoku boards, freshly trained native TRM solved 78 at 
 
 An audit scored all 128 known solution codewords correctly and reproduced the exact GPU traces. The residual model preserved every given digit at depth four, with a median of 29 wrong blanks. At identical minibatch exposure the direct update trained in 27.2 minutes versus 110 for the residual update, and solved zero boards versus one. The two recipes use different auxiliary losses and parameter counts.
 
-At the frozen-TRM fork, 60 of 256 boards were exact. At 101\,ms native continuation reached 147 and all refiners reached zero. Zero gain recovered the same 60 IDs. At 4,096 updates the direct and recurrent refiners solved 55 and 59. Native TRM lost no solves by depth 16, leaving 94 never solved. An early Gaussian split covered 123 versus 143 serial. At depth 12 it covered 161 versus 162. Learned digit-conditioned edits tied serial at 162, trading one serial solve for a new one. Both proposed digits were wrong on that new solve, motivating a digit-blind control. The test cohort stays sealed.
+At the frozen-TRM fork, 60 of 256 boards were exact. At 101\,ms native continuation reached 147 and all refiners reached zero. At 4,096 training updates the direct and recurrent refiners solved 55 and 59. Native TRM lost no solves by depth 16, leaving 94 never solved. Learned digit-conditioned edits later tied serial at 162, trading one serial solve for a new one. The next test learns a correction to the native proposal $d=\tilde z_H-z_H$: scalar $gd$ or directional $gu(v^\top d)$. Its control is ordinary native fine-tuning. The three arms share ACT training exposure. The test cohort stays sealed.
 
 \subsection{What the architecture and CRAM critiques changed}
 \begin{tabularx}{\linewidth}{@{}P{49mm}Y@{}}\toprule
