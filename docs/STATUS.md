@@ -1,5 +1,13 @@
 # Status
 
+## From-scratch native mixing result
+
+All nine Isambard jobs `8916453`–`8916461` completed with exit `0:0`. Development depth-16 solves rose by 25, 27 and 23 from steps 3,072 to 4,096 for native, scalar and directional, triggering the prespecified extension. All arms reached 8,192 updates and 6,291,456 supervised presentations. The common-checkpoint digests verified matching effective augmented examples in both stages.
+
+At the same 304.07 ms batch-one deadline on 256 dev boards, native solved 128, scalar 116, and directional 106. Relative to native, scalar gained 24 and lost 36 (95% conservative paired net interval −13.94 to +4.71 percentage points), while directional gained 17 and lost 39 (−17.36 to +0.45 points). Median accepted depth was 16, 16 and 15 respectively. At fixed depth 16 in the separate batched curve the totals were 129, 116 and 106. At the latest shared training time of 51.38 minutes, the latest available snapshots were native step 8,192 and both mixer arms at 7,680, with 129, 108 and 106 depth-16 solves. Both learned heads were active. After BF16 casting, scalar and directional corrections had aggregate norms of 29.0% and 12.1% of the respective native proposal norms at the endpoint. Final active training times were 51.38, 52.78 and 52.92 minutes, excluding rate trials.
+
+Neither variant cleared the development comparison in this single-seed budget and common ACT schedule. Native and scalar still gained 12 and eight depth-16 solves over their final 512 updates. These observations leave attainable performance open. The 896 held-out boards remain sealed. The cluster output `native-answer-from-scratch-da53a831` contains `curves-stage-2.csv`, `curves-stage-2.json`, `extension.json`, and `evaluation.json`.
+
 ## 27 November 2026 · End-to-end native mixing comparison
 
 This supersedes the warm-start comparison as the architectural test. Native TRM, the scalar gate and directional mixing start from identical random tensors for all shared parameters, with zero initial gates. They train all shared weights, including the native workspace and embeddings, from their first step. The archived checkpoint supplies the native architecture recipe and the earlier traces supply the frozen timing allowance, with no pretrained weights loaded into these arms.

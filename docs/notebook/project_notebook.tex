@@ -62,7 +62,7 @@ Can a recurrent model learn when and how to revise its answer, while keeping use
 A neural network reads the input and current latent candidate and produces a vector of \emph{learned residuals}. Another network uses persistent memory to mix those residuals before they produce a correction to the candidate. The correction vanishes whenever all residuals vanish; memory can continue changing. The central learning problem is making those residuals meaningful and their derivatives useful. A residual zero is not automatically a correct answer.
 
 \section*{The current experimental decision}
-Native TRM kept every solved answer in the logged development trajectories. The current priority is to reach correct candidates that serial continuation misses. Native TRM, scalar gating, and rank-one directional mixing will train from identical shared random weights. Each arm has a small rate search, a matched supervision stream, and full learning curves. Section~\ref{sec:evidence} reports the evidence and planned comparison.
+Native TRM kept every solved answer in the logged development trajectories. A from-scratch comparison tested scalar gating and rank-one directional mixing from identical shared random weights and matched supervision. At the tested budget, the original TRM solved the most boards. Section~\ref{sec:evidence} reports the final comparison.
 
 \vfill
 \status{EVIDENCE STATUS}
@@ -373,7 +373,7 @@ On the same 128 held-out Sudoku boards, freshly trained native TRM solved 78 at 
 
 An audit scored all 128 known solution codewords correctly and reproduced the exact GPU traces. The residual model preserved every given digit at depth four, with a median of 29 wrong blanks. At identical minibatch exposure the direct update trained in 27.2 minutes versus 110 for the residual update, and solved zero boards versus one. The two recipes use different auxiliary losses and parameter counts.
 
-At the frozen-TRM fork, 60 of 256 boards were exact. At 101\,ms native continuation reached 147 and all refiners reached zero. At 4,096 training updates the direct and recurrent refiners solved 55 and 59. Native TRM lost no solves by depth 16, leaving 94 never solved. The next test learns a correction to the native proposal $d=\tilde z_H-z_H$: scalar $gd$ or directional $gu(v^\top d)$. All arms train from scratch with common supervision. Compare learning curves by GPU time and examples, and assess exact solves at equal inference time. The test cohort stays sealed.
+At the frozen-TRM fork, 60 of 256 boards were exact. At 101\,ms native continuation reached 147 and all refiners reached zero. At 4,096 training updates the direct and recurrent refiners solved 55 and 59. Native TRM lost no solves by depth 16, leaving 94 never solved. A from-scratch test added scalar $gd$ or directional $gu(v^\top d)$ to the native proposal. After 8,192 matched updates the 304\,ms readout solved 128 native, 116 scalar and 106 directional boards. Both heads changed the proposals. This result covers one seed and budget. The test cohort stays sealed.
 
 \subsection{What the architecture and CRAM critiques changed}
 \begin{tabularx}{\linewidth}{@{}P{49mm}Y@{}}\toprule
