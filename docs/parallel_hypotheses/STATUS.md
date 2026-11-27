@@ -21,3 +21,7 @@ The distinguishing evidence a new project would need is a natural full-input cas
 ## Build the notebook
 
 From docs/parallel_hypotheses run `tectonic notebook.tex` (XeLaTeX plus BibTeX also works with the listed packages and Latin Modern fonts). The source includes five companion TeX files and references.bib. The full source audit and links to releases are in prior-art.md.
+
+## Sudoku complementarity audit · 27 November 2026
+
+Of the 76 archived cases, 50 still had two different, wrong endpoints and a serial miss on CPU. The selected blank and proposed pair of digits matched the archived values on 1/76 boards. On 14/50 replay-eligible boards, each branch was correct on at least one cell missed by the other. A chooser with access to the true digits could assemble 0/50 exact boards. The median number of cells wrong in both endpoints was 30. Averaging the endpoint logits solved 0/50 boards. The conditional subset is development evidence only. The CPU replay used no GPU-hours. The registered replay source is e5da9d1. The next proposed experiment is a frozen, site-aligned peer correction against shuffled corrections and untouched continuation. No new architecture training or Slurm job is pending.
