@@ -173,7 +173,8 @@ def predict(model, inputs, label, budget, device):
     batch = {"inputs": inputs[None], "puzzle_identifiers": inputs.new_zeros(1)}
     torch.cuda.synchronize()
     start = perf_counter()
-    carry = model.initial_carry(batch)
+    with torch.device(device):
+        carry = model.initial_carry(batch)
     tokens, logits, times = [], [], []
     for _ in range(model.config.halt_max_steps):
         carry, out = model(carry, batch)

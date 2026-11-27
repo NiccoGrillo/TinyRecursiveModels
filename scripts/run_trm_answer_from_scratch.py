@@ -249,7 +249,8 @@ def fixed_depth(model, bank, device):
     for x, y in zip(bank["inputs"].split(32), bank["labels"].split(32), strict=True):
         x, y = x.to(device), y.to(device)
         batch = dict(inputs=x, puzzle_identifiers=x.new_zeros(len(x)))
-        carry = model.initial_carry(batch)
+        with torch.device(device):
+            carry = model.initial_carry(batch)
         for depth in range(16):
             carry, output = model(carry, batch)
             scores = output["logits"]
