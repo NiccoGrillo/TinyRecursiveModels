@@ -164,7 +164,6 @@ def fit(args, arm, directory, start, stop, interval, max_seconds, choice, previo
         active = state["seconds"]
         torch.set_rng_state(state["cpu_rng"])
         torch.cuda.set_rng_state(state["cuda_rng"])
-    forward = head if args.eager else torch.compile(head, dynamic=False)
     snapshots, recorded, effective = [], [], []
     segment = []
     batch_losses = []
@@ -178,7 +177,7 @@ def fit(args, arm, directory, start, stop, interval, max_seconds, choice, previo
             with torch.device(args.device):
                 if carry is None:
                     carry = head.initial_carry(batch)
-                carry, loss, metrics, _, _ = forward(carry=carry, batch=batch, return_keys=[])
+                carry, loss, metrics, _, _ = head(carry=carry, batch=batch, return_keys=[])
             (loss / args.batch).backward()
             scale = min(1.0, step / int(recipe["lr_warmup_steps"]))
             for group in dense.param_groups:
@@ -395,11 +394,10 @@ def main():
     parser.add_argument("--job", required=True, choices=(*ARMS, "compare", "preflight"))
     parser.add_argument("--phase", type=int, choices=(1, 2), default=1)
     args = parser.parse_args()
-    args.device, args.batch, args.eager = torch.device("cuda"), BATCH, False
+    args.device, args.batch = torch.device("cuda"), BATCH
     torch.backends.cuda.matmul.allow_tf32 = False
     torch.backends.cudnn.allow_tf32 = False
     if args.job == "preflight":
-        args.batch, args.eager = 8, True
         for arm in ARMS:
             ref = args.output / "native" if arm != "native" else None
             directory = args.output / arm
