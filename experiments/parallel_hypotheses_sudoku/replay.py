@@ -34,6 +34,7 @@ def run(args):
     edit.load_state_dict(torch.load(args.edit, map_location="cpu", weights_only=True))
     edit.to(device)
     rows = []
+    predictions = []
     start = time.monotonic()
     for i, archive in enumerate(report["rows"]):
         flags = archive["arms"]["two_hypotheses"]["exact"]
@@ -49,10 +50,12 @@ def run(args):
         cell,digits = hypothesis_choices(x,logits)
         scores = []
         branch_exact = [bool(logits.argmax(-1).eq(y).all())]
+        branch_readouts = []
         for digit in digits.unbind(1):
             branch = edit(state,logits,cell,digit)
             _, outputs = rollout(adapter,branch,batch,2)
             scores.append(outputs[-1].float())
+            branch_readouts.extend(int(t[0, cell.item()].argmax()) for t in outputs)
             branch_exact.extend(bool(t.argmax(-1).eq(y).all()) for t in outputs)
         _, serial = rollout(adapter,state,batch,4)
         a,b = (s.argmax(-1) for s in scores)
@@ -61,6 +64,7 @@ def run(args):
         serial_exact=any(s.argmax(-1).eq(y).all().item() for s in [logits,*serial])
         if device.type == "cuda" and (
             cell.item() != archive["cell"] or digits[0].tolist() != archive["proposed"]
+            or branch_readouts != archive["hypothesis_readouts"]
             or branch_exact != flags or [bool(t.argmax(-1).eq(y).all()) for t in [logits,*serial]]
             != archive["arms"]["serial"]["exact"] or torch.equal(a,b)
         ):
@@ -70,8 +74,13 @@ def run(args):
                          b_only=int((cb & ~ca).sum()),both_wrong=int((~ca & ~cb).sum()),
                          a_exact=bool(ca.all()),b_exact=bool(cb.all()),agree=bool(torch.equal(a,b)),
                          pooled_exact=bool(avg.eq(y).all()),serial_exact=serial_exact))
+        if args.predictions is not None:
+            predictions.append(dict(id=archive["id"], cell=int(cell.item()), digits=digits[0].tolist(),
+                                    a=a[0].tolist(), b=b[0].tolist(), pooled=avg[0].tolist()))
         if len(rows)%10==0:
             print(len(rows), round(time.monotonic()-start,1),flush=True)
+    if args.predictions is not None:
+        args.predictions.write_text(json.dumps(predictions)+"\n")
     args.out.write_text(json.dumps(dict(rows=rows,torch=str(torch.__version__),threads=args.threads,device=str(device),
         wall_seconds=time.monotonic()-start,report_sha256=sha(args.report),bank_sha256=sha(args.bank),
         native_sha256=sha(args.weights),edit_sha256=sha(args.edit)),indent=2)+"\n")
@@ -81,6 +90,7 @@ if __name__=="__main__":
     p=argparse.ArgumentParser(description=__doc__)
     for key in ("report","calibration","bank","weights","edit","config","out"):
         p.add_argument("--"+key,type=Path,required=True)
+    p.add_argument("--predictions",type=Path,help="Optional private output on approved storage")
     p.add_argument("--device", choices=("cpu","cuda"), default="cpu")
     p.add_argument("--threads", type=int, default=4)
     run(p.parse_args())
