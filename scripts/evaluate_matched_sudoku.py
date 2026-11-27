@@ -35,7 +35,7 @@ def score_residual(model, answer, label):
     return model.decode(answer).argmax(-1).eq(label)
 
 
-def model_from_checkpoint(args, device):
+def model_from_checkpoint(args, device, *, batch_size=1):
     if args.family == "residual":
         from experiments.residual_reasoning.train import from_checkpoint
 
@@ -48,7 +48,7 @@ def model_from_checkpoint(args, device):
         raise ValueError("Expected the one-identifier Sudoku checkpoint")
     cfg = yaml.safe_load(args.config.read_text())["arch"]
     cfg = {key: value for key, value in cfg.items() if key not in ("name", "loss")}
-    cfg.update(batch_size=1, seq_len=81, vocab_size=11, num_puzzle_identifiers=1)
+    cfg.update(batch_size=batch_size, seq_len=81, vocab_size=11, num_puzzle_identifiers=1)
     if args.family == "trm":
         from models.recursive_reasoning.trm import TinyRecursiveReasoningModel_ACTV1 as Native
     else:

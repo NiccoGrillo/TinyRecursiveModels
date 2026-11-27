@@ -126,7 +126,7 @@ class Adapter:
         high, low = state.z_H, state.z_L
         for _ in range(cycles):
             low = self.inner.L_level(low, high + injection, cos_sin=cos_sin)
-        high = self.inner.L_level(high, low, cos_sin=cos_sin)
+        high = self.inner.update_answer(high, low, cos_sin=cos_sin)
         result = State(high, low)
         return result, self.readout(result)
 
@@ -144,7 +144,7 @@ class Adapter:
         for _ in range(self.config.H_cycles):
             for _ in range(self.config.L_cycles):
                 low = inner.L_level(low, high + injection, **seq)
-            high = inner.L_level(high, low, **seq)
+            high = inner.update_answer(high, low, **seq)
         result = State(high, low)
         return result, self.readout(result)
 
