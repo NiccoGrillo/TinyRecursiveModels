@@ -1,5 +1,11 @@
 # Status
 
+## 27 November 2026 · Learned native hypotheses pilot
+
+[The pilot](../scripts/run_trm_hypothesis_pilot.py) uses the frozen native TRM at depth 12. Pick the blank with the smallest gap between its two leading digit logits. For each explicit digit hypothesis, a shared learned map reads the fork state at that cell and writes a bounded edit to the corresponding working-state vector. The input and answer state are identical across branches, so immediate logits are invariant. The native macro update is retained. Training differentiates through one full native macro for 256 updates on the same 1,000 original training boards. Correct hypotheses supervise the full board, and both correct and incorrect proposed digits supervise adherence at the chosen cell. The proposal uses only native logits at inference.
+
+On all 256 development boards, compare four serial macros, two clean plus two under the second-ranked hypothesis, and two macros under each of the two explicit hypotheses. Each spends 168 native blocks after the shared prefix. Assess exact candidate coverage, per-board gains and losses, and the existing confidence selector with labels used only after selecting. Report branch disagreement and adherence at the proposed digit, so a lack of candidate improvement can be interpreted alongside whether the network actually used the hypotheses. This is a test of a candidate generator, before introducing a mixer.
+
 ## 27 November 2026 · Training-duration and late-branch results
 
 GH200 job `8899223` completed on 26 November in 6m 24s with exit `0:0`. The original archives contained weights only. The [duration runner](../scripts/run_trm_refinement_duration.py) replayed both arms from the original initialization and recovered every archived step-512 weight bitwise. Both arms then continued their live AdamW trajectories to 4,096 total updates. They used the same step-indexed minibatches, 1,000 training fork states, original optimizer and cell loss, 256 development states and four-step inference horizon. Each arm received 65,536 sample presentations. All ten model and optimizer checkpoints were saved and checksum-verified. The separate replay's step-512 metrics and per-board IDs matched exactly at inference steps 0 through 4.
