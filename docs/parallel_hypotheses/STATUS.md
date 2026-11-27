@@ -20,8 +20,12 @@ The distinguishing evidence a new project would need is a natural full-input cas
 
 ## Build the notebook
 
-From docs/parallel_hypotheses run `tectonic notebook.tex` (XeLaTeX plus BibTeX also works with the listed packages and Latin Modern fonts). The source includes five companion TeX files and references.bib. The full source audit and links to releases are in prior-art.md.
+From docs/parallel_hypotheses run `tectonic notebook.tex` (XeLaTeX plus BibTeX also works with the listed packages and Latin Modern fonts). The source includes companion TeX files and references.bib. The full source audit and links to releases are in prior-art.md.
 
 ## Sudoku complementarity audit · 27 November 2026
 
 Of the 76 archived cases, 50 still had two different, wrong endpoints and a serial miss on CPU. The selected blank and proposed pair of digits matched the archived values on 1/76 boards. On 14/50 replay-eligible boards, each branch was correct on at least one cell missed by the other. A chooser with access to the true digits could assemble 0/50 exact boards. The median number of cells wrong in both endpoints was 30. Averaging the endpoint logits solved 0/50 boards. The conditional subset is development evidence only. The CPU replay used no GPU-hours. The registered replay source is e5da9d1. The next proposed experiment is a frozen, site-aligned peer correction against shuffled corrections and untouched continuation. No new architecture training or Slurm job is pending.
+
+## GH200 verification · 27 November 2026
+
+Job 8930277 ran verification revision 44b60c4 on one GH200. Slurm reported COMPLETED, exit 0:0, elapsed 32 s, 0.00889 allocated GPU-hours against the one-job 0.25-hour cap. No additional GPU job is committed. The unused portion of the cap is not transferable to a different experiment. All 76 archived fingerprints passed, 17 boards have reciprocal correct digits, 0 have a fully correct cellwise union, 0 were solved by averaged logits, and the median shared error count is 29. See experiments/parallel_hypotheses_sudoku/gh200-results.json. Private per-board digit grids are under /projects/u6aag/trm-residual/niccogrillo.u6aag/parallel-hypotheses-verify-44b60c4eb21fb6ffee959d051db91365254b1aa8/8930277/private-predictions.json, SHA-256 36a014ae33a6b845b5ffb4dfbf26c0ec3604e393248bba3b2f2824b9b4dab521. The public metrics file matched the remote SHA-256 107d6172f7734488f430ed7765be609f787b3e4f704ae63d6e4411c8956dcb32. The fresh-puzzle intervention is specified separately; its GH200 execution requires a new allocation decision.
