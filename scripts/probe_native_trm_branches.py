@@ -58,7 +58,7 @@ def audit(calibration_path, prior_path):
     )
 
 
-def probe(root, calibration):
+def probe(root, calibration, requested_fork=None):
     from time import perf_counter
     from types import SimpleNamespace
 
@@ -81,10 +81,13 @@ def probe(root, calibration):
     torch.backends.cudnn.allow_tf32 = False
     model, _ = model_from_checkpoint(SimpleNamespace(family="trm", weights=weights, config=config), device)
     saved = torch.load(bank_path, map_location="cpu", weights_only=True)
-    fork = calibration["choice"]["fork"]
+    saved_fork = calibration["choice"]["fork"]
+    fork = saved_fork if requested_fork is None else requested_fork
     traces = calibration["traces"]
-    if saved["ids"] != [row["id"] for row in traces] or saved["fork"] != fork:
+    if saved["ids"] != [row["id"] for row in traces] or saved["fork"] != saved_fork:
         raise ValueError("Saved fork IDs or depth differ from the calibration")
+    if not saved_fork <= fork <= DEPTH - WORK:
+        raise ValueError("The common prefix and serial continuation must fit in the calibrated trajectory")
     x, y, h, l, logits = [saved[k].to(device) for k in ("inputs", "labels", "z_H", "z_L", "logits")]
 
     def roll(state, batch, steps):
@@ -92,7 +95,7 @@ def probe(root, calibration):
         for _ in range(steps):
             state, score, _ = model.inner(state, batch)
             scores.append(score)
-        return scores
+        return state, scores
 
     def readout(state):
         return model.inner.lm_head(state.z_H)[:, model.inner.puzzle_emb_len:]
@@ -112,6 +115,12 @@ def probe(root, calibration):
         batch = {"inputs": board, "puzzle_identifiers": board.new_zeros(1)}
         state = InnerCarry(h[i:i + 1], l[i:i + 1])
         base = logits[i:i + 1]
+        native = traces[i]["correct"]
+        if fork > saved_fork:
+            state, prefix = roll(state, batch, fork - saved_fork)
+            if torch.cat(prefix).argmax(-1).eq(y[i]).all(-1).tolist() != native[saved_fork:fork]:
+                raise ValueError(f"Reconstructed prefix disagrees with the archived trace on board {i}")
+            base = prefix[-1]
         blanks = board[0].eq(1)
         seed = int(saved["ids"][i][:16], 16) ^ SEED
         result = {"id": saved["ids"][i]}
@@ -119,18 +128,19 @@ def probe(root, calibration):
             torch.cuda.synchronize()
             started = perf_counter()
             if arm == "serial":
-                scores = [base, *roll(state, batch, WORK)]
+                _, serial = roll(state, batch, WORK)
+                scores = [base, *serial]
             else:
                 original = State(state.z_H, state.z_L)
                 perturbed, norm = perturb(original, random_direction(original, seed), NOISE_RMS)
-                scores = [base, *roll(state, batch, WORK // 2),
-                          *roll(InnerCarry(perturbed.z_H, perturbed.z_L), batch, WORK // 2)]
+                _, clean = roll(state, batch, WORK // 2)
+                _, alternate = roll(InnerCarry(perturbed.z_H, perturbed.z_L), batch, WORK // 2)
+                scores = [base, *clean, *alternate]
             tokens, chosen, elapsed = select(scores, blanks, started)
             exact = tokens.eq(y[i]).all(-1).tolist()
             result[arm] = dict(exact=exact, selected=chosen, seconds=elapsed)
         if (not torch.equal(readout(perturbed), base) or not norm[0]["budget_ok"] or norm[0]["zero_delta"]):
             raise ValueError("Fork readout changed or the perturbation missed its RMS budget")
-        native = traces[i]["correct"]
         if result["serial"]["exact"] != native[fork - 1:fork + WORK]:
             raise ValueError(f"Serial continuation disagrees with the archived trace on board {i}")
         if result["split"]["exact"][:1 + WORK // 2] != result["serial"]["exact"][:1 + WORK // 2]:
@@ -143,7 +153,7 @@ def probe(root, calibration):
         rows = [run_board(i) for i in range(len(traces))]
     serial = [any(r["serial"]["exact"]) for r in rows]
     split = [any(r["split"]["exact"]) for r in rows]
-    return dict(macro_updates=WORK, blocks_per_macro=model.config.H_cycles * (model.config.L_cycles + 1)
+    return dict(fork=fork, macro_updates=WORK, blocks_per_macro=model.config.H_cycles * (model.config.L_cycles + 1)
                 * model.config.L_layers, seed=SEED, relative_rms=NOISE_RMS,
                 serial_oracle=sum(serial), split_oracle=sum(split),
                 split_only_ids=[r["id"] for r, s, b in zip(rows, serial, split) if b and not s],
@@ -162,11 +172,14 @@ def main():
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--probe", action="store_true", help="Run the GPU branch comparison after the CPU audit.")
+    parser.add_argument("--fork", type=int, help="GPU fork depth. Defaults to the archived fork.")
     args = parser.parse_args()
+    if args.fork is not None and not args.probe:
+        parser.error("--fork requires --probe")
     calibration, report = audit(args.root / "dev-calibration/calibration.json",
                                 args.root / "dev-refiners/dev-results.json")
     if args.probe:
-        report["branch_probe"] = probe(args.root, calibration)
+        report["branch_probe"] = probe(args.root, calibration, args.fork)
     with args.output.open("x") as handle:
         json.dump(report, handle, indent=2)
         handle.write("\n")

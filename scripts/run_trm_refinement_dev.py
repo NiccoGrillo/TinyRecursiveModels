@@ -45,7 +45,7 @@ def native_training_bank(native, inputs, labels, fork):
     return inputs.cpu(), torch.cat(h), torch.cat(l), torch.cat(logits), labels.cpu()
 
 
-def train(method, architecture, bank, shared, device):
+def train(method, architecture, bank, shared, device, *, steps=STEPS, checkpoint_steps=(), on_checkpoint=None):
     torch.manual_seed(SEED)
     refiner = TRMRefiner(architecture, bank[1].shape[-1], method)
     initial = refiner.state_dict()
@@ -57,7 +57,7 @@ def train(method, architecture, bank, shared, device):
     optimizer = torch.optim.AdamW(refiner.parameters(), lr=0.0003, weight_decay=0.01)
     sync(device)
     start = time.perf_counter()
-    for step in range(1, STEPS + 1):
+    for step in range(1, steps + 1):
         indices = torch.randint(len(bank[0]), (BATCH,),
                                 generator=torch.Generator().manual_seed(SEED * 10000019 + step))
         minibatch = [value[indices].to(device) for value in bank]
@@ -68,6 +68,8 @@ def train(method, architecture, bank, shared, device):
         optimizer.step()
         if step == 1 or step % 128 == 0:
             print(method, step, "loss", loss.item(), flush=True)
+        if step in checkpoint_steps:
+            on_checkpoint(step, refiner, optimizer)
     sync(device)
     return refiner.eval(), time.perf_counter() - start
 

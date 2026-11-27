@@ -1,5 +1,25 @@
 # Status
 
+## 27 November 2026 · Training-duration and late-branch results
+
+GH200 job `8899223` completed on 26 November in 6m 24s with exit `0:0`. The original archives contained weights only. The [duration runner](../scripts/run_trm_refinement_duration.py) replayed both arms from the original initialization and recovered every archived step-512 weight bitwise. Both arms then continued their live AdamW trajectories to 4,096 total updates. They used the same step-indexed minibatches, 1,000 training fork states, original optimizer and cell loss, 256 development states and four-step inference horizon. Each arm received 65,536 sample presentations. All ten model and optimizer checkpoints were saved and checksum-verified. The separate replay's step-512 metrics and per-board IDs matched exactly at inference steps 0 through 4.
+
+The entries below show mean all-cell cross-entropy and repair/break counts at inference step four. Stopping at the native fork solves 291/1,000 training boards and 60/256 development boards.
+
+| Optimizer updates | Direct train | Direct dev | Recurrent train | Recurrent dev |
+|---:|---:|---:|---:|---:|
+| 128 | 3.236, 0/0 | 4.154, 0/0 | 1.878, 0/7 | 2.402, 0/3 |
+| 512 | 1.142, 0/34 | 1.479, 0/8 | 0.612, 0/37 | 0.830, 0/7 |
+| 1,024 | 0.604, 0/41 | 0.881, 0/11 | 0.502, 1/9 | 0.705, 1/3 |
+| 2,048 | 0.450, 2/13 | 0.714, 0/6 | 0.453, 1/8 | 0.678, 1/4 |
+| 4,096 | 0.398, 1/9 | 0.725, 0/5 | 0.418, 0/3 | 0.707, 1/2 |
+
+Extra optimization reduced the late checkpoints' damage and lowered training cell loss. At 4,096 updates, the direct and recurrent endpoints reached 283 and 288 exact on training and 55 and 59 on development. No inspected four-step checkpoint improved on stopping at the fork on either split. The recurrent development repair at 1,024, 2,048 and 4,096 updates was the same board. The duration test leaves the frozen recipe closed and motivates evaluating mixing only in a controlled comparison that preserves the competent native update. Its bounded training curve does not settle the architecture's ceiling. The cluster report is `refiner-duration/duration.json`, SHA-256 `f2cc4adbca48f4bfe0c589c2fc038e6400590121944b2421364e3be6270be494`; its manifest includes all ten checkpoint hashes.
+
+GH200 job `8899228` completed in 1m 36s with exit `0:0`. The [native probe](../scripts/probe_native_trm_branches.py) reconstructed the shared depth-12 state from the saved depth-two fork, matching all intervening archived exact flags. All 256 development boards ran both policies. The fork solved 158. The shared clean steps through depth 14 covered 161. With 168 native blocks per policy, serial reached 162 and the Gaussian split covered 161. Serial alone solved one extra board; the branch alone solved zero. The per-board policy oracle stayed at 162. Label-free confidence selected 162 and 161 exact boards, respectively. Median continuation times, including selection and perturbation, were 73.67 and 74.71 ms; the prefix was shared and uncharged. The cluster report `native-branches-late.json` has SHA-256 `fbcda57879cb13262cb9ace7d93525813f771d3914648f9b075e28444290a100`.
+
+Together, the early and late probes offer little room for a trigger choosing between these Gaussian split and serial policies. The development target is candidate generation under distinct learned hypotheses, compared with spending the same inference work on native TRM. A state-mixing comparison should isolate the contribution of mixing while keeping native TRM's update available. The 896 held-out boards remain sealed. The CPU suite passed 75 tests.
+
 ## 26 November 2026 · Native TRM retention and candidate search
 
 Audited the original 256-board GH200 development calibration, job `8893794`, using [the native branch probe](../scripts/probe_native_trm_branches.py). The archived calibration SHA-256 was `34eee53a18fec002ffe33c2c21083b443f6a615c6bcd2f45dd4485720da7cc09`. At macro depths 1 through 16, the exact counts were 14, 60, 96, 120, 132, 143, 148, 150, 153, 154, 157, 158, 160, 161, 162, and 162. Zero boards transitioned from correct to wrong at adjacent logged macro readouts. At depth 16 all 94 wrong answers were never solved. The 101.21 ms native endpoint agreed with the archived exact flags at each board's observed depth. Of its 109 misses, zero were solved earlier, 15 were first solved later through depth 16, and 94 were never solved. An oracle that retained previously visited exact candidates adds zero at either endpoint. This ceiling applies to logged native macro outputs for this checkpoint and cohort.

@@ -37,7 +37,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\sffamily\small\color{muted}TRM \textbar\ Living project guide}
-\fancyhead[R]{\sffamily\small\color{muted}26 November 2026}
+\fancyhead[R]{\sffamily\small\color{muted}27 November 2026}
 \fancyfoot[L]{\sffamily\footnotesize Version 3.1 \textbar\ Evidence and hypotheses kept separate}
 \fancyfoot[R]{\sffamily\small\thepage}
 \renewcommand{\headrulewidth}{0.3pt}
@@ -51,7 +51,7 @@
 {\Large Learning residuals and coordinating their influence on recurrent reasoning\par}
 \vspace{8mm}
 \textbf{Version 3.1 --- design dated 20 November 2026.}\\
-Implementation status updated 26 November 2026, including the native TRM trace audit.\\
+Implementation status updated 27 November 2026, including duration and late-branch results.\\
 Repository: \href{https://github.com/NiccoGrillo/TinyRecursiveModels}{NiccoGrillo/TinyRecursiveModels}.\\
 Previous guide \code{ff7c125}. Historical pilot report \code{98689fb}.
 
@@ -61,8 +61,8 @@ Can a recurrent model learn when and how to revise its answer, while keeping use
 \section*{The current proposal}
 A neural network reads the input and current latent candidate and produces a vector of \emph{learned residuals}. Another network uses persistent memory to mix those residuals before they produce a correction to the candidate. The correction vanishes whenever all residuals vanish; memory can continue changing. The central learning problem is making those residuals meaningful and their derivatives useful. A residual zero is not automatically a correct answer.
 
-\section*{The decision from the latest critic cycle}
-Keep the rule-free residual model. A checkpoint audit of CRAM gives an example where a learned score can recognize every valid Sudoku completion and search can still run out of time. The decisive test is whether our controller repairs genuine model errors faster than ordinary search or a cheap learned correction using the same information. Section~\ref{sec:cram} explains the finding and the revised comparison.
+\section*{The current experimental decision}
+Native TRM kept every solved answer in the logged development trajectories. The current priority is to reach correct candidates that serial continuation misses. Two Gaussian splits gave little advantage, and more training did not rescue the frozen refiners. A future mixing test should preserve the native update and measure what mixing adds under the same inference budget. Section~\ref{sec:evidence} reports the evidence.
 
 \vfill
 \status{EVIDENCE STATUS}
@@ -373,7 +373,7 @@ On the same 128 held-out Sudoku boards, freshly trained native TRM solved 78 at 
 
 An audit scored all 128 known solution codewords correctly and reproduced the exact GPU traces. The residual model preserved every given digit at depth four, with a median of 29 wrong blanks. At identical minibatch exposure the direct update trained in 27.2 minutes versus 110 for the residual update, and solved zero boards versus one. The two recipes use different auxiliary losses and parameter counts.
 
-At the frozen-TRM fork, 60 of 256 development boards were exact. At 101\,ms native continuation reached 147 and all learned refiners reached zero. The zero-gain control recovered the same 60 IDs. Learned updates lowered cell loss and broke exact answers even on training boards. The recipe is closed and the test cohort remains sealed. Native TRM lost no solves through depth 16, leaving 94 never solved. At equal native work, two short paths found one new solution but covered 123 boards versus 143 for serial. This motivates testing branches on stalled trajectories.
+At the frozen-TRM fork, 60 of 256 boards were exact. At 101\,ms native continuation reached 147 and all refiners reached zero. Zero gain recovered the same 60 IDs. Extending training to 4,096 updates gave 55 direct and 59 recurrent solves after four steps. The recipe is closed and the test cohort stays sealed. Native TRM lost no solves by depth 16, leaving 94 never solved. At equal native work the early Gaussian split covered 123 versus 143 serial, with one novel solve. At depth 12 it covered 161 versus 162 serial, with zero new solves. Distinct learned hypotheses are the next candidate to test.
 
 \subsection{What the architecture and CRAM critiques changed}
 \begin{tabularx}{\linewidth}{@{}P{49mm}Y@{}}\toprule
