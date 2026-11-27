@@ -1,0 +1,319 @@
+{
+  "source_sha256": "214e2418905c6871593208a2d2e0d85e0ba467b2a5e24787ac98ccd1be9d379c",
+  "protocol_sha256": "1abedfb0425ea1defc5780e36156fe02d60ca8f7859e10a778c7c92d0160c8ee",
+  "git_base": "e8edd810721fbf82a10b4774fa317596f5a86493",
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "numpy": "2.3.5",
+  "platform": "macOS-27.2.1-arm64-arm-64bit",
+  "machine": "arm64",
+  "peak_process_rss_as_reported": 44990464,
+  "float_dtype": "float32",
+  "inference_macs": 10752,
+  "parameters": 4708,
+  "gradient_max_abs_error": 1.3165274426185647e-11,
+  "work_notes": "MACs for dense forward per query, excludes bias, tanh, memory and argmax. Latency includes NumPy call overhead and both rounds.",
+  "extended": false,
+  "primary_queries": 368,
+  "primary_groups": 92,
+  "negative_queries": 16,
+  "primary_delta": -0.012681159420289856,
+  "group_percentile_95": [
+    -0.02807971014492754,
+    0.002717391304347827
+  ],
+  "pairs": [
+    {
+      "seed": 31,
+      "gains": 22,
+      "losses": 15
+    },
+    {
+      "seed": 47,
+      "gains": 9,
+      "losses": 8
+    },
+    {
+      "seed": 83,
+      "gains": 4,
+      "losses": 26
+    }
+  ],
+  "runs": [
+    {
+      "seed": 31,
+      "arm": "dynamic",
+      "endpoint": 1500,
+      "training_seconds": 0.1577452089986764,
+      "checkpoint_sha256": "217c9c478ec800ff484849d7f3fc482e120ade7e64807909f5365a7e6e75e4db",
+      "curve": [
+        {
+          "step": 250,
+          "exact": 0.609375,
+          "loss": 1.088852047920227
+        },
+        {
+          "step": 500,
+          "exact": 0.9752604166666666,
+          "loss": 0.26922693848609924
+        },
+        {
+          "step": 750,
+          "exact": 0.9986979166666666,
+          "loss": 0.0571414940059185
+        },
+        {
+          "step": 1000,
+          "exact": 1.0,
+          "loss": 0.020297788083553314
+        },
+        {
+          "step": 1250,
+          "exact": 1.0,
+          "loss": 0.010109773837029934
+        },
+        {
+          "step": 1500,
+          "exact": 1.0,
+          "loss": 0.005882635712623596
+        }
+      ],
+      "latency_us": {
+        "1": 6.46418,
+        "64": 24.32168
+      },
+      "primary_correct": 351,
+      "negative_correct": 16,
+      "primary_stale_correct": 198
+    },
+    {
+      "seed": 31,
+      "arm": "static",
+      "endpoint": 1500,
+      "training_seconds": 0.1567205840256065,
+      "checkpoint_sha256": "ac3b0ee990605b288cb8a122265c8be3e8e2ca1b1888fe77569cbcbdbea894ce",
+      "curve": [
+        {
+          "step": 250,
+          "exact": 0.4817708333333333,
+          "loss": 1.2305883169174194
+        },
+        {
+          "step": 500,
+          "exact": 0.9368489583333334,
+          "loss": 0.3963797986507416
+        },
+        {
+          "step": 750,
+          "exact": 0.9954427083333334,
+          "loss": 0.09429025650024414
+        },
+        {
+          "step": 1000,
+          "exact": 1.0,
+          "loss": 0.03351669758558273
+        },
+        {
+          "step": 1250,
+          "exact": 1.0,
+          "loss": 0.016131842508912086
+        },
+        {
+          "step": 1500,
+          "exact": 1.0,
+          "loss": 0.009500710293650627
+        }
+      ],
+      "latency_us": {
+        "1": 7.14,
+        "64": 24.1675
+      },
+      "primary_correct": 344,
+      "negative_correct": 15,
+      "primary_stale_correct": 344
+    },
+    {
+      "seed": 47,
+      "arm": "dynamic",
+      "endpoint": 1500,
+      "training_seconds": 0.15999970902339555,
+      "checkpoint_sha256": "edaeac994b7e139ba28beaed4af6d34d03a0a4ab50825ac34163384f390c95ef",
+      "curve": [
+        {
+          "step": 250,
+          "exact": 0.6666666666666666,
+          "loss": 1.007131576538086
+        },
+        {
+          "step": 500,
+          "exact": 0.9869791666666666,
+          "loss": 0.16171765327453613
+        },
+        {
+          "step": 750,
+          "exact": 1.0,
+          "loss": 0.02906491793692112
+        },
+        {
+          "step": 1000,
+          "exact": 1.0,
+          "loss": 0.010890944860875607
+        },
+        {
+          "step": 1250,
+          "exact": 1.0,
+          "loss": 0.005705693271011114
+        },
+        {
+          "step": 1500,
+          "exact": 1.0,
+          "loss": 0.003438567975535989
+        }
+      ],
+      "latency_us": {
+        "1": 6.5425,
+        "64": 25.18
+      },
+      "primary_correct": 358,
+      "negative_correct": 16,
+      "primary_stale_correct": 198
+    },
+    {
+      "seed": 47,
+      "arm": "static",
+      "endpoint": 1500,
+      "training_seconds": 0.1563019170134794,
+      "checkpoint_sha256": "5c1f1e977f8899836bf5fabcdcf985b1620b2f0a82719873a279f0a68d13e967",
+      "curve": [
+        {
+          "step": 250,
+          "exact": 0.5813802083333334,
+          "loss": 1.1289387941360474
+        },
+        {
+          "step": 500,
+          "exact": 0.966796875,
+          "loss": 0.2543110251426697
+        },
+        {
+          "step": 750,
+          "exact": 0.9993489583333334,
+          "loss": 0.04513348639011383
+        },
+        {
+          "step": 1000,
+          "exact": 1.0,
+          "loss": 0.015504538081586361
+        },
+        {
+          "step": 1250,
+          "exact": 1.0,
+          "loss": 0.0077446140348911285
+        },
+        {
+          "step": 1500,
+          "exact": 1.0,
+          "loss": 0.004598080180585384
+        }
+      ],
+      "latency_us": {
+        "1": 6.87168,
+        "64": 22.95918
+      },
+      "primary_correct": 357,
+      "negative_correct": 16,
+      "primary_stale_correct": 357
+    },
+    {
+      "seed": 83,
+      "arm": "dynamic",
+      "endpoint": 1500,
+      "training_seconds": 0.1555175829853397,
+      "checkpoint_sha256": "aef3fc0ab181c13a4141b553a4b402f00d03feb60410bfc0fad984b145b5350b",
+      "curve": [
+        {
+          "step": 250,
+          "exact": 0.5501302083333334,
+          "loss": 1.139339566230774
+        },
+        {
+          "step": 500,
+          "exact": 0.9244791666666666,
+          "loss": 0.4075416624546051
+        },
+        {
+          "step": 750,
+          "exact": 0.998046875,
+          "loss": 0.09156793355941772
+        },
+        {
+          "step": 1000,
+          "exact": 1.0,
+          "loss": 0.028974929824471474
+        },
+        {
+          "step": 1250,
+          "exact": 1.0,
+          "loss": 0.013917911797761917
+        },
+        {
+          "step": 1500,
+          "exact": 1.0,
+          "loss": 0.008190941996872425
+        }
+      ],
+      "latency_us": {
+        "1": 6.87834,
+        "64": 22.9175
+      },
+      "primary_correct": 340,
+      "negative_correct": 15,
+      "primary_stale_correct": 152
+    },
+    {
+      "seed": 83,
+      "arm": "static",
+      "endpoint": 1500,
+      "training_seconds": 0.15253329099505208,
+      "checkpoint_sha256": "3c590472bac378f586e0eedc168eb84840417804ef7dea45aee3794f9484f079",
+      "curve": [
+        {
+          "step": 250,
+          "exact": 0.5833333333333334,
+          "loss": 1.1751302480697632
+        },
+        {
+          "step": 500,
+          "exact": 0.9388020833333334,
+          "loss": 0.38919797539711
+        },
+        {
+          "step": 750,
+          "exact": 0.9993489583333334,
+          "loss": 0.08568522334098816
+        },
+        {
+          "step": 1000,
+          "exact": 1.0,
+          "loss": 0.03017096407711506
+        },
+        {
+          "step": 1250,
+          "exact": 1.0,
+          "loss": 0.014679458923637867
+        },
+        {
+          "step": 1500,
+          "exact": 1.0,
+          "loss": 0.008649291470646858
+        }
+      ],
+      "latency_us": {
+        "1": 6.81416,
+        "64": 24.16416
+      },
+      "primary_correct": 362,
+      "negative_correct": 16,
+      "primary_stale_correct": 362
+    }
+  ]
+}

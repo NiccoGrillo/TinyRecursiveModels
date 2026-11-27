@@ -1,0 +1,32 @@
+[
+  {
+    "seed": 31,
+    "n": 100,
+    "recipient_intact": 95,
+    "placebo_at_recipient": 93,
+    "active_at_recipient": 44,
+    "active_at_donor": 39,
+    "recipient_and_active_donor_correct": 92,
+    "placebo_stable_and_active_adopts_among_both_correct": 33
+  },
+  {
+    "seed": 47,
+    "n": 100,
+    "recipient_intact": 98,
+    "placebo_at_recipient": 92,
+    "active_at_recipient": 39,
+    "active_at_donor": 44,
+    "recipient_and_active_donor_correct": 97,
+    "placebo_stable_and_active_adopts_among_both_correct": 38
+  },
+  {
+    "seed": 83,
+    "n": 100,
+    "recipient_intact": 91,
+    "placebo_at_recipient": 89,
+    "active_at_recipient": 30,
+    "active_at_donor": 53,
+    "recipient_and_active_donor_correct": 85,
+    "placebo_stable_and_active_adopts_among_both_correct": 40
+  }
+]

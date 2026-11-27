@@ -1,0 +1,27 @@
+{
+  "dataset_revision": "399030444e0ab0cc8b4e199870fb20b863846f34",
+  "split": "data/training",
+  "tasks": 400,
+  "task_hashes_sha256": "022794ad7a2ba3aa9a9ea8d7a9f96b987f8fafcafa2566998b7f14868e32974b",
+  "protocol_sha256": "6fb90a3392ffc1c7a860934db6907d8faf11118fa93f48eac1da9d4f2d1bc7f8",
+  "script_sha256": "bc5c70930f4b4229cbb0edfb5b157f108fa297b0cd0135d402a9c8302b4f54c1",
+  "python": "3.9.6 (default, Oct 19 2026, 19:18:13) \n[Clang 21.0.0 (clang-2100.4.1.1)]",
+  "machine": "arm64",
+  "system": "macOS-27.2.1-arm64-arm-64bit",
+  "wall_seconds": 0.061375584,
+  "gpu_hours": 0,
+  "coverage": 12,
+  "full_exact": 11,
+  "loo_exact": 11,
+  "full_wilson95": [
+    0.015423636260295411,
+    0.048565481885614784
+  ],
+  "loo_wins": 0,
+  "loo_losses": 0,
+  "loo_geometry_changed": 0,
+  "full_solved_identity_geometry": 4,
+  "full_solved_identity_table": 7,
+  "full_solved_both_identity": 0,
+  "full_held_demo_fraction_task_average": 0.025625
+}

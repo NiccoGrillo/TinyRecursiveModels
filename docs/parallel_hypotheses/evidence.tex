@@ -1,0 +1,21 @@
+\section*{Evidence and application boundary}
+\textbf{Inherited.} The native model retained every reached exact answer through macro depth 16 in the earlier development record. At matched work, early Gaussian branching reached 123 versus 143 boards and late branching reached 161 versus 162. Learned digit conditioning tied the serial comparator at 162. These are archived results on 256 boards, not replications in this study. The old 896-board holdout remains sealed.
+\par
+\textbf{Application benchmark.} Use public ARC-AGI-1 training tasks only. Before scoring, fix a bank of eight geometric transformations and fit one global pointwise colour table to all visible demonstrations. Predict once per query, counting abstentions as failures. Compare with leave-one-demonstration-out reranking and charge the extra fits. Measure exactness over whole original tasks. The hand-built bank quantifies a real shortcut on natural grids. The neural table experiment learns from endpoint labels on a different interface; transfer remains untested.
+\par
+\textbf{Infrastructure.} An isolated checkout starts from \texttt{2de6e27} on a dedicated research branch. Isambard phase 2 login succeeded, the user queue was empty, the previous final job 8916461 was completed, and the historical Arm PyTorch container exists in scratch. Available hardware and previous runs establish no spending envelope. GPU hours authorized for use now, consumed and committed are each zero. Future discretionary budget is unspecified. No Slurm submission. The controlled task uses local CPU and opens neither protected split.
+\par
+\textbf{Measured.} Twelve of the 400 original tasks admitted an exact fit on all demonstrations. Eleven solved every query (2.75\%; descriptive Wilson interval 1.54--4.86\%). Reranking changed zero decisions. Seven solved tasks used geometry alone and four recoloring alone. Across all 400, the mean within-task fraction of withheld demonstrations predicted correctly was 2.56\%. The successful set contains no selected program needing both factors.
+\par
+\textbf{A failed fit.} In training task \texttt{aabf363d}, the large region took the singleton's colour and the singleton disappeared. A global colour map fit both demonstrations perfectly. It failed on 16 of the 49 query cells when colour 8 appeared in the large region. This motivates investigating object roles, but choosing a new neural architecture on this example would make it discovery data. Fresh evaluation would be necessary.
+\par
+\textbf{What stays open.} The constructed interfaces expose discrete tables and role boundaries. A grid or text system would need to learn which cells or tokens constitute a hypothesis, identify a legally observable consequence, and select a later operation using it. Neither CPU study implements this transfer. Neither consumes the old Sudoku holdout or the ARC evaluation tasks.
+\par
+\begin{tabular}{@{}p{.23\linewidth}p{.71\linewidth}@{}}
+\toprule
+Evidence status & Decision on 27 November 2026\\\midrule
+Inherited & Native stability and branch-oracle counts motivated testing content.\\
+Verified here & Fresh messaging missed its gate; selection covered all PH2 answers.\\
+Hypothesis & Two incomplete paths may jointly supply a useful future argument on real inputs.\\
+Open question & Can learned branch-local consequences change an unconstrained next operation on a natural task where selection fails?\\\bottomrule
+\end{tabular}

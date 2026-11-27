@@ -1,0 +1,65 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.88in]{geometry}
+\usepackage{fontspec}
+\setmainfont{lmroman10-regular.otf}[BoldFont=lmroman10-bold.otf,ItalicFont=lmroman10-italic.otf,BoldItalicFont=lmroman10-bolditalic.otf]
+\setsansfont{lmsans10-regular.otf}[BoldFont=lmsans10-bold.otf,ItalicFont=lmsans10-oblique.otf,BoldItalicFont=lmsans10-boldoblique.otf]
+\setmonofont{lmmono10-regular.otf}[Scale=0.87]
+\usepackage{amsmath,amssymb,booktabs,xcolor,hyperref}
+\usepackage{unicode-math,xurl,pgfplots}
+\pgfplotsset{compat=1.17}
+\setmathfont{latinmodern-math.otf}
+\definecolor{ink}{RGB}{28,65,86}
+\hypersetup{colorlinks=true,urlcolor=ink,linkcolor=ink,citecolor=ink}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\raggedbottom
+\newcommand{\head}[1]{{\small\bfseries\color{ink} #1}\par}
+\begin{document}
+\head{RESEARCH NOTEBOOK \hfill 27 NOVEMBER 2026}
+{\LARGE\bfseries Can one incomplete computation change the next?}\par
+\section*{The first decision}
+A model can generate different answers to a puzzle and still gain nothing from their differences. In the fork's earlier Sudoku study, two digit-conditioned paths reached one extra board, lost another, and both proposed digits were wrong on the extra solve. That makes a branch label a poor explanation of the recovery. Our primary interest is behavior: does a fresh intermediate result let the model compute something useful on a combination it has never trained on?
+\par
+\textbf{Worked case.} The visible tables are $F=(2,0,3,1)$ and $G=(1,3,0,2)$, indexed from zero. For query 0, the useful intermediate is $F(0)=2$. Reading row 2 of $G$ yields 0. Always copying the query happens to work here. Change only the second table to $(3,1,2,0)$. The same intermediate now produces 2, and copying fails. Demonstrations and query arrive together. Holding back a clue would change the problem.
+\par
+\textbf{Cheapest explanation.} A single four-valued scratch register and two indexed reads solve every input exactly. The first experiment asks a narrower question. Given the same dense recurrent model and two updates, is sending an updated peer state better than sending the peer's original encoding? Each slot sees everything. A positive result can identify a benefit of a pathway under this training regime. It cannot establish that either slot represents a belief.
+\par
+\textbf{What changed our choice.} Conditional proof by cases has a direct constraint-programming ancestor. A dense recurrent parent can exactly implement two communicating slots. Both observations argue for measuring a rival before spending cluster time. We registered a paired CPU study and a separate fixed-bank check on the public training tasks of ARC-AGI-1. A learned single-register reader tests whether a small architectural prior already solves the diagnostic.
+\par
+\input{snapshot}
+\newpage
+\section*{Two rounds of computation}
+Let $x\in\{0,1\}^{36}$ concatenate the eight one-hot four-symbol rows of $F,G$ and the one-hot query. For slot $k\in\{1,2\}$ let $h^0_k=\tanh(E_kx+b_k)\in\mathbb R^{32}$. The encoders $E_k\in\mathbb R^{32\times36}$ and biases $b_k$ identify the two slots. With peer $j=3-k$, both slots update in parallel:
+\[
+h^{t+1}_k=\tanh(Uh_k^t+V m_j^t+b),\qquad t=0,1.
+\]
+Here $U,V$ are shared $32\times32$ matrices and $b$ has 32 entries. The live arm uses $m_j^t=h_j^t$; the static arm uses $m_j^t=h_j^0$. Only the second round differs. A learned four-way classifier reads both final states. All examples supply both complete tables. Only the final answer is supervised. There are no branch labels, conditional masks or access selectors.
+\par
+\textbf{Training.} Draw an ordered pair of permutations and query from the training groups; run the two encoders and both rounds; compute categorical loss on the final answer; update all parameters. Initial weights and the example stream are paired across arms. Repeat for each of three seeds. \textbf{Inference.} Encode one input, run both parallel updates twice, and return the label-free argmax. To intervene, substitute the first encoder state for the fresh message only at round two. Each branch continues to update. Training a static model from scratch helps interpret damage from an unexpected inference-time substitution.
+\par
+\textbf{Exact reduction.} Stack $h_1^t,h_2^t$ into a 64-vector. One dense recurrent map with blocks $[U,V;V,U]$, elementwise $\tanh$ and repeated bias produces the identical live update. Induction from the same initial states proves equality for all rounds and inputs. This leaves sample efficiency and optimization open. Width, clock time and the availability of role-specific encoders must be reported.
+\par
+\textbf{A stronger single trajectory.} Let $T_i\in\{0,1\}^{4\times4}$ give one-hot output rows for table $i$, $s\in\Delta^3$ the current symbol distribution. A shared learned address matrix $A\in\mathbb R^{4\times4}$ maps $s$ to four row probabilities $p=s\,\mathrm{softmax}_{\rm row}(A)$. Step $t$ has learned table probabilities $w_t\in\Delta^1$. Update $s\gets \sum_i w_{ti}pT_i$, starting from the query. Predict the most likely final symbol. Only the endpoint trains the address and routing logits. This model spends its prior on indexing and reuses the same reader twice. Multi-hop memory networks already use this principle \cite{mem}.
+\newpage
+\section*{What would change the decision?}
+\textbf{Primary prediction, registered at 71a689d.} On unseen ordered table pairs with nonidentity second operation, a fresh peer message should increase exact query accuracy over an independently trained stale-peer model because the second update can condition on the intermediate. There are 24 permutations. Within each second table, reserve four first tables for development, four for a locked characterization partition and sixteen for training. Keep the four queries for a pair together. The primary development set has 92 groups and 368 queries. There are four identity-second-table groups. This small negative control asks whether any advantage persists when one lookup suffices.
+\par
+\textbf{Stopping rule.} Require at least five percentage points of mean gain, a positive gain for all three training seeds, a positive lower paired group-bootstrap bound, and a drop under the stale-message intervention. Match examples, updates, initial conditions, width and arithmetic. Extend both arms together if the registered training-curve rule fires. Report grouped task uncertainty separately from the three seed differences. A missed gate parks this mechanism at this budget. The diagnostic has no pre-message branch answer heads, so it cannot establish success beyond selecting pre-message answers.
+\par
+\textbf{Two discarded shortcuts in the argument.} In the seed memo, if answer vectors $b_k$ are fixed and a parent merely accumulates $\sum_k(w^{t+1}_k-w^t_k)b_k$, summing over $t$ cancels intermediate weights. The entire write equals $\sum_k(w^T_k-w^0_k)b_k$. A nonlinear parent that uses the message to select a new operation escapes this algebraic reduction, but a single recurrent parent may still learn the same function. The memo's toy accuracy was author-reported; it did not guide model selection here.
+\par
+A second design splits a variable into exhaustive cases, infers consequences independently, and returns their common implications. For example, $u=x$, $v=1-x$ imply $u\lor v=1$ under either binary value of $x$. An unresolved case can thereby determine a later lookup. Constructive disjunction already unions supported domains across cases \cite{cc}. With two scalar branch scores even $\max(a,b)=(a+b+|a-b|)/2$. Max fusion alone cannot distinguish proof by cases from an ordinary mean-and-disagreement feature. We deferred training this design.
+\par
+\textbf{Peer review record.} Independent proposals emphasized case analysis and role binding. The former's architect then challenged the latter: for geometry $g$ and a global recoloring $c$, $g(c(X))=c(g(X))$; successful recombination may reflect fixed roles. The literature reviewer independently identified multi-hop reads as a serious rival. Generalizing across held-out tables cannot identify semantic roles. A more specific future intervention would swap sender states across inputs sharing exactly one factor, check donor-consistent predictions, and include a same-factor placebo.
+\newpage
+\input{results}
+\newpage
+\input{cases}
+\newpage
+\input{evidence}
+\newpage
+\input{literature}
+\newpage
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
