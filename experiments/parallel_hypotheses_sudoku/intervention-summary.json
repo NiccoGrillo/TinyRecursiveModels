@@ -1,0 +1,50 @@
+{
+  "exact": {
+    "aligned": 163,
+    "shuffled": 163,
+    "untouched": 163,
+    "serial": 166,
+    "pool": 161,
+    "a": 161,
+    "b": 161
+  },
+  "comparisons": {
+    "shuffled": {
+      "examples": 256,
+      "mean": 0.0,
+      "lower": -0.01697162304112787,
+      "upper": 0.01697162304112787,
+      "excess": 0,
+      "reduced": 0,
+      "confidence": 0.95,
+      "method": "Bonferroni Clopper-Pearson discordance bounds"
+    },
+    "untouched": {
+      "examples": 256,
+      "mean": 0.0,
+      "lower": -0.01697162304112787,
+      "upper": 0.01697162304112787,
+      "excess": 0,
+      "reduced": 0,
+      "confidence": 0.95,
+      "method": "Bonferroni Clopper-Pearson discordance bounds"
+    },
+    "serial": {
+      "examples": 256,
+      "mean": -0.01171875,
+      "lower": -0.04845826110693352,
+      "upper": 0.026035462424836453,
+      "excess": 2,
+      "reduced": 5,
+      "confidence": 0.95,
+      "method": "Bonferroni Clopper-Pearson discordance bounds"
+    }
+  },
+  "status": {
+    "too_few": 205,
+    "active": 51
+  },
+  "new_from_branch_endpoints": 2,
+  "advance": false,
+  "aligned_first_step_changed": 35
+}

@@ -15,7 +15,7 @@
 \raggedbottom
 \newcommand{\head}[1]{{\small\bfseries\color{ink} #1}\par}
 \begin{document}
-\head{RESEARCH NOTEBOOK \hfill 27 NOVEMBER 2026}
+\head{RESEARCH NOTEBOOK \hfill 28 NOVEMBER 2026}
 {\LARGE\bfseries Can one incomplete computation change the next?}\par
 \section*{The first decision}
 A model can generate different answers to a puzzle and still gain nothing from their differences. In the fork's earlier Sudoku study, two digit-conditioned paths reached one extra board, lost another, and both proposed digits were wrong on the extra solve. That makes a branch label a poor explanation of the recovery. Our primary interest is behavior: does a fresh intermediate result let the model compute something useful on a combination it has never trained on?
@@ -59,6 +59,8 @@ A second design splits a variable into exhaustive cases, infers consequences ind
 \input{evidence}
 \newpage
 \input{sudoku}
+\newpage
+\input{fresh}
 \newpage
 \input{literature}
 \newpage

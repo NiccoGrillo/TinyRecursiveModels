@@ -3,7 +3,7 @@
 \par
 \textbf{Application benchmark.} Use public ARC-AGI-1 training tasks only. Before scoring, fix a bank of eight geometric transformations and fit one global pointwise colour table to all visible demonstrations. Predict once per query, counting abstentions as failures. Compare with leave-one-demonstration-out reranking and charge the extra fits. Measure exactness over whole original tasks. The hand-built bank quantifies a real shortcut on natural grids. The neural table experiment learns from endpoint labels on a different interface; transfer remains untested.
 \par
-\textbf{Infrastructure.} The branch began at \texttt{2de6e27}. PH1, PH2 and the ARC fixed bank used local CPU. One separately authorized GH200 replay completed in 32 seconds under a 15-minute limit. No current GPU commitment. The sealed Sudoku and ARC evaluation sets remain outside these experiments.
+\textbf{Infrastructure.} The branch began at \texttt{2de6e27}. PH1, PH2 and the ARC fixed bank used local CPU. A GH200 verification replay and fresh-puzzle intervention used 32 and 131 allocated seconds respectively. No current GPU commitment. The sealed Sudoku and ARC evaluation sets remain outside these experiments.
 \par
 \textbf{Measured.} Twelve of the 400 original tasks admitted an exact fit on all demonstrations. Eleven solved every query (2.75\%; descriptive Wilson interval 1.54--4.86\%). Reranking changed zero decisions. Seven solved tasks used geometry alone and four recoloring alone. Across all 400, the mean within-task fraction of withheld demonstrations predicted correctly was 2.56\%. The successful set contains no selected program needing both factors.
 \par

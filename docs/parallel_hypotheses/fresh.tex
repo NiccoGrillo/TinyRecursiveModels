@@ -1,0 +1,23 @@
+\section*{Can a peer correction change the next Sudoku solve?}
+\textbf{The causal contrast.} Run twelve shared TRM macros, then two macros under each of two digit hypotheses. Select the anchor branch by its mean maximum log probability on the blanks. On blank cells where its prediction disagrees with its peer, add half of the difference between their working states to the anchor at corresponding cells. A control rotates the same correction vectors across those cells. Both continuations preserve the immediate answer readout. A third arm continues the untouched anchor, and the serial rival spends all six post-fork macros on one native path. All four terminal answers cost six post-fork macros (252 native blocks); choosing from the two endpoints or pooling them costs four macros. Branch proposal, confidence selection and the writes add overhead.
+\par
+\textbf{Cohort and outcome.} Before observing predictions, lock 256 unaugmented original boards by salted hash from 7,192 eligible training-source puzzles, excluding prior cohort IDs. Verify the data manifest against the pinned digest and independently reconstruct every selected ID. A board with fewer than two disagreement sites gets identical aligned and shuffled no-ops. Keep all boards in the primary exact-solve comparison. This is a frozen-checkpoint development test; the source corpus may overlap earlier checkpoint training.
+\par
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+Policy & Exact / 256 & Exact on 51 active boards\\
+\midrule
+Aligned peer correction & 163 & 2\\
+Shuffled peer correction & 163 & 2\\
+Untouched selected branch & 163 & 2\\
+Equal-work serial continuation & 166 & 4\\
+Earlier endpoint logit pooling & 161 & 0\\
+\bottomrule
+\end{tabular}
+\end{center}
+The three branch continuations solved exactly the same boards: zero paired gains and zero losses for aligned against either control. The prespecified conservative 95\% interval for each net difference is $[-1.70,+1.70]$ percentage points. Against serial, aligned gained two and lost five (net $-1.17$ points, interval $[-4.85,+2.60]$). These intervals describe puzzle variation at this checkpoint. They do not measure training-seed variation.
+\par
+\textbf{Where the correction went.} Fifty-one boards had sufficient disagreement for an active write. The other 205 had fewer than two sites. All active pairs passed the post-cast dose check. Relative to untouched continuation, the aligned write changed at least one next-macro prediction on 35 boards, and the shuffled write did so on 28. On board \texttt{98465ae4}, six sites qualified. The aligned write changed one next-step digit, but aligned, shuffled and untouched continuations all reached the solution. Both puzzles recovered beyond the pre-message endpoints were recovered by all three arms. This is evidence for continuing a branch on those two examples; neither recovery identifies a benefit from the message.
+\par
+\textbf{Decision, 28 November 2026.} Park this half-difference write at this depth. It missed the registered training criterion even among the active boards. The single checkpoint, fixed intervention and limited number of active sites leave other mechanisms open. Job 8935747 used one GH200 for 131 seconds, including launch and teardown. With verification, cumulative use is 163 GPU-seconds (0.0453 GPU-hours); no jobs are outstanding.

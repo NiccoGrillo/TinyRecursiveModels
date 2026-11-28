@@ -1,0 +1,7438 @@
+{
+  "rows": [
+    {
+      "id": "fd16aca2401257f9b0c69d91cb8daf941fc20a536d64bb7634b94c3d76509c53",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.036171927000395954,
+        "shuffled": 0.03528106998419389,
+        "untouched": 0.035218639008235186
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "ac24a77ef6d62924603616fcf1de286c10c6953165ef4a89fb60403a48bcfc04",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.0346068799844943,
+        "shuffled": 0.034495746018365026,
+        "untouched": 0.033928337012184784
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "fde7917b6bad4611a1232541239492579cdffe6c4c4eaac5289d363ad1bbfc26",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03406388501753099,
+        "shuffled": 0.03437149297678843,
+        "untouched": 0.034091916983015835
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "6a1719f11272d560685ef89d0de5e479199e8d6c907087e239b8d2f240b981aa",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034005902998615056,
+        "shuffled": 0.0343488699872978,
+        "untouched": 0.034168362006312236
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "dd0cafd105dbb5fece5faa9567b7f67e4ab61c2bc10c9b4948688d299cc07651",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03408660501008853,
+        "shuffled": 0.03368056801264174,
+        "untouched": 0.03383950699935667
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "10713492aca5758076a89b266381d3064fb00549fa5e7f45a651ef9e2d4b6e23",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03418970599886961,
+        "shuffled": 0.03370651800651103,
+        "untouched": 0.033824948011897504
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "9a7e802ea5d4f145d3858274bc7734d07979a623f4548eb98c095ed5b11b60ee",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03396574399084784,
+        "shuffled": 0.03399035200709477,
+        "untouched": 0.034214793995488435
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "871b203565770ab9c615ab240cca59a73faaf5ebf78333c31440e44f7141df46",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        6.672837257385254,
+        6.670869827270508
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 2,
+        "shuffled": 8,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033962287998292595,
+        "shuffled": 0.03412823600228876,
+        "untouched": 0.03422596098971553
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": true,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "35971e5787818be78db5e1d2cca4b5e3434581789707e8ba291456bb6dcb8da1",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03381070800242014,
+        "shuffled": 0.0340426379989367,
+        "untouched": 0.03394964899052866
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "281c76547cd86ad1b58e36c6619235eb25377a96a9bafff8e86c4ec3501ff42f",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03388837000238709,
+        "shuffled": 0.033749429014278576,
+        "untouched": 0.033628377015702426
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "e81d6cabbca1ee3a5acbcf7266e5b1a2b050d8a9ca95e04572be54ff093e430b",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03409511598874815,
+        "shuffled": 0.03383432299597189,
+        "untouched": 0.03365560801466927
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "0357c45f5dc87add933a0b56a291b79b406a26b83710c2a6262bcd38c39ab8d7",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        4.554207801818848,
+        4.554391384124756
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.0342749519913923,
+        "shuffled": 0.03396920001250692,
+        "untouched": 0.033742005995009094
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "c5a33d3066745c8ad09274374279adcedcedff1945a3bff0a4941d7d120533c6",
+      "sites": 3,
+      "status": "active",
+      "norms": [
+        1.986754298210144,
+        1.9836877584457397
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 2,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034183017996838316,
+        "shuffled": 0.03347148501779884,
+        "untouched": 0.03379979700548574
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "34f23981cf5e85fb981b152216fab4a3244653d91ed2791d5e29fd7dd6f91274",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033937103988137096,
+        "shuffled": 0.033839090989204124,
+        "untouched": 0.033691958989948034
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "724e08d69b7ede4da86fc7512053f9867e7ea8e7c05e808d285d3dc4040f89b2",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033848339022370055,
+        "shuffled": 0.03370981500484049,
+        "untouched": 0.03432512600556947
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "85755525b4fbc4c176b7e40efb9a2ba62d8ea363c4fa2413081e691665adc808",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.0343107910011895,
+        "shuffled": 0.03446217899909243,
+        "untouched": 0.034199114015791565
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "fb4a8e9fbe890837d50af15cd9ed94e2c1a6d9ead4eea5b3b1ae65e99e4f20e8",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03415252300328575,
+        "shuffled": 0.034298854996450245,
+        "untouched": 0.0342875600035768
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "de94f9bfa470ad34499ca1e191ef8c6e761d18669113593b9c17f752662a5d4d",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034177706023911014,
+        "shuffled": 0.03400379099184647,
+        "untouched": 0.03383512399159372
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "a0c722e6b8be9ff2182b81118c3d8e1392e6328137133200d7186505b3aa016b",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033816500013927,
+        "shuffled": 0.033874579006806016,
+        "untouched": 0.03369794200989418
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "b85c001830419f4df719f5fb8bccfeac1bb27ba13efa43af83c68b4a9b7da0f8",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03385672299191356,
+        "shuffled": 0.03385000201524235,
+        "untouched": 0.033572730026207864
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "095e53420be9b7bc7c3f2be32d07a2d29298feea31ee489f3f0f4af66a40efc1",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03393505699932575,
+        "shuffled": 0.03368444001534954,
+        "untouched": 0.03408788499655202
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "e5ed12d3f4afa327e44d86be000c618e75b33b5cf6c3abd62a5fe9575332ee53",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        0.925861120223999,
+        0.9250840544700623
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 3,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034037325996905565,
+        "shuffled": 0.033893489016918465,
+        "untouched": 0.0341201720002573
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "63beb9942ce51120ec9a9a5e895c9367de4194aa74bc2f76f5d0542d7482a555",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03384750700206496,
+        "shuffled": 0.03371800601598807,
+        "untouched": 0.0338282760058064
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "b84bc968b9874b4a5774fa72c6bdfa9df622566c29a8ccc4230d1bbdbb0b4197",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034090380009729415,
+        "shuffled": 0.03361938500893302,
+        "untouched": 0.03365624800790101
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "d5d5c5ba17cfe211b0eca21e3478a519eb83901637cdc762cbc6e9c157651ca3",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03395403199829161,
+        "shuffled": 0.034197258995845914,
+        "untouched": 0.03375458202208392
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "dce8baf228f6525d3908a30b3aab446e4ee6b15c2bfdf395b5f89bf2372a8c5d",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034187849989393726,
+        "shuffled": 0.03428368701133877,
+        "untouched": 0.03426612101611681
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "20543ba370bcda79df10d83ae6b5baf75e49de05dd335dc9b8823f3eedf17954",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03398401499725878,
+        "shuffled": 0.03394286398543045,
+        "untouched": 0.03415137098636478
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "9ae9156ec04a8cf1f3d8f8d487afc081dbb8e0bd533d70ed7987254a2dc01342",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03418308199616149,
+        "shuffled": 0.033826963015599176,
+        "untouched": 0.034097324998583645
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "1acdf52eacd2c1ac5840de3c32549388ad95ece606e4a09d177e180d1fa5bbd4",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03362354400451295,
+        "shuffled": 0.03375992499059066,
+        "untouched": 0.03381195600377396
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "3fd7efe00bd320a543a51b192d0baf1c6d43c34cf18dd4615d590a62ef64595e",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03391512099187821,
+        "shuffled": 0.033964208007091656,
+        "untouched": 0.034091468987753615
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "8e6d3d45bc0f4762885bf7275f2bab026ebbac8ad9772e6046f13ab65bb12095",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03400167898507789,
+        "shuffled": 0.03393300899188034,
+        "untouched": 0.03399025500402786
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "36bcae9e5f00b67ed391deee77937538a435a4043d2a93f00b46fc155997db14",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034250408003572375,
+        "shuffled": 0.03393972900812514,
+        "untouched": 0.03385633899597451
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "fd4837876ed7216cd3718518cca90e244e8241a21eab61f7d8e07b7a6ad89546",
+      "sites": 3,
+      "status": "active",
+      "norms": [
+        2.2998173236846924,
+        2.293233871459961
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03398433598340489,
+        "shuffled": 0.03411201300332323,
+        "untouched": 0.034126284008380026
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "ffa0460993807a636bcd42a53ed9fb49528f53d8ae7b09f23cf018fea146c2fc",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        2.5776262283325195,
+        2.576164960861206
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034289960021851584,
+        "shuffled": 0.03445965200080536,
+        "untouched": 0.03419376999954693
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "a54989c561e55031969c0ff9fb46c12403ab259eb50d3623fa942137196c5686",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034216265979921445,
+        "shuffled": 0.03392641700338572,
+        "untouched": 0.03400811101892032
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "f5ebfdf64c90c4c7ef179357971e53da33148b48d1e74aa6ef23a49e058eee06",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03410637998604216,
+        "shuffled": 0.03410094100399874,
+        "untouched": 0.034237161016790196
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "9a60e46cfef7af73073036a15a5ac9d600b479421fa1a0b5ed6855afed14b49a",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034043182007735595,
+        "shuffled": 0.03389073797734454,
+        "untouched": 0.03385425900341943
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "6771fc8704c8515801679a8bcbe39d5a8a8926763589c17040fbbc31109f28ee",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03438899700995535,
+        "shuffled": 0.034131914988392964,
+        "untouched": 0.03403492597863078
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "2e587ef30bb3741c3c82bc4090bc1807427ec1c42798133aa3a3c7b847aa9ff9",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034092941001290455,
+        "shuffled": 0.0339424799894914,
+        "untouched": 0.03415556298568845
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "efb5e2a86980c3bbf4e6e546ffb5da0c5740ce574babe7ea5570ca736820d2ce",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033841010998003185,
+        "shuffled": 0.033651961013674736,
+        "untouched": 0.033824018988525495
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "95eee9518a6277d4838fd0be1dd8ac78768860475076d758e3eb88dc8a0ea829",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03385262700612657,
+        "shuffled": 0.0338142609980423,
+        "untouched": 0.03388782698311843
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "b0ffde7b3b297536e2b76885bddfff25f92b0d4554d3de98da4fa825a179366a",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034161963005317375,
+        "shuffled": 0.03404855797998607,
+        "untouched": 0.03405489301076159
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "b75af26e37eb8f7c21fc9d6f4c6e470ce2027a307823c22dcf163d57c01597f9",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03402961400570348,
+        "shuffled": 0.03405393401044421,
+        "untouched": 0.03405988498707302
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "62778733e066a0d60b05a4b807a7ba0f1b5732762ae1949549d4790dbdd2c2c9",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03427984699374065,
+        "shuffled": 0.03423312900122255,
+        "untouched": 0.03415617099381052
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "992e0fbd7e8c990b337df293826f40a6a5480c7829e4d992070f083c9818928d",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03416685899719596,
+        "shuffled": 0.03408673297963105,
+        "untouched": 0.03414884299854748
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "b051ce4da5188bca7d5e57a42e288b40120b5a789d5934e01ad4017054433c32",
+      "sites": 7,
+      "status": "active",
+      "norms": [
+        18.954267501831055,
+        18.950908660888672
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 3,
+        "shuffled": 2,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03443181200418621,
+        "shuffled": 0.03379166798549704,
+        "untouched": 0.03346492498531006
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": true,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "088ebe02f1639292d3726bf13882577d18bfe1fbf7bbf2febece34c3f8c06eef",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03393307299120352,
+        "shuffled": 0.03366920800181106,
+        "untouched": 0.03384744297363795
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "7c1d394dfef00109c31eafab98ff2197676934716eb9bd92e8a0b3d8d57b5450",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.0341904110100586,
+        "shuffled": 0.034336070995777845,
+        "untouched": 0.03392449702369049
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "09c68565ef5510273cfaced9f2c00b65e97ffcb7e0aef5a41d7c64c887d64ca3",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034256263985298574,
+        "shuffled": 0.034005871013505384,
+        "untouched": 0.03408807699452154
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "130e3d7fb9ecfc3fe861a72158f71f7c7947aae83f29c188fa6b8011adeb6f71",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03343798199784942,
+        "shuffled": 0.033805779996328056,
+        "untouched": 0.03344054101034999
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "a3a0fd2e1bf3d47af1203b2b7dcebf41127346c8c626447444cabaf7c1b11bac",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.0338646579766646,
+        "shuffled": 0.034115563990781084,
+        "untouched": 0.03374469399568625
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "dd9ea58ed77cbb10a11e8cacc44a17a8e512be453e49f5747fb8099aeb3cc833",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03429117499035783,
+        "shuffled": 0.03413597997860052,
+        "untouched": 0.034004878980340436
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "f7680458f5004bcca4158c8222f69ad64f9258008e729ce452471088870d991e",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03403111800434999,
+        "shuffled": 0.03389233798952773,
+        "untouched": 0.033991982985753566
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "a5007c75f19b5ef989b66b3cb921bec7d0901ff58ef1de4bbaabf349575a9ab0",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03412401201785542,
+        "shuffled": 0.034214634011732414,
+        "untouched": 0.03407412499655038
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "351457346ebaa0537e5af85cde4f3310006b5335ba73dc6c11c0d503fed9f6e3",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03422112899716012,
+        "shuffled": 0.033767732995329425,
+        "untouched": 0.03365666401805356
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "251f102f4a1b62eda3ae36170dc481deb1650a3ed67d6fdca4ce932913492dda",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034107979998225346,
+        "shuffled": 0.03394440101692453,
+        "untouched": 0.03424259999883361
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "885dfd8447523afdc9311276bc6369ee476832da6191dbd4fcc9364a9703158c",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03419533799751662,
+        "shuffled": 0.033995758974924684,
+        "untouched": 0.03383464302169159
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "c84e49ef330a24e1e2729a20db5876d87c0f19008565ddf8c6883288a82413e8",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03426660000695847,
+        "shuffled": 0.034062605001963675,
+        "untouched": 0.03420679399278015
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "369cd99d0ce633c734873680c3df7249aac3541d4ba88dfbb8a05dbfa08b22df",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03450169798452407,
+        "shuffled": 0.03435245400760323,
+        "untouched": 0.03396619201521389
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "e00ea7ab4a883c6e0ca15e034a65f9e9cb0f122f4f12528c5b3d36036d3031aa",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03380837198346853,
+        "shuffled": 0.033944560011150315,
+        "untouched": 0.0340544139908161
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "633e0208c003e2df6919ab5fd82f8a8d27b14ef92cc37fc38c421b5538b03989",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03377179699600674,
+        "shuffled": 0.0339553439989686,
+        "untouched": 0.03414708300260827
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "69cd5791ba57af4aa438e93de4b3889de751370fc254bb4411d9edb7dc7c92b6",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03398935898439959,
+        "shuffled": 0.03397857502568513,
+        "untouched": 0.03427498397650197
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "950bc209c7b073cedd9d0b84a28f2ba0b34d4f582b955334376d8fdf8a1a60fe",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03403559798607603,
+        "shuffled": 0.03430672700051218,
+        "untouched": 0.03418362597585656
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "c5530e933dc28c037d59be563a910a9e382c9e6d0ce45d4382ca681b28fdbc2f",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03405201400164515,
+        "shuffled": 0.033934929000679404,
+        "untouched": 0.034117835020879284
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "fafece8b3af75e25058693fde5bfa9ac2c4dec836358ac89bf3a382d09ecfa20",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03418324197991751,
+        "shuffled": 0.033867090998683125,
+        "untouched": 0.03418922601849772
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "f1bdf59fc6fe8b4d6a9506d9c32d0ef9a181c1bdb7034a0ceed04cd896fd848e",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03426416902220808,
+        "shuffled": 0.0341574180056341,
+        "untouched": 0.03422842500731349
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "d374c5dcbe66068d66f964550f0d4da189aae9347a95eaa245b934f0a4b01b1e",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03395944001385942,
+        "shuffled": 0.034105389000615105,
+        "untouched": 0.03400379099184647
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "f5e864b1737585f671978631568a1d8f72a92719383d56f87ad687db946d112a",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03377794098923914,
+        "shuffled": 0.03380069197737612,
+        "untouched": 0.0336681829940062
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "02957d64cc9fdfb557935003dff33b57f92687e57bcdba9253044367c1a7dcfa",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03397038398543373,
+        "shuffled": 0.03368805500213057,
+        "untouched": 0.03397876801318489
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "e323e0b446c46a7197a285ed0ac8e4f073ae57571021de01a4108fd10b449c48",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03390731298713945,
+        "shuffled": 0.034014222997939214,
+        "untouched": 0.03411047699046321
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "e9247647dc13a2b9dc44ba080e1bd817e6e298fdb25263e220a2f1e2a3d8601f",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03412836298230104,
+        "shuffled": 0.03377304502646439,
+        "untouched": 0.034136618982302025
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "2cf28737eb4b383f6266b29e840c586221c912fdf6242fbf3a82791044e69b0d",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03419581800699234,
+        "shuffled": 0.034340166981564835,
+        "untouched": 0.03380469200783409
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "2ba2b5f62c5ff32398cc9bc6d63facf5ce20d371c21da58b87a271deb9fffdab",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033915024978341535,
+        "shuffled": 0.03394334402401,
+        "untouched": 0.03420522602391429
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "e7b4175347493bebe731f3781d3b0408005c6b1af635c9470f772c2435c028f7",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03444851501262747,
+        "shuffled": 0.03414100399822928,
+        "untouched": 0.03427088799071498
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "4fb3dbfae777b65d4bda59ffe58c09fb77306ac42cb83f867c9f317c68ffffa7",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034635774994967505,
+        "shuffled": 0.03402276601991616,
+        "untouched": 0.034285415982594714
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "ef17e22c9e63fac2fd98f66485425df008e83db80b0956f538097c09228cf1d9",
+      "sites": 7,
+      "status": "active",
+      "norms": [
+        10.742600440979004,
+        10.742593765258789
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03383259501424618,
+        "shuffled": 0.03360664899810217,
+        "untouched": 0.03369035999639891
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "3a6826dd9172c68c3dc8c89c3cc44036f3dcc246efd46b3a49f92599456070fa",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03414641198469326,
+        "shuffled": 0.03420996101340279,
+        "untouched": 0.03401748699252494
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "26fa73d35ba29e955c359f6c832b35429ea87cf7adf5f3b30cb24ee4c72d5011",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03380939600174315,
+        "shuffled": 0.03447187499841675,
+        "untouched": 0.034064940991811454
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "8607dd2f3fa167f90e553fafa9ae40a0b1f7e51fd2cb20f033857ae23629c148",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03385627499665134,
+        "shuffled": 0.034244169015437365,
+        "untouched": 0.03393281699391082
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "3cdf0ea103407f4216e8543d0098a0731dbb6e9a1f3eb0a579c92a97eb9cf6ce",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03383185900747776,
+        "shuffled": 0.03399038300267421,
+        "untouched": 0.033806772000389174
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "83eaea367e62528386eaaf9edf666e51d002d93a077d699bd382936480dcfad7",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        1.8658088445663452,
+        1.8652534484863281
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 1,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03415441099787131,
+        "shuffled": 0.03412078000837937,
+        "untouched": 0.03402753398404457
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "cfb4daef8e239beca767cb278622814f44dcbee1280f44b82121e8c2c5acf599",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03401294199284166,
+        "shuffled": 0.03426583198597655,
+        "untouched": 0.034197225992102176
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "0dd24c89fd6e0eba175190514749c2379920b04e2c20f1b9160850e077259f23",
+      "sites": 4,
+      "status": "active",
+      "norms": [
+        5.6203083992004395,
+        5.625114917755127
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 3,
+        "shuffled": 5,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033992398995906115,
+        "shuffled": 0.03390907301218249,
+        "untouched": 0.033472445007646456
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "98d01a0f58a755ddf712bf552d39e449d6f583d08fa825df11b538ddedbca847",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03410983699723147,
+        "shuffled": 0.03401502300403081,
+        "untouched": 0.03350735499407165
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "3e59d0acba58442ef73e8990d3cee5c1a4201790d5e386b6eba595670c4b4720",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034443395998096094,
+        "shuffled": 0.03414785099448636,
+        "untouched": 0.033790387999033555
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "494f6d31a7efce65abf506ab0bb99c35a8da5c607fb8673b3656ca92a4de935c",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03428400697885081,
+        "shuffled": 0.03372808700078167,
+        "untouched": 0.03389784201863222
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "cc395cc627ce535daa04a392a38baabfad732e918999f07cde530280a78ac088",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.0340773569769226,
+        "shuffled": 0.03408580500399694,
+        "untouched": 0.034096524002961814
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "fcc49fa35536674800eb428f65b0050ca52396a73b08e650fb6fe20177a8f9db",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03404017398133874,
+        "shuffled": 0.034137420007027686,
+        "untouched": 0.034035471006063744
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "7ccb5ea8f138ed4461f9caf78dc20883a3cfc1543ff8af2cb457775184b66db9",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03420445800293237,
+        "shuffled": 0.03382075499393977,
+        "untouched": 0.03395675201318227
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "6a41e5daf988fb689b87b32efabc8cfaa7c7074b943b79d8eb640282f305973e",
+      "sites": 12,
+      "status": "active",
+      "norms": [
+        22.048198699951172,
+        22.049518585205078
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 4,
+        "shuffled": 2,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034153770975535735,
+        "shuffled": 0.03399588700267486,
+        "untouched": 0.03408145302091725
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "3138389dacfae5f6d2d43440b3660348ccc048fd90390713c139fc71cca1ab1b",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03369544699671678,
+        "shuffled": 0.03393777701421641,
+        "untouched": 0.03382718699867837
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "e82d9042ab879a24ee4c08c1bd1b2631fd87a1f1ab2fe68d47fdfce49ca19a41",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03411818799213506,
+        "shuffled": 0.03431933501269668,
+        "untouched": 0.033880817994941026
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "70f0193a16ad8e4629510222cc981d61de31c9ee7b72713caacdf59066e2021c",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03397367999423295,
+        "shuffled": 0.03407540498301387,
+        "untouched": 0.03383211497566663
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "6426d94875baa92c04b321f6e61596ad3b78af241b5ef5bf02d40a34acd74036",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03403095799149014,
+        "shuffled": 0.033819314994616434,
+        "untouched": 0.033893106010509655
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "5f7711c79f3b532b6141d9f650564f471dbe24ea49f4fe3745d016bc9643339f",
+      "sites": 7,
+      "status": "active",
+      "norms": [
+        5.787502765655518,
+        5.785645008087158
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 2,
+        "shuffled": 1,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03442003598320298,
+        "shuffled": 0.034048750007059425,
+        "untouched": 0.03378984401933849
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "81f5188a13e7c2cbcb85be6aca2508c46c35b5d2f9f5b97a85c595c341a04ce2",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03387921801186167,
+        "shuffled": 0.0340532929985784,
+        "untouched": 0.03403143800096586
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "253cda5520436ed42a6956a321f388568bd399a8b01399f9f8f6c5ed36264e6c",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03435171797173098,
+        "shuffled": 0.033967695984756574,
+        "untouched": 0.034188554011052474
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "c8b0818fc56f1e44c6b3ab5692fd72eb8ff44ef7ee29d48f9f1c941973a045ac",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034172523010056466,
+        "shuffled": 0.03394555300474167,
+        "untouched": 0.03402161400299519
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "09bb07c9edb1fb28c634b23dd7758b4e48a2467a4c1e9099c004117040343fae",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03421258498565294,
+        "shuffled": 0.03415754798334092,
+        "untouched": 0.034091309003997594
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "839417f278615c1178debc99451fe8c7b437c71669075f46aa8a6538b90014d7",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03429885598598048,
+        "shuffled": 0.033981456013862044,
+        "untouched": 0.03396760000032373
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "5afbe2eb8362e4760d70578f48e4674486c1bccd14870cd65bde2f564583dedf",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03450128200347535,
+        "shuffled": 0.03403579001314938,
+        "untouched": 0.03371310999500565
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "48d52635da0afb80bcb508f9710a5376e3fc67eb5f8e91e7425a323a7626db7c",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034140139003284276,
+        "shuffled": 0.03391544098849408,
+        "untouched": 0.03398910301621072
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "15234849269aa8e87d746e47b1abc2781282bfc2e552576bad6e1a6440d1d8ef",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03410993400029838,
+        "shuffled": 0.034218795015476644,
+        "untouched": 0.03389310897910036
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "97c0f95a686540ce2218ee665416f14818fdd0e8bf086cd8448e17caffec74f4",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034217868000268936,
+        "shuffled": 0.03405278400168754,
+        "untouched": 0.033804182021413
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "de9ba4d17b69ded26d7aa4d420180b505beecd090a8ebbb8c66cb04e3d59e853",
+      "sites": 4,
+      "status": "active",
+      "norms": [
+        8.64653491973877,
+        8.652438163757324
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03423751500668004,
+        "shuffled": 0.0339091400092002,
+        "untouched": 0.03406158401048742
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "2ac7e4054f387225e2dc98bcbc32ca1c8f37ad1986ad46dfab5727edd194ef79",
+      "sites": 3,
+      "status": "active",
+      "norms": [
+        3.3343305587768555,
+        3.336851119995117
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 1,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03387698100414127,
+        "shuffled": 0.03360517998225987,
+        "untouched": 0.03325162097462453
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "fb288824f6e689ee97c03e735738aefe8d9dd0e5d9238c3e3aa4cd351ba2a257",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033699257008265704,
+        "shuffled": 0.034379302989691496,
+        "untouched": 0.03436423200764693
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "54d8cef6c48abbbeb63845defd853ff3651d6c7574f84b4d13c364950ffce69a",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03413015799014829,
+        "shuffled": 0.03405403200304136,
+        "untouched": 0.03416590002598241
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "8b7234bc986da8ebdea25c0e8cd213f7c2099abe5344dcc21f6e580ef295ef02",
+      "sites": 3,
+      "status": "active",
+      "norms": [
+        1.6826294660568237,
+        1.6832962036132812
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 4,
+        "shuffled": 1,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03418583600432612,
+        "shuffled": 0.03404471999965608,
+        "untouched": 0.033937139000045136
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "297450b5d4655bd555c91b318d011fa60506da09f265d8109277c52d14a5b738",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03413233399624005,
+        "shuffled": 0.03444125398527831,
+        "untouched": 0.034154765016864985
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "7e4f80908ae2320d72d3942a1d1ba610087307508716007d84eed4bec5e833c8",
+      "sites": 12,
+      "status": "active",
+      "norms": [
+        24.043245315551758,
+        24.041141510009766
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 2,
+        "shuffled": 2,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03425114700803533,
+        "shuffled": 0.03422340302495286,
+        "untouched": 0.03413383700535633
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "db6853ef6c7885d1d8ee33eafe1277d4da2370f319e5fcc14258b471cefc70be",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.0339584180037491,
+        "shuffled": 0.03314371997839771,
+        "untouched": 0.03293137199943885
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "a34058d95db6af345fd8d224d975b8e10ee2fb8de546c8b2a5f42a09f8f058d1",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03418785298708826,
+        "shuffled": 0.034121294011129066,
+        "untouched": 0.03430525801377371
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "438be7e6b88bbcd5f6fac7b490674ee8b22adafda3e493da7947458022241ba8",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034241802990436554,
+        "shuffled": 0.034519043983891606,
+        "untouched": 0.034484933014027774
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "752caaeda7580adc023027cf816bda1ed750c299f5610b1ec59f152b88a6f69e",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03401761699933559,
+        "shuffled": 0.03412894200300798,
+        "untouched": 0.03422801100532524
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "e396dfef0055a5e1bcfb69e56d9e45b714e10df9339fb8a5d73b9f2606d3a5f2",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03404414400574751,
+        "shuffled": 0.03383432497503236,
+        "untouched": 0.03397227401728742
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "051b8051f9834bde7f68bfb2c02c513d6f604c72c40c057cab470c96716333c6",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033979857980739325,
+        "shuffled": 0.034086414001649246,
+        "untouched": 0.034272746997885406
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "e66b44f81a9f515293061ea130dfa2ff4971100fb9e9924ece16dfae84c58779",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03422637897892855,
+        "shuffled": 0.033995250007137656,
+        "untouched": 0.033447263995185494
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "dce1f0197078578d47f88966d69765ab99c04b5d45e67b49ea4184789f6efae9",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03390638800919987,
+        "shuffled": 0.03390491599566303,
+        "untouched": 0.03398052998818457
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "52acf818e74fbf19fafed8443b010caee255496d42d785ed301056b20d94f605",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03388338000513613,
+        "shuffled": 0.03370143301435746,
+        "untouched": 0.03416846098843962
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "70ab80d47731383f9201892f3d1e30d835078ab1b01d92db10f62e9acd8c631e",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        2.133403778076172,
+        2.1338915824890137
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03425399400293827,
+        "shuffled": 0.0340188650006894,
+        "untouched": 0.034062606981024146
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "eb7c9b661a4b696aab1109740cd54c3b274ae7ead1a31a5d4df3b5db5f660562",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034169421007391065,
+        "shuffled": 0.03399918499053456,
+        "untouched": 0.034216170985018834
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "ec9e50f1251c508d52ee479cce671be6167169479c4bc88cf946a17d412fc87c",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03409473499050364,
+        "shuffled": 0.03429431398399174,
+        "untouched": 0.034206572017865255
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "f1fa4ead0077477b2c930264408b99f29e3ee2923a780659af5d68bd74121599",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03415086099994369,
+        "shuffled": 0.03429216900258325,
+        "untouched": 0.0342877859948203
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "9fdee46d5eae98240614dc40264e8e0760a7de5b6b9c3cb42ab67ca81b7bfe8d",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03429639298701659,
+        "shuffled": 0.034005425026407465,
+        "untouched": 0.034241546993143857
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "a59a902ca064d79e1565ce0a0f989c7e21c7db779057c5ddaaf7e963c322414c",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03375330401468091,
+        "shuffled": 0.033919698995305225,
+        "untouched": 0.03384571700007655
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "f3666eb19d6c1fc49a63b6dfd2aa5ff03f19b1ffc0e92389c9071daca9eb4540",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033747991983545944,
+        "shuffled": 0.033797623007558286,
+        "untouched": 0.03387083701090887
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "90180cefab0d02cc4a8350531e13843e7bb1b918a1214dc50162f2f2e4aefdc7",
+      "sites": 4,
+      "status": "active",
+      "norms": [
+        2.9369421005249023,
+        2.9324121475219727
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03403019197867252,
+        "shuffled": 0.03394085098989308,
+        "untouched": 0.03405441498034634
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "17c72438d581ed17e00c034f65109b274eea07882f9b202e66a79e05059268e8",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033833430003141984,
+        "shuffled": 0.03384446899872273,
+        "untouched": 0.033571292005945
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "fbdbee740d770c25a2075dd8c45edb8226cb98f2acdeaf3edf091db5d7a7aa05",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034024560009129345,
+        "shuffled": 0.03387128500617109,
+        "untouched": 0.03386552497977391
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "f9b2cde3af7ee14a81323c2b20ea20071e65b1c59c33b997dc54e36682311b98",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03392725100275129,
+        "shuffled": 0.033609723002882674,
+        "untouched": 0.03393105900613591
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "6e302c2d6e69055312d383ccaba633be1ca84d705f3fbf316f787d852c53a10f",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03369714500149712,
+        "shuffled": 0.033751030976418406,
+        "untouched": 0.033863541000755504
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "5d3507bb957ba52bd95efc9232169f60ac5bbc7f98bedb84c8f1d1275e421880",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        1.0402554273605347,
+        1.0369527339935303
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 1,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.0340812630020082,
+        "shuffled": 0.03390622799634002,
+        "untouched": 0.03387675600242801
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": true,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "92a733c84ce910cfede1548b8fd5e6edd360b7c3c5a5672a09c7ce502ced5e63",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034036719996947795,
+        "shuffled": 0.033923954993952066,
+        "untouched": 0.03381378200720064
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "2459bc1d851b6bbbe75eba29eb100c6df4ae2701b6a560b4087b109cc0951e0e",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03413246100535616,
+        "shuffled": 0.033918355009518564,
+        "untouched": 0.034050063986796886
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "5cf41270558929976a2bd6bd1c49b6aeef11c7361ba7fde5606d703f2e874a07",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034106414997950196,
+        "shuffled": 0.033783765975385904,
+        "untouched": 0.033606843004236
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "7154bcbbf68ec31991aad57a214d3bfedc926e1266b30315a6e3f87202ae52b7",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033595004002563655,
+        "shuffled": 0.03364236300694756,
+        "untouched": 0.0333633300033398
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "8e1f6ef2ddfa61903a99a4826c0f246472221dd47d37888c0433eb050b08a455",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033795349998399615,
+        "shuffled": 0.03355481300968677,
+        "untouched": 0.03373621599166654
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "40a9257ebc0a45fb426bf1a44161a25982bebc22d1245d320615fce18820d6bf",
+      "sites": 5,
+      "status": "active",
+      "norms": [
+        13.481484413146973,
+        13.478354454040527
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 2,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03378139898995869,
+        "shuffled": 0.03368588100420311,
+        "untouched": 0.033422528009396046
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "f2c37cd445c6b3464258fd5f2b46942cc15c6d53fca3995302662b63059baf28",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        1.2112793922424316,
+        1.212203025817871
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03398142498917878,
+        "shuffled": 0.03369362498051487,
+        "untouched": 0.03370450501097366
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "00e9a35b42af41d080085e1afaa0e044d2c38eacda27b217bca825172ecd4173",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03374047199031338,
+        "shuffled": 0.03431562500190921,
+        "untouched": 0.03392597200581804
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "1e731df3d68e7bc25d43d44b4b353386a9ebf61db4c9584b466c5f8dcf371b54",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034017136989859864,
+        "shuffled": 0.033945553994271904,
+        "untouched": 0.03347516700159758
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "ffce343e7f29b0710fbb3babf3ea735c9934516fcda5c918b50798de6575b5c2",
+      "sites": 3,
+      "status": "active",
+      "norms": [
+        2.0611393451690674,
+        2.062122106552124
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 1,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03395633798209019,
+        "shuffled": 0.03338291301042773,
+        "untouched": 0.03357263599173166
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "8e7859e0e8336b25020ff2e76ff450b2967e29af6b0ee32e23caf6b90bbfacba",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.0340193769952748,
+        "shuffled": 0.034054000017931685,
+        "untouched": 0.033863573014969006
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "3ebb71c1a04cb9d73ad9d820f92c8f0ba4b2e8048a8bedc083e4c46e1391ef28",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03399710499797948,
+        "shuffled": 0.033891027997015044,
+        "untouched": 0.033588827995117754
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "e79da970e4bced5a92f425d7115ea872b59c2bea0d11007cdb17ce1aa02824eb",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033512477995827794,
+        "shuffled": 0.033948722993955016,
+        "untouched": 0.0337095610157121
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "52c1573cc3cc8386cd94d7fc26455c4709481aa2e33457cc1ec677669859ddf3",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034085007006069645,
+        "shuffled": 0.03402907197596505,
+        "untouched": 0.033470046997535974
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "82566b7d9f019b6ec82f592e6a443be87d57c487a44ee33fdfffa6a58322596a",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033808374020736665,
+        "shuffled": 0.03388866101158783,
+        "untouched": 0.033683576999465004
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "85ffca28eafd4aa9a48f7d5535f1b1e82ea5d11703f379e5f6dc0a1bfa11c0a4",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03391649998957291,
+        "shuffled": 0.03379950998350978,
+        "untouched": 0.03357714801677503
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "919854181e3ad25c0be5a080e760107fa487aad05ed4f64b2758b4ec2e16cefe",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033720472012646496,
+        "shuffled": 0.03388805198483169,
+        "untouched": 0.033895379019668326
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "a16aadc3046d5e8f83c7d0294d7e35dc8053b32c275385373aa542fea0729c1a",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        0.7076773643493652,
+        0.7050715684890747
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03384587698383257,
+        "shuffled": 0.03361151501303539,
+        "untouched": 0.033357858017552644
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "7b81dcdb2b4771b0e4251586d03b62a4ed7f9d5620519061761c195f853f2d46",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03389323499868624,
+        "shuffled": 0.03390616399701685,
+        "untouched": 0.03436285597854294
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "dd86eb1e66b194d3b26b256dc249536aeeecae9595d001ae957ef6e7284fc091",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03376175099401735,
+        "shuffled": 0.0334450869995635,
+        "untouched": 0.03386168499127962
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "1d638064b5411ab40b70d4f159cb0af65aa950be16345d41606105cae102810e",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        1.0176594257354736,
+        1.0157747268676758
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033845589990960434,
+        "shuffled": 0.03389563597738743,
+        "untouched": 0.03364025100017898
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": true,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "595b14b187654657f5ca85d9086c2122aa6a2017df65e61a730093d09acf4c4c",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03439002300729044,
+        "shuffled": 0.033923923008842394,
+        "untouched": 0.03383538100752048
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "cbb89dcd3bb9befc2d5d5247605f32117f4cf3df36173d05d66bca11bd5eae72",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033920274989213794,
+        "shuffled": 0.03388571599498391,
+        "untouched": 0.03373919197474606
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "d8ba8e922930cb079d2c0e0a34c28c1063ea4b144fd90438ceca4e60d32da786",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03413748598541133,
+        "shuffled": 0.03378386198892258,
+        "untouched": 0.034026961016934365
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "34999c6f0306447a8f27bf573ee227242e657d1ea1b27fb0f67004a77618c679",
+      "sites": 3,
+      "status": "active",
+      "norms": [
+        3.4188201427459717,
+        3.418320894241333
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 1,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03383410201058723,
+        "shuffled": 0.0337179449852556,
+        "untouched": 0.03379752699402161
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "1e27672e9ed8dab8b49bd9ebb00b129560b1e487a4be58b12b63b71603392931",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033764919004170224,
+        "shuffled": 0.03336515399860218,
+        "untouched": 0.0337160239869263
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "ca68c8649ec35fe88e4c76b391568c81299ff7e0b643900ebf5b0691fc34f27e",
+      "sites": 14,
+      "status": "active",
+      "norms": [
+        18.026351928710938,
+        18.0233154296875
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 3,
+        "shuffled": 4,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03361801101709716,
+        "shuffled": 0.03380159000516869,
+        "untouched": 0.03409470300539397
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "1f2b76408cdb9afcf1dae0b30eb8093e0b6489357e9f2445437da266958e5550",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033585308003239334,
+        "shuffled": 0.033545020007295534,
+        "untouched": 0.033585915982257575
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "9dc83c26fee56884eca818d0633f53b91b30217d76a9c5d6e469a36f93c9be75",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        1.5461806058883667,
+        1.5433623790740967
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034046030981699005,
+        "shuffled": 0.03391160399769433,
+        "untouched": 0.03367109800456092
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "f33bf03f1f539c1da84362afd8b7f37ba904bcabc3f87c1ff26f6880c41fce7a",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033814102003816515,
+        "shuffled": 0.03393204999156296,
+        "untouched": 0.033589564001886174
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "3c5573ade2673c491aa51402d449278aafd61017957a0e0c14f1b4cc7e2c7c73",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        1.1193516254425049,
+        1.1180490255355835
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 3,
+        "shuffled": 1,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033630394987994805,
+        "shuffled": 0.033877715992275625,
+        "untouched": 0.033692537021124735
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "ddaf1a392dae4c29ac40da230901ba941685dcfffcc4177ed9acd02e4d8688a4",
+      "sites": 9,
+      "status": "active",
+      "norms": [
+        26.314992904663086,
+        26.317203521728516
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 10,
+        "shuffled": 6,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033911762991920114,
+        "shuffled": 0.03367666498525068,
+        "untouched": 0.03346175898332149
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "6ff672e01d3e3c4af2a58c3217cca5d270748de41eb8dc0842a7c533f34bfd31",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03388398900278844,
+        "shuffled": 0.03388149198144674,
+        "untouched": 0.033684344991343096
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "16bbb3c03c9e00b92df862934b12b9b956a26f54d1dad0c3c2c25bb0997f6e70",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03379454999230802,
+        "shuffled": 0.03371397699811496,
+        "untouched": 0.03346540598431602
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "f77972da6e8ded632c0ab8726974f09068911df58be8ee72e70dde2cf6ccaafb",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.0338666129973717,
+        "shuffled": 0.03368645699811168,
+        "untouched": 0.03367452201200649
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "c448a3bc276556f5eb6f0950eaf95fb4bc5306adf0c9f65b1d414f036817305f",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033956113999010995,
+        "shuffled": 0.033688057999825105,
+        "untouched": 0.03349718198296614
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "98465ae401eb000fb8a7d7ddb21762bf3cf8105a615ed8dd950a36f89ed59efe",
+      "sites": 6,
+      "status": "active",
+      "norms": [
+        4.360896587371826,
+        4.35562801361084
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03376818299875595,
+        "shuffled": 0.033568252983968705,
+        "untouched": 0.033661784982541576
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "bd7fcf9ed0d5e65ba1edf1e974b8f1d6b6d3bb1c6120f9dd8024ed02f5779352",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03344332697452046,
+        "shuffled": 0.03366172200185247,
+        "untouched": 0.033736279990989715
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "87b42b6c323a1e9ce42a0458f4787d8ecd414709b4b33069fa90dc8c9b087310",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03398340899730101,
+        "shuffled": 0.03353430097922683,
+        "untouched": 0.03343308801413514
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "179e4feb2540289fd7bc2c65b94195d428305f9d7f36939b0cc875195612990a",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033866804995341226,
+        "shuffled": 0.03374312797677703,
+        "untouched": 0.03380645500146784
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "2ca40bbc820cc681bf64de1b3b86777082b2603791edafb1c0b2eb769f2044b3",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03421092301141471,
+        "shuffled": 0.03382943000178784,
+        "untouched": 0.03376306299469434
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "799e0038ec8db698e7a8f3c43bff13eae27cffc02cb762641de84ca0eb37fa4a",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03393368300748989,
+        "shuffled": 0.033810294000431895,
+        "untouched": 0.0338811399997212
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "163bd7833e1601ec411b2a397a1c8ef821cd9cd880201e8d02a1b2f4dd96a145",
+      "sites": 7,
+      "status": "active",
+      "norms": [
+        10.121633529663086,
+        10.119003295898438
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 2,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033965042006457224,
+        "shuffled": 0.03360684399376623,
+        "untouched": 0.033842740987893194
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "693379c475ba0e3f06c8aaeca33bc1bc13d2822420fb2b0ec8ee87ec661e62c8",
+      "sites": 5,
+      "status": "active",
+      "norms": [
+        4.817447662353516,
+        4.8156561851501465
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 2,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03419473202666268,
+        "shuffled": 0.0339267710223794,
+        "untouched": 0.03370568802347407
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "50f1a7c53b94562af38923da0324fd3ffbd35a45eb24f0b5efa3179e46efec04",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03368632998899557,
+        "shuffled": 0.0338005340017844,
+        "untouched": 0.03324835700914264
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "c25733c280ccad251d1bd8cab06cc0a3dbadd9984b7107982b3773b9c881042d",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03380347799975425,
+        "shuffled": 0.033491262001916766,
+        "untouched": 0.03404862398747355
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "86fb9c4a3100dee252ac6255453ae8ff1c35540e7fabe656fc7034566aa9d0e5",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03393672301899642,
+        "shuffled": 0.034127212973544374,
+        "untouched": 0.034166764991823584
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "5dfaec1b35518022ce78ab9bca01b590b64097daedcd47ef8041ff4fdfd5f19e",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03423393101547845,
+        "shuffled": 0.03386318898992613,
+        "untouched": 0.033939763001399115
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "6921798fb3c24d6de91537f69f9f679e91f5f06cc1f87f1fd15c90bcfc1a6710",
+      "sites": 3,
+      "status": "active",
+      "norms": [
+        1.2172232866287231,
+        1.2197455167770386
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03433168900664896,
+        "shuffled": 0.03388693300075829,
+        "untouched": 0.0339785770047456
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "d5568a4c7c47cfca9034161eda7ffb221ab5add95b4a09648fa65bd4bb71c844",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03408513602335006,
+        "shuffled": 0.034204972005682066,
+        "untouched": 0.03396484997938387
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "e3d1972af25774c879164519de89c255a1117964bafbab37bc9339bc5bd28912",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03398484899662435,
+        "shuffled": 0.03373138399911113,
+        "untouched": 0.033914706989889964
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "a4fc8f03ab5b2081b52324d323e5cd9faaa552702ef5716d39bded39a20a65d9",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03403912001522258,
+        "shuffled": 0.03403035199153237,
+        "untouched": 0.034018672013189644
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "1612bbe024fc3b13a1534432f0a5ae3a52a0085e98c7d056dfa2583dee4dfcda",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03395105799427256,
+        "shuffled": 0.03375551098724827,
+        "untouched": 0.03413175800233148
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "59d9f2043bd76dda57b893227c022c2630252b87bfe119c153b085dd3c624195",
+      "sites": 6,
+      "status": "active",
+      "norms": [
+        8.600692749023438,
+        8.603682518005371
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 2,
+        "shuffled": 2,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03384610099601559,
+        "shuffled": 0.03370184899540618,
+        "untouched": 0.03377435798756778
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "155fa44e6e75b15e4a40e3c1dfaf449ffb3987e3748878657c3b4e55f2f5dc4c",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033665914001176134,
+        "shuffled": 0.03367535400320776,
+        "untouched": 0.0335055019822903
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": true,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "455a7385676c158e6ede5de7009d890fcf75b28b5d66572e063423cf95b8b8b4",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03414839698234573,
+        "shuffled": 0.03376383101567626,
+        "untouched": 0.033801206009229645
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "8c0b91e4d08021ccab7d0178f92d6d6d6220afed67d0b59fe3d56d1fa1103838",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        0.7766309976577759,
+        0.7780916690826416
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 1,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034032463998300955,
+        "shuffled": 0.03399374498985708,
+        "untouched": 0.033619386987993494
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "00b0c5ee582f57ba7fd6e88cf608eb7ffb1b3f80400280706adcfb691be960ba",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03376293499604799,
+        "shuffled": 0.03379947799840011,
+        "untouched": 0.03356831701239571
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "44e505e8e67e6af9247c6d8586e00e0a76c632527d23e2dd09558bd5e02875a8",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03374831101973541,
+        "shuffled": 0.033277284004725516,
+        "untouched": 0.033937843021703884
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "44bc99803aec972485d9eb2c561fc2e4ba6b9f9f6b16800c25112a23b2cd88c3",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034031312010483816,
+        "shuffled": 0.033961842011194676,
+        "untouched": 0.03362741897581145
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "500104631a828a25d90e9d011fe59a9d8b317cb090093ef3a1c7016b2b257606",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033824214013293386,
+        "shuffled": 0.033793301990954205,
+        "untouched": 0.03381499802344479
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "b9ee8b9bc57093e88ea18e22b3ff29ed36a4417082091a64e540fe9722e3bcbe",
+      "sites": 6,
+      "status": "active",
+      "norms": [
+        2.91233229637146,
+        2.907945394515991
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034036847995594144,
+        "shuffled": 0.03403553698444739,
+        "untouched": 0.033911251986864954
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "865f0d4c92b52d92d215b9d681679c2d42bb37f7f1fa82a8980b7d8b4bd39161",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03423751599621028,
+        "shuffled": 0.03418442900874652,
+        "untouched": 0.034116046997951344
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "08641680a193dc2fc3590180ed6704f20331b4a971d0ff2fd6f945b30b5f9957",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        2.6526739597320557,
+        2.651064395904541
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 1,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034151564992498606,
+        "shuffled": 0.03368306500487961,
+        "untouched": 0.034003088978352025
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "55b024338dfd9d23ee5891ccd459126eb25513b0926c09468e90f6e9a26d2a07",
+      "sites": 3,
+      "status": "active",
+      "norms": [
+        3.0050172805786133,
+        3.007117509841919
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 2,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033964529982768,
+        "shuffled": 0.034215659979963675,
+        "untouched": 0.03410206301487051
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "2ee68276fca9a2fd66f91f47e85d877ef581b546bec6705006f88440856318ab",
+      "sites": 5,
+      "status": "active",
+      "norms": [
+        2.122605085372925,
+        2.119792938232422
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 5,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03394523498718627,
+        "shuffled": 0.03407623901148327,
+        "untouched": 0.03389512398280203
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "21d48550155ebb573c9facea09126fbca896abfa41798ebff88cd97cdc7b2ead",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033765686996048316,
+        "shuffled": 0.033732664975104854,
+        "untouched": 0.03412791699520312
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "6ef11951f415a36af757ebfabf86985c02ce8b8cbbdc5e9d13313203f887ab18",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03415146900806576,
+        "shuffled": 0.033888563979417086,
+        "untouched": 0.033710775984218344
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "2f1e51e5a5029f3958b0c6611d39d16914ebbf0c2f92e700193b37f141f9da47",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03423284299788065,
+        "shuffled": 0.03398878499865532,
+        "untouched": 0.03332944301655516
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "7d838f5743a28763bf01bef1c405da9d836229038dd8683fe834f633c5b30ed6",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        3.5640740394592285,
+        3.55926513671875
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03385963698383421,
+        "shuffled": 0.03386683700955473,
+        "untouched": 0.033797557989601046
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "cfd22ff0d1f4664ceacc21a5860a9f3b368d852e2a4ca5e1a2f0d9509fba3cd7",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        0.5337170362472534,
+        0.5313581824302673
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033895315980771556,
+        "shuffled": 0.03354095600661822,
+        "untouched": 0.03338144198642112
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "d92cabda68e7a1bc21add786aa4a2d3bab48ba9079b41d06e2bd068cc3a24cad",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03447344497544691,
+        "shuffled": 0.03429709799820557,
+        "untouched": 0.033874196000397205
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "ed74780442b7c27e372e40064c05794ffdedb20e1d4f92cdf3df1925bc0e007f",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03397246601525694,
+        "shuffled": 0.03404475300339982,
+        "untouched": 0.03344732799450867
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "46333f46e800b75aa28471d34a9294e70c315b22c88d2631e9fe65a661f2e2ba",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03394395500072278,
+        "shuffled": 0.03403396799694747,
+        "untouched": 0.03409220700268634
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "529b543d97f5db9ff0a75b86889475c413e4889a14a888a25f85c83a68e1e05b",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033807222003815696,
+        "shuffled": 0.03394360200036317,
+        "untouched": 0.03384139700210653
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "8c43ac5342621045ff9c0ce1dfea2c9214303038ff2a25e45465ce7916462a9f",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03376824801671319,
+        "shuffled": 0.033647547010332346,
+        "untouched": 0.033579195995116606
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "d7bbe9fd33fec27c914e2da9269e89b448df60d0e2cbc91e891440f323197527",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03399016198818572,
+        "shuffled": 0.03404014397528954,
+        "untouched": 0.03376802400453016
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "9d8da747240b0761a3ad8d8a8d05434601d63297abd958d79f5ba3a03fd85d89",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034476387983886525,
+        "shuffled": 0.033960563014261425,
+        "untouched": 0.03364057099679485
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "c0fd98ffca31e21307ea7976402c245ef47f13283d1e66a412d554f20a116bcd",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033617498993407935,
+        "shuffled": 0.034060367004713044,
+        "untouched": 0.03359449200797826
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "a3621e4571f4c68f851fdff289fe689a383a03a9cb16b20d67d0c3e9f4651742",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03364364197477698,
+        "shuffled": 0.033686232985928655,
+        "untouched": 0.03362751498934813
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "363f600be5924105c97bfc78f0ff95f16c89625285367ac399bb46250162f3e8",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        2.302809238433838,
+        2.300414800643921
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.0340848790074233,
+        "shuffled": 0.03411767800571397,
+        "untouched": 0.03373692001332529
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "dff55d2025d6ca3d53b792ef4826e83f310560eda46ac1068e60839f1a5afa31",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034242410998558626,
+        "shuffled": 0.033976400998653844,
+        "untouched": 0.034172365005360916
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "0aca9d1e4003e1c659c6c4490a34545e1887b07dc998580c4ec5c701f642bc1a",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033846486010588706,
+        "shuffled": 0.03388638797332533,
+        "untouched": 0.03370216899202205
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "ccf17182f44f341d3f11362386a59e9e8a6b1327546efd8cc42ce6bfdc0bd07d",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034137773007387295,
+        "shuffled": 0.033799383003497496,
+        "untouched": 0.03375426400452852
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "a8a41ed0c29873bd3a6c34e1e0e80b845271a3db5c5bc4342f0643ebc44356b4",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03383419700548984,
+        "shuffled": 0.033877045003464445,
+        "untouched": 0.034132845990825444
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "50b43f4934f074aec899b681a144f624502d6d4383f4ce5177c1da0c41fe1920",
+      "sites": 3,
+      "status": "active",
+      "norms": [
+        1.6165586709976196,
+        1.6173285245895386
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03373915998963639,
+        "shuffled": 0.033501821977552027,
+        "untouched": 0.033691065007587895
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "a9059abcc99b351fe4a794a4921bf07f11946a6447fedc40a13fa7b91defeaf2",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034194828011095524,
+        "shuffled": 0.03394030701019801,
+        "untouched": 0.03365273101371713
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "d650ff247cd3e31ba0c4afe013703ad6ac68dfc0e614123bed03e600e449fe20",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033927762997336686,
+        "shuffled": 0.03322192499763332,
+        "untouched": 0.03373692001332529
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "86ac3b308ca72798fd85a66f9294a72bd160119d24ac12471f5927a2f341cd13",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03397745799156837,
+        "shuffled": 0.033828886022092775,
+        "untouched": 0.033740535989636555
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "44cfd7b51cfb062c180d86eb7184d0c269344c0e5143437518564673f4b65055",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03402980900136754,
+        "shuffled": 0.033703800989314914,
+        "untouched": 0.03367160999914631
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "ba0d37f758efb46071d94915857a69aa9fbf415779bb9a92fd4a640478f3a4ed",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03415815602056682,
+        "shuffled": 0.033751832001144066,
+        "untouched": 0.034287112997844815
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "a980a53b2f22851b4bc30592de0aafea727e123af26903f7e33e0c7e408ed300",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034141581010771915,
+        "shuffled": 0.03377634298522025,
+        "untouched": 0.03376306299469434
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "0950078e238d5448aa8467908a7e6347b8c4e34dee69e19c80966dad0befa9ab",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03396392200374976,
+        "shuffled": 0.03410158198676072,
+        "untouched": 0.033906451979419217
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "1db576771624afdd3e64acf0209149608ab52916b76b4cb948ad9a2dd08f24b3",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034139244991820306,
+        "shuffled": 0.033929811004782096,
+        "untouched": 0.03389115599566139
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "98db9437a092b7a78e6e2a9614df84925897291e3cd1f8233823b25fcc51e5d6",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03366072999779135,
+        "shuffled": 0.03358242797548883,
+        "untouched": 0.03358930800459348
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "92aea111c8b241ff91b061b8b25868b3b89192cb6ff7e94df1c46d218cf12b63",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        2.885120391845703,
+        2.8835129737854004
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 2,
+        "shuffled": 1,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03366610599914566,
+        "shuffled": 0.03370642501977272,
+        "untouched": 0.03393419599160552
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "bda23c6fb8db8309ce0138f88104832379bafc98bf497c93260a9046b9086aba",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034111470013158396,
+        "shuffled": 0.033862837008200586,
+        "untouched": 0.03436019999207929
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "d223b5a9d1ae9d9b5e6c205d35c2379e76b4fdede25fbbf92b8891351a315de9",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034212651022244245,
+        "shuffled": 0.03417098897625692,
+        "untouched": 0.034006609028438106
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "7b0d5261d09e27df0feee93b3b80a371c65c819f44107b0e8d533e8ad43f2786",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034548131021438166,
+        "shuffled": 0.03421101899584755,
+        "untouched": 0.033862548996694386
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "8b7ea60c2b9c8e7613187f94a8a3eb32b5b00453b42ff8bda0dc659ef3ce4737",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03427300200564787,
+        "shuffled": 0.03380959000787698,
+        "untouched": 0.03362236300017685
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "969666e4ad479bab34a8f81b7f9f3c039726d96dd826ee333f5c239851106e4a",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03413905299385078,
+        "shuffled": 0.03382930200314149,
+        "untouched": 0.033699224004521966
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "ae4b83998317f8bba7a8d9dcb29d4afc95dba71b57ad6ce3313115f9e96ff9d7",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03385634097503498,
+        "shuffled": 0.03392753901425749,
+        "untouched": 0.03390273998957127
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "d90987e109ada4cb62536741bb16b5ad18e881247c74bea7da35d1edb2ad7809",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03379138300078921,
+        "shuffled": 0.033893172978423536,
+        "untouched": 0.03365557797951624
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "d332e0f26563eae7664bea14eca576454b72c99f0519239bc1380789c61a8f6f",
+      "sites": 4,
+      "status": "active",
+      "norms": [
+        3.9102368354797363,
+        3.919663906097412
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03419393199146725,
+        "shuffled": 0.034277995000593364,
+        "untouched": 0.033668121992377564
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "61ab3f5c4b272d30fba6b0d2d981a835c4f786cd923c652188656dc9fceef3b5",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        0.5881525278091431,
+        0.5899888277053833
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 1,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034228618984343484,
+        "shuffled": 0.033943634014576674,
+        "untouched": 0.03355538900359534
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "5094710983806e59fd5f1524a61016567f7fdbb7ac59fcd1c89f98e6450e422d",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        4.640347957611084,
+        4.638045787811279
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 3,
+        "shuffled": 2,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03435594399343245,
+        "shuffled": 0.034348135988693684,
+        "untouched": 0.033933490980416536
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "25d53342374dbc4511d20a584da6c53252198b01ec0316e4c2ff6811aea555c4",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033594267006265,
+        "shuffled": 0.033836021000752226,
+        "untouched": 0.033846548991277814
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "1f437e8b8cfae8f41355f6e328dc84fb9aae639fce098ec03c5b4675159aa021",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033796439005527645,
+        "shuffled": 0.03363045898731798,
+        "untouched": 0.033930547011550516
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "28c09c48e9d6e38d83671e638e691821c7f3d0b5f966626044bca5b0b72f0a69",
+      "sites": 3,
+      "status": "active",
+      "norms": [
+        3.022989511489868,
+        3.0213446617126465
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034172621002653614,
+        "shuffled": 0.03387659598956816,
+        "untouched": 0.033793815004173666
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "b3af5f334d60faa72d57afb58e739b568fa6e657bb65bbe8f13b6f7cefa9a086",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03393189000780694,
+        "shuffled": 0.03413998201722279,
+        "untouched": 0.03405281499726698
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "40f9c1082e82cc77e795111b9bd47995a5dc3a0c87251406d0e2f7ad6ee589cb",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.0339911850169301,
+        "shuffled": 0.03435655098292045,
+        "untouched": 0.034115022979676723
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "ae4bf950d2fef642b4a70390f3b28a1ed1778db58db4ec70d318c3737aade434",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03397333002067171,
+        "shuffled": 0.03390091500477865,
+        "untouched": 0.0338545489939861
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "f269812d61ff19b1ff04cf1f73420ae27cc423e43d9edddac8f83b6aad384bf5",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03407617498305626,
+        "shuffled": 0.03417991698370315,
+        "untouched": 0.033888820005813614
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "ba0db6cc63451d20f9229c5f89230a730b9edf87a7cc2aa05428f3cd1b640a2d",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034052239992888644,
+        "shuffled": 0.03411211000639014,
+        "untouched": 0.034267594979610294
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "dc466d7360c899e27c2d9328addddc5ccb08f31abf3d248c5c0b124f3ebaae3c",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03392309200717136,
+        "shuffled": 0.03423386698705144,
+        "untouched": 0.034086895000655204
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "f57977aa030759038f8e61b0547db8936951a4322c5a538363b3e907055a1d62",
+      "sites": 1,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033845685014966875,
+        "shuffled": 0.03392081998754293,
+        "untouched": 0.03413537298911251
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "cc154a4713b83e95ea5f3b8525a935b226b996b526eee110dcf04d472905207c",
+      "sites": 8,
+      "status": "active",
+      "norms": [
+        5.655119895935059,
+        5.656469821929932
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 2,
+        "shuffled": 1,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03440909498021938,
+        "shuffled": 0.03402964799897745,
+        "untouched": 0.03423588300938718
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "3d4df7699d2d5327dbf11b7ca0365a5e84f94f230c4da88824f47a63241ca748",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.0340124009817373,
+        "shuffled": 0.03371125701232813,
+        "untouched": 0.033650010998826474
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "250fa85db01e480fcfd239e42e6683f6f4599d293f916f426dfe39eea75b7caa",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034021936007775366,
+        "shuffled": 0.03409300700877793,
+        "untouched": 0.033743382984539494
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "444d210758a8848678b755752b662f3eec88778de1a5a268111c5fda9cac65cd",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033627739001531154,
+        "shuffled": 0.03384229401126504,
+        "untouched": 0.033468734996858984
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "fbd3b78d35e037bdac445cdd4d052af6ad5336e05b25834c2f195464a9aef703",
+      "sites": 2,
+      "status": "active",
+      "norms": [
+        1.1932501792907715,
+        1.1943302154541016
+      ],
+      "anchor": 1,
+      "first_changes": {
+        "aligned": 1,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.033947987016290426,
+        "shuffled": 0.033757591008907184,
+        "untouched": 0.033898355992278084
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    },
+    {
+      "id": "658a8091f8245ca46f7ca58779b711c64d6ff4695bd7944cb54596d1115701f6",
+      "sites": 0,
+      "status": "too_few",
+      "norms": [
+        0.0,
+        0.0
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 0,
+        "shuffled": 0,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.034088078973582014,
+        "shuffled": 0.033635387022513896,
+        "untouched": 0.03342924700700678
+      },
+      "exact": {
+        "aligned": true,
+        "shuffled": true,
+        "untouched": true,
+        "serial": true,
+        "pool": true,
+        "a": true,
+        "b": true
+      }
+    },
+    {
+      "id": "7dc2dce6a081331f96dfa1d78c8f6980b273a17ec1658aeadb98eb00d56a4e31",
+      "sites": 9,
+      "status": "active",
+      "norms": [
+        8.311511993408203,
+        8.307376861572266
+      ],
+      "anchor": 0,
+      "first_changes": {
+        "aligned": 2,
+        "shuffled": 1,
+        "untouched": 0
+      },
+      "continuation_seconds": {
+        "aligned": 0.03450243599945679,
+        "shuffled": 0.03437543200561777,
+        "untouched": 0.03427572199143469
+      },
+      "exact": {
+        "aligned": false,
+        "shuffled": false,
+        "untouched": false,
+        "serial": false,
+        "pool": false,
+        "a": false,
+        "b": false
+      }
+    }
+  ],
+  "train_file_sha256": "71e6fc688d917ed7b72f7de8c9e01cde89de2793c5f2fb4c3ccb274eeb3126af",
+  "cohort_manifest_sha256": "2ac636f1f6834cc7eedc5ef7ee2f296add953ee188fee085fd154ac1c96874ac",
+  "split_sha256": "ce1b1958fa2490d63e2237d762cc16ed2c9a8bbb94197ad7a6f5c90293f1d446",
+  "elapsed": 122.72103171399795,
+  "device": "cuda",
+  "torch": "2.8.0a0+5228986c39.nv25.05",
+  "native_sha256": "533999676a1d44bdb84205461b55ecf1719f238cad2c2af699de78128e3dbf7f",
+  "edit_sha256": "7e2205b9147ffc0dcdf8b49691580937a6e6460f1861a98b7ed7cdb85e0246da",
+  "source_sha256": "e6fdb594b5a2ccab2acabbf6a9449935f4b8182f36196271bf1555e26ff84d98",
+  "serial_or_branch_blocks_after_prefix": 252
+}
