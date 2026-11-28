@@ -27,7 +27,8 @@ def generate(args):
     prior=json.loads(args.intervention.read_text())["rows"]
     excluded={r["id"] for r in prior}.union(*(m[k] for k in ("original_ids","dev_ids","heldout_ids")))
     z=np.load(args.data,allow_pickle=False); ids=z['ids'].tolist(); inputs=z['x']; targets=z['y']+1
-    pool=sorted((i for i,g in enumerate(ids) if g not in excluded),key=lambda i:digest('ph4-master/'+ids[i]))[-2048:]
+    eligible=sorted((i for i,g in enumerate(ids) if g not in excluded),key=lambda i:digest('ph4-master/'+ids[i]))
+    pool=eligible[:-2048] if args.training else eligible[-2048:]
     solver=subprocess.Popen([args.solver],stdin=subprocess.PIPE,stdout=subprocess.PIPE,text=True)
     counts=Counter(); rows=[]; meta=[]; seen=set()
     def solve(puzzle,reverse=False):
@@ -79,4 +80,5 @@ if __name__=='__main__':
     p=argparse.ArgumentParser()
     for k in ('solver','data','cohort','intervention','out','manifest'):
         p.add_argument('--'+k,type=Path,required=True)
+    p.add_argument('--training',action='store_true')
     generate(p.parse_args())
